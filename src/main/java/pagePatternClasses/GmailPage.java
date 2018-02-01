@@ -1,6 +1,5 @@
 package pagePatternClasses;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -62,8 +61,4 @@ public class GmailPage {
         return deleteOkButton;
     }
 
-    public String getSubject(String subject, WebDriver driver) {
-        String yourSubject = driver.findElement(By.xpath("//*[@class='bog']//*[text()='" + String.format("%s", subject) + "']")).getText();
-        return yourSubject;
-    }
 }

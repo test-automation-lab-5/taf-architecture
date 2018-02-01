@@ -1,5 +1,3 @@
-package pagePatternClasses;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -9,34 +7,40 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import pagePatternClasses.AcountData;
+import pagePatternClasses.GmailPage;
+import pagePatternClasses.LoginPage;
+import pagePatternClasses.WebDriverProp;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 public class GmailTest {
     private static WebDriver driver;
-    private static final String DRIVER_URL = "src\\\\main\\\\resources\\\\chromedriver.exe";
-    private static final String URL = "https://accounts.google.com/signin";
-    private static final String YOUR_EMAIL = "homeworkbohdan@gmail.com";
-    private static final String PASSWORD = "719113719113";
+    private AcountData acountData;
     private static final String SEND_TO = "homeworkbohdan@gmail.com";
     private static final String SUBJECT = "TestFour";
     private static final String MESSAGE = "Test message";
 
     @BeforeClass
-    public void setUpDriver() {
-        System.setProperty("webdriver.chrome.driver", DRIVER_URL);
+    public void setUpDriver() throws IOException {
+        WebDriverProp webDriverProp = new WebDriverProp();
+        acountData = new AcountData();
+        System.setProperty(webDriverProp.chromeDriver(), webDriverProp.readUrl());
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 
     @Test
-    public void testGmail() {
+    public void testGmail() throws IOException {
         WebDriverWait wait = new WebDriverWait(driver, 30);
-        driver.get(URL);
+        driver.get(acountData.getGmaiUrl());
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.loginGmail(YOUR_EMAIL);
+        loginPage.loginGmail(acountData.getUserName());
         wait.until(ExpectedConditions.elementToBeClickable(loginPage.getPasswordInput()));
-        loginPage.setPasswordInput(PASSWORD);
+        loginPage.setPasswordInput(acountData.getUserPassword());
         loginPage.openGmailPage();
 
         GmailPage gmailPage = new GmailPage(driver);
