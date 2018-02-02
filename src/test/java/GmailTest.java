@@ -7,14 +7,12 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pagePatternClasses.AcountData;
+import Properties.AcountData;
 import pagePatternClasses.GmailPage;
 import pagePatternClasses.LoginPage;
-import pagePatternClasses.WebDriverProp;
+import Properties.WebDriverProp;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 public class GmailTest {

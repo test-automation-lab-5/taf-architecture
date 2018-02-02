@@ -1,4 +1,4 @@
-package pagePatternClasses;
+package Properties;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
