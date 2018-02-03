@@ -1,5 +1,7 @@
 package testdata;
 
+import testdata.xmlmodels.LetterData;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;

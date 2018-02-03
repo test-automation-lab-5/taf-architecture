@@ -1,4 +1,4 @@
-package testdata;
+package testdata.xmlmodels;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -17,7 +17,7 @@ public class LetterData {
         this.sentTo = sentTo;
     }
 
-    public String getSubject() {
+    public  String getSubject() {
         return subject;
     }
     @XmlElement

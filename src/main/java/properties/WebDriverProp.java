@@ -7,20 +7,22 @@ import java.util.Properties;
 
 public class WebDriverProp {
     private final static String PROPERTY_PATH = "src\\\\main\\\\resources\\\\webDriver.properties";
-    private Properties properties = new Properties();
-    private FileInputStream fileInputStream = new FileInputStream(PROPERTY_PATH);
+    private Properties properties;
+    private FileInputStream fileInputStream;
 
     public WebDriverProp() throws IOException {
+        properties = new Properties();
+        fileInputStream = new FileInputStream(PROPERTY_PATH);
         properties.load(fileInputStream);
     }
 
     public String chromeDriver() throws IOException {
-        String chromeDriver = properties.getProperty("WebDriver");
+        String chromeDriver = properties.getProperty("webdriver");
         return chromeDriver;
     }
 
     public String readUrl() throws IOException {
-        String chromeDriverPath = properties.getProperty("Path");
+        String chromeDriverPath = properties.getProperty("path");
         return chromeDriverPath;
     }
 }

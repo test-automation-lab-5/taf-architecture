@@ -1,6 +1,8 @@
 package testdata;
 
-import javax.jws.soap.SOAPBinding;
+import testdata.xmlmodels.User;
+import testdata.xmlmodels.UsersData;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;

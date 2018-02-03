@@ -1,4 +1,4 @@
-package testdata;
+package testdata.xmlmodels;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

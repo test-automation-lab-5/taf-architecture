@@ -31,9 +31,8 @@ public class LoginPage extends AbstractPage {
 
 
 
-    public void setPasswordInput(String password, WebDriver driver) {
-        WebDriverWait wait = new WebDriverWait(driver, 30);
-        wait.until(ExpectedConditions.elementToBeClickable(passwordInput));
+    public void setPasswordInput(String password) {
+        waitUntilBeClickable(passwordInput);
         passwordInput.sendKeys(password);
         passwordNextButton.click();
     }

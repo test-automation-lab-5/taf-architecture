@@ -8,9 +8,9 @@ import pagepatternclasses.GmailPage;
 import pagepatternclasses.LoginPage;
 import properties.WebDriverProp;
 import testdata.JAXBHendler;
-import testdata.LetterData;
 import testdata.LetterDataUnMarshaller;
-import testdata.User;
+import testdata.xmlmodels.LetterData;
+import testdata.xmlmodels.User;
 
 import javax.xml.bind.JAXBException;
 import java.io.File;
@@ -22,7 +22,6 @@ public class GmailTest {
     private static WebDriver driver;
     private LetterData letterData;
     private List<User> usersData;
-
 
     @BeforeClass
     public void setUpDriver() throws IOException, JAXBException {
@@ -40,17 +39,16 @@ public class GmailTest {
         driver.get(usersData.get(0).getLoginPage());
         LoginPage loginPage = new LoginPage(driver);
         loginPage.loginGmail(usersData.get(0).getLogin());
-        loginPage.setPasswordInput(usersData.get(0).getPassword(), driver);
+        loginPage.setPasswordInput(usersData.get(0).getPassword());
         loginPage.openGmailPage();
 
         GmailPage gmailPage = new GmailPage(driver);
         gmailPage.sendLetter(letterData.getSentTo(), letterData.getSubject(), letterData.getMessage());
+
         gmailPage.getSentPage();
-
-        Assert.assertEquals(letterData.getSubject(), gmailPage.getSubject(driver));
-
+        Assert.assertEquals(letterData.getSubject(), gmailPage.getSubject());
         gmailPage.removeLetterFromSend();
-        gmailPage.pushDeleteOkButton(driver);
+        gmailPage.pushDeleteOkButton();
         Assert.assertEquals("The conversation has been moved to the Trash.", gmailPage.getMovedMessage());
     }
 

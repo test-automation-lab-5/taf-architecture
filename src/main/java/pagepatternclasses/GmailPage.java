@@ -4,10 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import testdata.LetterData;
 import testdata.LetterDataUnMarshaller;
+import testdata.xmlmodels.LetterData;
 
 public class GmailPage extends AbstractPage {
     @FindBy(xpath = "//div[@class='T-I J-J5-Ji T-I-KE L3']")
@@ -53,9 +51,8 @@ public class GmailPage extends AbstractPage {
         deleteButton.click();
     }
 
-    public void pushDeleteOkButton(WebDriver driver) {
-        WebDriverWait wait = new WebDriverWait(driver, 30);
-        wait.until(ExpectedConditions.elementToBeClickable(deleteOkButton));
+    public void pushDeleteOkButton() {
+        waitUntilBeClickable(deleteOkButton);
         deleteOkButton.click();
     }
 
@@ -64,10 +61,10 @@ public class GmailPage extends AbstractPage {
         return message;
     }
 
-    public String getSubject(WebDriver driver) {
+    public String getSubject() {
         LetterData letterData = LetterDataUnMarshaller.unmarsaller();
         String subject = letterData.getSubject();
-        String letterSubject = driver.findElement(By.xpath("//*[@class='bog']//*[text()='" + String.format("%s", subject) + "']")).getText();
+        String letterSubject = getSubject(subject);
         return letterSubject;
     }
 
