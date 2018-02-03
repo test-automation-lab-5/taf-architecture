@@ -12,14 +12,16 @@ public class LetterData {
     public String getSentTo() {
         return sentTo;
     }
+
     @XmlElement
     public void setSentTo(String sentTo) {
         this.sentTo = sentTo;
     }
 
-    public  String getSubject() {
+    public String getSubject() {
         return subject;
     }
+
     @XmlElement
     public void setSubject(String subject) {
         this.subject = subject;
@@ -28,6 +30,7 @@ public class LetterData {
     public String getMessage() {
         return message;
     }
+
     @XmlElement
     public void setMessage(String message) {
         this.message = message;

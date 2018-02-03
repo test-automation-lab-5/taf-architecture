@@ -1,22 +1,18 @@
+import drivers.DriverObject;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pagepatternclasses.GmailPage;
 import pagepatternclasses.LoginPage;
-import properties.WebDriverProp;
 import testdata.JAXBHendler;
 import testdata.LetterDataUnMarshaller;
 import testdata.xmlmodels.LetterData;
 import testdata.xmlmodels.User;
-
 import javax.xml.bind.JAXBException;
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class GmailTest {
     private static WebDriver driver;
@@ -24,18 +20,19 @@ public class GmailTest {
     private List<User> usersData;
 
     @BeforeClass
-    public void setUpDriver() throws IOException, JAXBException {
+    public void setUpDriver() {
         File usersDataXml = new File("src\\\\main\\\\resources\\\\usersData.xml");
-        WebDriverProp webDriverProp = new WebDriverProp();
         letterData = LetterDataUnMarshaller.unmarsaller();
-        usersData = JAXBHendler.unmarshal(usersDataXml);
-        System.setProperty(webDriverProp.chromeDriver(), webDriverProp.readUrl());
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        try {
+            usersData = JAXBHendler.unmarshal(usersDataXml);
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+        driver = DriverObject.getDriver();
     }
 
     @Test
-    public void testGmail() throws IOException {
+    public void testGmail() {
         driver.get(usersData.get(0).getLoginPage());
         LoginPage loginPage = new LoginPage(driver);
         loginPage.loginGmail(usersData.get(0).getLogin());

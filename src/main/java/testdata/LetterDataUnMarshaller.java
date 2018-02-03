@@ -1,13 +1,12 @@
 package testdata;
 
 import testdata.xmlmodels.LetterData;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
 
-public  class LetterDataUnMarshaller {
+public class LetterDataUnMarshaller {
     public static LetterData unmarsaller() {
         try {
 

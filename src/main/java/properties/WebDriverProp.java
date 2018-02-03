@@ -11,17 +11,18 @@ public class WebDriverProp {
     private FileInputStream fileInputStream;
 
     public WebDriverProp() throws IOException {
+
         properties = new Properties();
         fileInputStream = new FileInputStream(PROPERTY_PATH);
         properties.load(fileInputStream);
     }
 
-    public String chromeDriver() throws IOException {
+    public String chromeDriver() {
         String chromeDriver = properties.getProperty("webdriver");
         return chromeDriver;
     }
 
-    public String readUrl() throws IOException {
+    public String readUrl(){
         String chromeDriverPath = properties.getProperty("path");
         return chromeDriverPath;
     }

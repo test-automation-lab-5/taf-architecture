@@ -2,7 +2,6 @@ package testdata;
 
 import testdata.xmlmodels.User;
 import testdata.xmlmodels.UsersData;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -24,13 +23,12 @@ public class JAXBHendler {
         m.marshal(new UsersData(users), writer);
         writer.close();
     }
-    public static List<User> unmarshal(File importFile) throws JAXBException {
-        UsersData usersData = new UsersData();
 
+    public static List<User> unmarshal(File importFile) throws JAXBException {
+        UsersData usersData;
         JAXBContext context = JAXBContext.newInstance(UsersData.class);
         Unmarshaller um = context.createUnmarshaller();
         usersData = (UsersData) um.unmarshal(importFile);
-
         return usersData.getUserDataSet();
     }
 
