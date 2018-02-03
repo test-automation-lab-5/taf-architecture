@@ -1,4 +1,4 @@
-package pagePatternClasses;
+package pagepatternclasses;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class LoginPage {
+public class LoginPage extends AbstractPage {
     @FindBy(xpath = "//input[@id='identifierId']")
     private WebElement loginInput;
     @FindBy(xpath = "//content[@class='CwaK9']")
@@ -20,19 +20,20 @@ public class LoginPage {
     private WebElement gmailIcon;
 
     public LoginPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
+
 
     public void loginGmail(String login) {
         loginInput.sendKeys(login);
         loginNextButton.click();
     }
 
-    public WebElement getPasswordInput(){
-        return passwordInput;
-    }
 
-    public void setPasswordInput(String password) {
+
+    public void setPasswordInput(String password, WebDriver driver) {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.elementToBeClickable(passwordInput));
         passwordInput.sendKeys(password);
         passwordNextButton.click();
     }

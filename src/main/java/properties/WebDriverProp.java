@@ -1,4 +1,4 @@
-package Properties;
+package properties;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -10,18 +10,17 @@ public class WebDriverProp {
     private Properties properties = new Properties();
     private FileInputStream fileInputStream = new FileInputStream(PROPERTY_PATH);
 
-    public WebDriverProp() throws FileNotFoundException {
+    public WebDriverProp() throws IOException {
+        properties.load(fileInputStream);
     }
 
     public String chromeDriver() throws IOException {
-        properties.load(fileInputStream);
-        String chromeDriwer = properties.getProperty("WebDriver");
-        return chromeDriwer;
+        String chromeDriver = properties.getProperty("WebDriver");
+        return chromeDriver;
     }
 
     public String readUrl() throws IOException {
-        properties.load(fileInputStream);
-        String chromeDriwerPath = properties.getProperty("Path");
-        return chromeDriwerPath;
+        String chromeDriverPath = properties.getProperty("Path");
+        return chromeDriverPath;
     }
 }

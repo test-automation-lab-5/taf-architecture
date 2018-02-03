@@ -1,4 +1,4 @@
-package Properties;
+package properties;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -10,23 +10,21 @@ public class AcountData {
     private Properties properties = new Properties();
     private FileInputStream fileInputStream = new FileInputStream(PROPERTY_PATH);
 
-    public AcountData() throws FileNotFoundException {
+    public AcountData() throws IOException {
+        properties.load(fileInputStream);
     }
 
     public String getGmaiUrl() throws IOException {
-        properties.load(fileInputStream);
         String gmailUrl = properties.getProperty("URL");
         return gmailUrl;
     }
 
     public String getUserName() throws IOException {
-        properties.load(fileInputStream);
         String userName = properties.getProperty("USER_NAME");
         return userName;
     }
 
     public String getUserPassword() throws IOException {
-        properties.load(fileInputStream);
         String userPassword = properties.getProperty("PASSWORD");
         return userPassword;
     }

@@ -15,7 +15,7 @@
                 <version>2.20.1</version>
                 <configuration>
                     <includes>
-                        <include>GmailTestm.java</include>
+                        <include>GmailTest.java</include>
                     </includes>
                 </configuration>
             </plugin>

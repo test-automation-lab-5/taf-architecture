@@ -1,11 +1,15 @@
-package pagePatternClasses;
+package pagepatternclasses;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import testdata.LetterData;
+import testdata.LetterDataUnMarshaller;
 
-public class GmailPage {
+public class GmailPage extends AbstractPage {
     @FindBy(xpath = "//div[@class='T-I J-J5-Ji T-I-KE L3']")
     private WebElement composeButton;
     @FindBy(xpath = "//textarea[@class='vO']")
@@ -28,8 +32,9 @@ public class GmailPage {
     private WebElement movedMessage;
 
     public GmailPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
+
 
     public void sendLetter(String to, String subject, String message) {
         composeButton.click();
@@ -48,7 +53,9 @@ public class GmailPage {
         deleteButton.click();
     }
 
-    public void pushDeleteOkButton() {
+    public void pushDeleteOkButton(WebDriver driver) {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.elementToBeClickable(deleteOkButton));
         deleteOkButton.click();
     }
 
@@ -57,8 +64,12 @@ public class GmailPage {
         return message;
     }
 
-    public WebElement getDeleteOkButton() {
-        return deleteOkButton;
+    public String getSubject(WebDriver driver) {
+        LetterData letterData = LetterDataUnMarshaller.unmarsaller();
+        String subject = letterData.getSubject();
+        String letterSubject = driver.findElement(By.xpath("//*[@class='bog']//*[text()='" + String.format("%s", subject) + "']")).getText();
+        return letterSubject;
     }
+
 
 }
