@@ -6,25 +6,30 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pagepatternclasses.GmailPage;
 import pagepatternclasses.LoginPage;
-import properties.AcountData;
 import properties.WebDriverProp;
+import testdata.JAXBHendler;
 import testdata.LetterData;
 import testdata.LetterDataUnMarshaller;
+import testdata.User;
 
+import javax.xml.bind.JAXBException;
+import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class GmailTest {
     private static WebDriver driver;
-    private AcountData acountData;
     private LetterData letterData;
+    private List<User> usersData;
 
 
     @BeforeClass
-    public void setUpDriver() throws IOException {
+    public void setUpDriver() throws IOException, JAXBException {
+        File usersDataXml = new File("src\\\\main\\\\resources\\\\usersData.xml");
         WebDriverProp webDriverProp = new WebDriverProp();
         letterData = LetterDataUnMarshaller.unmarsaller();
-        acountData = new AcountData();
+        usersData = JAXBHendler.unmarshal(usersDataXml);
         System.setProperty(webDriverProp.chromeDriver(), webDriverProp.readUrl());
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -32,10 +37,10 @@ public class GmailTest {
 
     @Test
     public void testGmail() throws IOException {
-        driver.get(acountData.getGmaiUrl());
+        driver.get(usersData.get(0).getLoginPage());
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.loginGmail(acountData.getUserName());
-        loginPage.setPasswordInput(acountData.getUserPassword(), driver);
+        loginPage.loginGmail(usersData.get(0).getLogin());
+        loginPage.setPasswordInput(usersData.get(0).getPassword(), driver);
         loginPage.openGmailPage();
 
         GmailPage gmailPage = new GmailPage(driver);
