@@ -1,4 +1,4 @@
-package com.epam.task2.businessobjects.pageobjects.decorator.elements.heandlers;
+package com.epam.task2.businessobjects.pageobjects.decorator.heandlers;
 
 import com.epam.task2.businessobjects.pageobjects.decorator.elements.AbstractElement;
 import com.epam.task2.businessobjects.pageobjects.decorator.elements.MyElementFactory;

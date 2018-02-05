@@ -1,4 +1,4 @@
-package com.epam.task2.businessobjects.pageobjects.decorator.elements.heandlers;
+package com.epam.task2.businessobjects.pageobjects.decorator.heandlers;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -12,6 +12,6 @@ public class MyPageFactory extends PageFactory {
     }
 
     public static void initElements(ElementLocatorFactory factory, Object page) {
-        initElements((FieldDecorator) (new MyFieldDecorator(factory)), (Object) page);
+        initElements((FieldDecorator) (new  MyFieldDecorator(factory)),  page);
     }
 }
