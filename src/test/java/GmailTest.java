@@ -37,7 +37,7 @@ public class GmailTest {
         loginPageBusinessObject.login(dataProp);
         letterWindowPageBusinessObject.composeLetter(dataProp);
         try {
-            draftsPageBusinessObject.openDrafts(dataProp);
+            draftsPageBusinessObject.openDrafts();
         } catch (IOException e) {
             e.printStackTrace();
         }
