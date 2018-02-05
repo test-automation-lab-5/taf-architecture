@@ -1,8 +1,8 @@
 package businessobjects;
 
 
-import pagepatternclasses.GmailPage;
-import pagepatternclasses.LoginPage;
+import businessobjects.pagepatternclasses.GmailPage;
+import businessobjects.pagepatternclasses.LoginPage;
 
 public class GmailBO {
     private LoginPage loginPage;

@@ -1,23 +1,25 @@
-package pagepatternclasses;
+package businessobjects.pagepatternclasses;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import businessobjects.pagepatternclasses.decorator.elements.elements.Button;
+import businessobjects.pagepatternclasses.decorator.elements.elements.TextInput;
+import businessobjects.pagepatternclasses.decorator.elements.handlers.MyPageFactory;
 
 public class LoginPage extends AbstractPage {
     @FindBy(xpath = "//input[@id='identifierId']")
-    private WebElement loginInput;
+    private TextInput loginInput;
     @FindBy(xpath = "//content[@class='CwaK9']")
-    private WebElement loginNextButton;
+    private Button loginNextButton;
     @FindBy(xpath = ".//*[@id='password']//descendant::input")
-    private WebElement passwordInput;
+    private TextInput passwordInput;
     @FindBy(className = "CwaK9")
-    private WebElement passwordNextButton;
+    private Button passwordNextButton;
     @FindBy(className = "WaidBe")
-    private WebElement gmailIcon;
+    private Button gmailIcon;
+
+    public LoginPage() {
+        super(new MyPageFactory());
+    }
 
     public void loginGmail(String login) {
         loginInput.sendKeys(login);
@@ -25,9 +27,8 @@ public class LoginPage extends AbstractPage {
     }
 
 
-
     public void setPasswordInput(String password) {
-        waitUntilBeClickable(passwordInput);
+        waitUntilBeClickableAbstract(passwordInput);
         passwordInput.sendKeys(password);
         passwordNextButton.click();
     }

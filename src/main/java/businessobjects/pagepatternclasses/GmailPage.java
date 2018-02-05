@@ -1,35 +1,38 @@
-package pagepatternclasses;
+package businessobjects.pagepatternclasses;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import businessobjects.pagepatternclasses.decorator.elements.elements.Button;
+import businessobjects.pagepatternclasses.decorator.elements.elements.CheckBox;
+import businessobjects.pagepatternclasses.decorator.elements.elements.TextInput;
+import businessobjects.pagepatternclasses.decorator.elements.handlers.MyPageFactory;
 import testdata.LetterDataUnMarshaller;
 import testdata.xmlmodels.LetterData;
 
 public class GmailPage extends AbstractPage {
     @FindBy(xpath = "//div[@class='T-I J-J5-Ji T-I-KE L3']")
-    private WebElement composeButton;
+    private Button composeButton;
     @FindBy(xpath = "//textarea[@class='vO']")
-    private WebElement sendToInput;
+    private TextInput sendToInput;
     @FindBy(xpath = "//input[@class='aoT']")
-    private WebElement subjectInput;
+    private TextInput subjectInput;
     @FindBy(xpath = "//div[@class='Am Al editable LW-avf']")
-    private WebElement messageInput;
+    private TextInput messageInput;
     @FindBy(xpath = "//div[@class='J-J5-Ji btA']")
-    private WebElement sendButton;
+    private Button sendButton;
     @FindBy(xpath = "//a[@href='https://mail.google.com/mail/#sent']")
-    private WebElement sentPage;
+    private Button sentPage;
     @FindBy(xpath = "//td[@class='oZ-x3 xY']")
-    private WebElement choosenMail;
+    private CheckBox choosenMail;
     @FindBy(xpath = "//div[@gh='mtb']//div[@act='10']")
-    private WebElement deleteButton;
+    private Button deleteButton;
     @FindBy(xpath = "//div[@role='alertdialog']//button[@name='ok']")
-    private WebElement deleteOkButton;
+    private Button deleteOkButton;
     @FindBy(xpath = "//span[@class='bofITb']")
-    private WebElement movedMessage;
+    private TextInput movedMessage;
 
-
+    public GmailPage() {
+        super(new MyPageFactory());
+    }
 
 
     public void sendLetter(String to, String subject, String message) {
@@ -50,7 +53,7 @@ public class GmailPage extends AbstractPage {
     }
 
     public void pushDeleteOkButton() {
-        waitUntilBeClickable(deleteOkButton);
+        waitUntilBeClickableAbstract(deleteOkButton);
         deleteOkButton.click();
     }
 
