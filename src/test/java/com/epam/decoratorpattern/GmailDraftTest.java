@@ -7,13 +7,14 @@ import com.epam.decoratorpattern.businessobjects.GmailLogInBO;
 import com.epam.decoratorpattern.businessobjects.SentMailBO;
 import com.epam.decoratorpattern.driverfactory.DriverType;
 import com.epam.decoratorpattern.propmodel.GmailData;
-import junit.framework.TestCase;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import static org.testng.AssertJUnit.assertTrue;
 
-public class GmailDraftTest extends TestCase {
+
+public class GmailDraftTest {
     private BasicBO steps;
     private GmailLogInBO gmailLogInBO;
     private DraftsBO draftsBO;
