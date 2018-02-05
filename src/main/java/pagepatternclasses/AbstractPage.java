@@ -1,5 +1,6 @@
 package pagepatternclasses;
 
+import drivers.DriverObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,8 +11,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class AbstractPage {
     private WebDriver driver;
 
-    AbstractPage(WebDriver driver) {
-        this.driver = driver;
+    AbstractPage() {
+        this.driver = DriverObject.getDriver();
         PageFactory.initElements(driver, this);
     }
 

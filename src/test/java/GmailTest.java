@@ -1,20 +1,22 @@
+import businessobjects.GmailBO;
 import drivers.DriverObject;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pagepatternclasses.GmailPage;
-import pagepatternclasses.LoginPage;
 import testdata.JAXBHendler;
 import testdata.LetterDataUnMarshaller;
 import testdata.xmlmodels.LetterData;
 import testdata.xmlmodels.User;
+
 import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.util.List;
+import java.util.Objects;
 
 public class GmailTest {
+    private static final String GMAILURL = "https://accounts.google.com/signin";
     private static WebDriver driver;
     private LetterData letterData;
     private List<User> usersData;
@@ -33,25 +35,20 @@ public class GmailTest {
 
     @Test
     public void testGmail() {
-        driver.get(usersData.get(0).getLoginPage());
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.loginGmail(usersData.get(0).getLogin());
-        loginPage.setPasswordInput(usersData.get(0).getPassword());
-        loginPage.openGmailPage();
-
-        GmailPage gmailPage = new GmailPage(driver);
-        gmailPage.sendLetter(letterData.getSentTo(), letterData.getSubject(), letterData.getMessage());
-
-        gmailPage.getSentPage();
-        Assert.assertEquals(letterData.getSubject(), gmailPage.getSubject());
-        gmailPage.removeLetterFromSend();
-        gmailPage.pushDeleteOkButton();
-        Assert.assertEquals("The conversation has been moved to the Trash.", gmailPage.getMovedMessage());
+        driver.get(GMAILURL);
+        GmailBO gmailBO = new GmailBO();
+        gmailBO.login(usersData.get(0).getLogin(), usersData.get(0).getPassword());
+        gmailBO.sendMail(letterData.getSentTo(), letterData.getSubject(), letterData.getMessage());
+        Assert.assertEquals(letterData.getSubject(), gmailBO.getSubject());
+        gmailBO.muveLetter();
+        Assert.assertEquals("The conversation has been moved to the Trash.", gmailBO.getMuvedMessage());
     }
 
     @AfterClass
     public static void closeConnection() {
-        driver.close();
-        driver.quit();
+        if (!Objects.isNull(driver)) {
+            driver.close();
+            driver.quit();
+        }
     }
 }

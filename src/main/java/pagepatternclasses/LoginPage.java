@@ -19,11 +19,6 @@ public class LoginPage extends AbstractPage {
     @FindBy(className = "WaidBe")
     private WebElement gmailIcon;
 
-    public LoginPage(WebDriver driver) {
-        super(driver);
-    }
-
-
     public void loginGmail(String login) {
         loginInput.sendKeys(login);
         loginNextButton.click();

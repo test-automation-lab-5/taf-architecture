@@ -29,9 +29,7 @@ public class GmailPage extends AbstractPage {
     @FindBy(xpath = "//span[@class='bofITb']")
     private WebElement movedMessage;
 
-    public GmailPage(WebDriver driver) {
-        super(driver);
-    }
+
 
 
     public void sendLetter(String to, String subject, String message) {
