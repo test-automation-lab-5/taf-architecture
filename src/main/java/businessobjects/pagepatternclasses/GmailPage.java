@@ -1,10 +1,10 @@
 package businessobjects.pagepatternclasses;
 
-import org.openqa.selenium.support.FindBy;
 import businessobjects.pagepatternclasses.decorator.elements.elements.Button;
 import businessobjects.pagepatternclasses.decorator.elements.elements.CheckBox;
 import businessobjects.pagepatternclasses.decorator.elements.elements.TextInput;
 import businessobjects.pagepatternclasses.decorator.elements.handlers.MyPageFactory;
+import org.openqa.selenium.support.FindBy;
 import testdata.LetterDataUnMarshaller;
 import testdata.xmlmodels.LetterData;
 
@@ -68,6 +68,5 @@ public class GmailPage extends AbstractPage {
         String letterSubject = getSubject(subject);
         return letterSubject;
     }
-
 
 }

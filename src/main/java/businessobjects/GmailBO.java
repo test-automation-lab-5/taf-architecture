@@ -28,12 +28,12 @@ public class GmailBO {
         return gmailPage.getSubject();
     }
 
-    public void muveLetter() {
+    public void moveLetter() {
         gmailPage.removeLetterFromSend();
         gmailPage.pushDeleteOkButton();
     }
 
-    public String getMuvedMessage() {
+    public String getMovedMessage() {
         return gmailPage.getMovedMessage();
     }
 }

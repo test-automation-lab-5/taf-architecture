@@ -1,9 +1,9 @@
 package businessobjects.pagepatternclasses;
 
-import org.openqa.selenium.support.FindBy;
 import businessobjects.pagepatternclasses.decorator.elements.elements.Button;
 import businessobjects.pagepatternclasses.decorator.elements.elements.TextInput;
 import businessobjects.pagepatternclasses.decorator.elements.handlers.MyPageFactory;
+import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends AbstractPage {
     @FindBy(xpath = "//input[@id='identifierId']")

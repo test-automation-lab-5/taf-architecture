@@ -40,8 +40,8 @@ public class GmailTest {
         gmailBO.login(usersData.get(0).getLogin(), usersData.get(0).getPassword());
         gmailBO.sendMail(letterData.getSentTo(), letterData.getSubject(), letterData.getMessage());
         Assert.assertEquals(letterData.getSubject(), gmailBO.getSubject());
-        gmailBO.muveLetter();
-        Assert.assertEquals("The conversation has been moved to the Trash.", gmailBO.getMuvedMessage());
+        gmailBO.moveLetter();
+        Assert.assertEquals("The conversation has been moved to the Trash.", gmailBO.getMovedMessage());
     }
 
     @AfterClass

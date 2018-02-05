@@ -8,10 +8,10 @@ import org.openqa.selenium.support.pagefactory.FieldDecorator;
 
 public class MyPageFactory extends PageFactory {
     public static void initElements(WebDriver driver, Object page) {
-        initElements((ElementLocatorFactory) (new DefaultElementLocatorFactory(driver)), (Object) page);
+        initElements((new DefaultElementLocatorFactory(driver)), page);
     }
 
     public static void initElements(ElementLocatorFactory factory, Object page) {
-        initElements((FieldDecorator) (new MyFieldDecorator(factory)), (Object) page);
+        initElements((new MyFieldDecorator(factory)), page);
     }
 }

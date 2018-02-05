@@ -27,9 +27,6 @@ public class AbstractPage {
         return driver.findElement(By.xpath("//*[@class='bog']//*[text()='" + String.format("%s", subject) + "']")).getText();
     }
 
-    protected WebElement waitUntilBeClickable(WebElement element) {
-        return getWait().until(ExpectedConditions.elementToBeClickable(element));
-    }
     protected AbstractElement waitUntilBeClickableAbstract(AbstractElement element) {
         return elementFactory.create(element.getClass(), getWait().until(ExpectedConditions.elementToBeClickable(element.getWebElement())));
     }
