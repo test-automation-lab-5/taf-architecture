@@ -1,9 +1,8 @@
 package businessobjects.pagepatternclasses.decorator.elements.elements;
+
 import org.openqa.selenium.WebElement;
 
 import java.lang.reflect.InvocationTargetException;
-
-import static java.text.MessageFormat.format;
 
 public class MyElementFactory {
     public <E extends AbstractElement> E create(final Class<E> elementClass, final WebElement wrappedElement) {
@@ -18,7 +17,7 @@ public class MyElementFactory {
 
     private <E extends AbstractElement> Class<? extends E> findImplementationFor(final Class<E> elementClass) {
         try {
-            return (Class<? extends E>) Class.forName(format("{0}.{1}", getClass().getPackage().getName(), elementClass.getSimpleName()));
+            return (Class<? extends E>) Class.forName(String.format("%s.%s", getClass().getPackage().getName(), elementClass.getSimpleName()));
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
