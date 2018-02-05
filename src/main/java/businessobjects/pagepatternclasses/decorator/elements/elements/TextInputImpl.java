@@ -1,10 +1,10 @@
 package businessobjects.pagepatternclasses.decorator.elements.elements;
 
+import businessobjects.pagepatternclasses.decorator.elements.elements.elementsInterface.TextInput;
 import org.openqa.selenium.WebElement;
-import businessobjects.pagepatternclasses.decorator.elements.elements.action.SendKeys;
 
-public class TextInput extends AbstractElement implements SendKeys {
-    public TextInput(WebElement webElement) {
+public class TextInputImpl extends AbstractElement implements TextInput {
+    public TextInputImpl(WebElement webElement) {
         super(webElement);
     }
 
@@ -12,7 +12,9 @@ public class TextInput extends AbstractElement implements SendKeys {
     public void sendKeys(String text) {
         webElement.sendKeys(text);
     }
-    public String getText(){
+
+    @Override
+    public String getText() {
         return webElement.getText();
     }
 }

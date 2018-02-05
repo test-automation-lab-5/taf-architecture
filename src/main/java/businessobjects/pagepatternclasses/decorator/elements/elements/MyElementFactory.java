@@ -1,7 +1,6 @@
 package businessobjects.pagepatternclasses.decorator.elements.elements;
 
 import org.openqa.selenium.WebElement;
-
 import java.lang.reflect.InvocationTargetException;
 
 public class MyElementFactory {

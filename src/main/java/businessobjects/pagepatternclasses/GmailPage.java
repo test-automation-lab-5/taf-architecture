@@ -1,8 +1,8 @@
 package businessobjects.pagepatternclasses;
 
-import businessobjects.pagepatternclasses.decorator.elements.elements.Button;
-import businessobjects.pagepatternclasses.decorator.elements.elements.CheckBox;
-import businessobjects.pagepatternclasses.decorator.elements.elements.TextInput;
+import businessobjects.pagepatternclasses.decorator.elements.elements.ButtonImpl;
+import businessobjects.pagepatternclasses.decorator.elements.elements.CheckBoxImpl;
+import businessobjects.pagepatternclasses.decorator.elements.elements.TextInputImpl;
 import businessobjects.pagepatternclasses.decorator.elements.handlers.MyPageFactory;
 import org.openqa.selenium.support.FindBy;
 import testdata.LetterDataUnMarshaller;
@@ -10,25 +10,25 @@ import testdata.xmlmodels.LetterData;
 
 public class GmailPage extends AbstractPage {
     @FindBy(xpath = "//div[@class='T-I J-J5-Ji T-I-KE L3']")
-    private Button composeButton;
+    private ButtonImpl composeButton;
     @FindBy(xpath = "//textarea[@class='vO']")
-    private TextInput sendToInput;
+    private TextInputImpl sendToInput;
     @FindBy(xpath = "//input[@class='aoT']")
-    private TextInput subjectInput;
+    private TextInputImpl subjectInput;
     @FindBy(xpath = "//div[@class='Am Al editable LW-avf']")
-    private TextInput messageInput;
+    private TextInputImpl messageInput;
     @FindBy(xpath = "//div[@class='J-J5-Ji btA']")
-    private Button sendButton;
+    private ButtonImpl sendButton;
     @FindBy(xpath = "//a[@href='https://mail.google.com/mail/#sent']")
-    private Button sentPage;
+    private ButtonImpl sentPage;
     @FindBy(xpath = "//td[@class='oZ-x3 xY']")
-    private CheckBox choosenMail;
+    private CheckBoxImpl choosenMail;
     @FindBy(xpath = "//div[@gh='mtb']//div[@act='10']")
-    private Button deleteButton;
+    private ButtonImpl deleteButton;
     @FindBy(xpath = "//div[@role='alertdialog']//button[@name='ok']")
-    private Button deleteOkButton;
+    private ButtonImpl deleteOkButton;
     @FindBy(xpath = "//span[@class='bofITb']")
-    private TextInput movedMessage;
+    private TextInputImpl movedMessage;
 
     public GmailPage() {
         super(new MyPageFactory());

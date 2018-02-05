@@ -1,10 +1,11 @@
 package businessobjects.pagepatternclasses.decorator.elements.elements;
 
+import businessobjects.pagepatternclasses.decorator.elements.elements.elementsInterface.Button;
 import org.openqa.selenium.WebElement;
-import businessobjects.pagepatternclasses.decorator.elements.elements.action.Click;
 
-public class CheckBox extends AbstractElement implements Click {
-    public CheckBox(WebElement webElement) {
+public class ButtonImpl extends AbstractElement implements Button {
+
+    public ButtonImpl(WebElement webElement) {
         super(webElement);
     }
 
