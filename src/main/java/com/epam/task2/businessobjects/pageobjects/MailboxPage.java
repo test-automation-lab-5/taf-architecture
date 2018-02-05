@@ -1,7 +1,9 @@
 package com.epam.task2.businessobjects.pageobjects;
 
+import com.epam.task2.businessobjects.pageobjects.decorator.elements.heandlers.MyPageFactory;
+import com.epam.task2.businessobjects.pageobjects.decorator.elements.Button;
+import com.epam.task2.businessobjects.pageobjects.decorator.elements.CheckBox;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
@@ -10,23 +12,23 @@ import java.util.stream.Collectors;
 public class MailboxPage extends AbstractPage {
     private static final Logger log = Logger.getLogger(MailboxPage.class);
     @FindBy(xpath = "//div[@role='main']//div[@role='checkbox']")
-    private WebElement visibleCheckbox;
+    private CheckBox visibleCheckbox;
     @FindBy(xpath = "//div[@role='main']//div[@role='checkbox']")
-    private List<WebElement> visibleCheckboxes;
+    private List<CheckBox> visibleCheckboxes;
     @FindBy(xpath = "//div[@gh='mtb']//div[@act='10']")
-    private WebElement visibleDeleteButton;
+    private Button visibleDeleteButton;
     @FindBy(id = "link_undo")
-    private WebElement undoLink;
+    private Button undoLink;
 
 
     public MailboxPage() {
-        super();
+        super(new MyPageFactory());
     }
 
     public MailboxPage checkFirstNCheckboxesFromCurrentPool(int n) {
         log.info("Check messages from inbox");
         waitUntilBeClickable(visibleCheckbox);
-        visibleCheckboxes.stream().limit(Math.min(n, visibleCheckboxes.size())).forEach(WebElement::click);
+        visibleCheckboxes.stream().limit(Math.min(n, visibleCheckboxes.size())).forEach(CheckBox::click);
         return this;
     }
 
@@ -45,7 +47,7 @@ public class MailboxPage extends AbstractPage {
 
     public MailboxPage clickUndoLink() {
         log.info("Click on undo button");
-        waitUntilBeClickable(undoLink).click();
+        ((Button) waitUntilBeClickable(undoLink)).click();
         return this;
     }
 
@@ -57,6 +59,7 @@ public class MailboxPage extends AbstractPage {
 
     public List<String> getIdsOfFirstNMailsFromCurrentPool(int n) {
         log.info("List of ids");
-        return visibleCheckboxes.stream().limit(Math.min(n, visibleCheckboxes.size())).map(webElement -> webElement.getAttribute("id")).collect(Collectors.toList());
+        return visibleCheckboxes.stream().limit(Math.min(n, visibleCheckboxes.size()))
+                .map(webElement -> webElement.getAttribute("id")).collect(Collectors.toList());
     }
 }

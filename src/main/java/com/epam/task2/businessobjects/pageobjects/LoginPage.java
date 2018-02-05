@@ -1,21 +1,20 @@
 package com.epam.task2.businessobjects.pageobjects;
 
+import com.epam.task2.businessobjects.pageobjects.decorator.elements.heandlers.MyPageFactory;
+import com.epam.task2.businessobjects.pageobjects.decorator.elements.InputField;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends AbstractPage {
     private static final Logger log = Logger.getLogger(LoginPage.class);
 
     @FindBy(xpath = "//input[@type='email']")
-    private WebElement mailField;
+    private InputField mailField;
     @FindBy(xpath = "//input[@type='password']")
-    private WebElement passwordField;
-    @FindBy(xpath="//div[@id='password']")
-    private WebElement passwordDiv;
+    private InputField passwordField;
 
     public LoginPage() {
-        super();
+        super(new MyPageFactory());
     }
 
     public LoginPage openPage() {
@@ -32,7 +31,7 @@ public class LoginPage extends AbstractPage {
 
     public LoginPage typePassword(String password) {
         log.info("Type password");
-        waitUntilBeClickable(passwordField).sendKeys(String.format("%s\n", password));
+        ((InputField) waitUntilBeClickable(passwordField)).sendKeys(String.format("%s\n", password));
         return this;
     }
 }

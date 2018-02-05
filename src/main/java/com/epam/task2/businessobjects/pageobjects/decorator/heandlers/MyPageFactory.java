@@ -1,4 +1,4 @@
-package com.epam.task2.businessobjects.pageobjects.decorator;
+package com.epam.task2.businessobjects.pageobjects.decorator.elements.heandlers;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;

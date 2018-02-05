@@ -1,6 +1,8 @@
 package com.epam.task2.businessobjects.pageobjects;
 
-import com.epam.task2.businessobjects.pageobjects.decorator.MyPageFactory;
+import com.epam.task2.businessobjects.pageobjects.decorator.elements.heandlers.MyPageFactory;
+import com.epam.task2.businessobjects.pageobjects.decorator.elements.AbstractElement;
+import com.epam.task2.businessobjects.pageobjects.decorator.elements.MyElementFactory;
 import com.epam.task2.drivers.SingletonDriver;
 import com.epam.task2.preferences.Preferences;
 import org.openqa.selenium.JavascriptExecutor;
@@ -14,14 +16,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public abstract class AbstractPage {
 
     private WebDriver driver;
+    private MyElementFactory elementFactory = new MyElementFactory();
 
     protected AbstractPage() {
         driver = SingletonDriver.getDriver();
         PageFactory.initElements(driver, this);
     }
-    protected AbstractPage(boolean mpf) {
+
+    protected AbstractPage(MyPageFactory myPageFactory) {
         driver = SingletonDriver.getDriver();
-        MyPageFactory.initElements(driver, this);
+        myPageFactory.initElements(driver, this);
     }
 
     protected void openPage(String pageURL) {
@@ -43,6 +47,10 @@ public abstract class AbstractPage {
 
     protected WebElement waitUntilBeClickable(WebElement element) {
         return getWait().until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    protected AbstractElement waitUntilBeClickable(AbstractElement element) {
+        return elementFactory.create(element.getClass(), getWait().until(ExpectedConditions.elementToBeClickable(element.getWebElement())));
     }
 
     protected WebDriverWait getWait() {

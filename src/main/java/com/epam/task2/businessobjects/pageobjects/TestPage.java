@@ -1,7 +1,7 @@
 package com.epam.task2.businessobjects.pageobjects;
 
-import com.epam.task2.businessobjects.pageobjects.decorator.MyPageFactory;
-import com.epam.task2.businessobjects.pageobjects.decorator.elements.TextField;
+import com.epam.task2.businessobjects.pageobjects.decorator.elements.heandlers.MyPageFactory;
+import com.epam.task2.businessobjects.pageobjects.decorator.elements.InputField;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.support.FindBy;
 
@@ -9,10 +9,10 @@ public class TestPage extends AbstractPage {
     private static final Logger log = Logger.getLogger(LoginPage.class);
 
     @FindBy(xpath = "//input[@type='email']")
-    private TextField mailField;
+    private InputField mailField;
 
     public TestPage() {
-        super(true);
+        super(new MyPageFactory());
     }
 
     public TestPage openPage() {
@@ -26,7 +26,8 @@ public class TestPage extends AbstractPage {
         mailField.sendKeys(String.format("%s\n", mail));
         return this;
     }
-    public boolean varifyTextTyped(){
-        return !mailField.getText().equals("");
+
+    public boolean varifyTextTyped() {
+        return !mailField.getValue().equals("");
     }
 }

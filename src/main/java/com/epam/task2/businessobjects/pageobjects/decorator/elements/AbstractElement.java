@@ -8,4 +8,11 @@ public abstract class AbstractElement {
     public AbstractElement(WebElement webElement) {
         this.webElement = webElement;
     }
+    public String getAttribute(String s){
+        return webElement.getAttribute(s);
+    }
+
+    public WebElement getWebElement() {
+        return webElement;
+    }
 }
