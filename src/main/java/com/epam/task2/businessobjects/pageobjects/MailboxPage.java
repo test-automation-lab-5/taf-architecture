@@ -28,7 +28,7 @@ public class MailboxPage extends AbstractPage {
     public MailboxPage checkFirstNCheckboxesFromCurrentPool(int n) {
         log.info("Check messages from inbox");
         waitUntilBeClickable(visibleCheckbox);
-        visibleCheckboxes.stream().limit(Math.min(n, visibleCheckboxes.size())).forEach(CheckBox::click);
+        visibleCheckboxes.stream().limit(Math.min(n, visibleCheckboxes.size())).forEach(CheckBox::check);
         return this;
     }
 
@@ -47,7 +47,7 @@ public class MailboxPage extends AbstractPage {
 
     public MailboxPage clickUndoLink() {
         log.info("Click on undo button");
-        ((Button) waitUntilBeClickable(undoLink)).click();
+        waitUntilBeClickable(undoLink).click();
         return this;
     }
 
@@ -58,7 +58,7 @@ public class MailboxPage extends AbstractPage {
     }
 
     public List<String> getIdsOfFirstNMailsFromCurrentPool(int n) {
-        log.info("List of ids");
+        log.info("Get list of ids");
         return visibleCheckboxes.stream().limit(Math.min(n, visibleCheckboxes.size()))
                 .map(webElement -> webElement.getAttribute("id")).collect(Collectors.toList());
     }

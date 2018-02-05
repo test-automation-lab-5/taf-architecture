@@ -43,6 +43,7 @@ public class TestGmail {
         Assert.assertTrue(mailsManipulationBO.undoActionAndVerifyRestoration(idsOfDeletedElements));
         log.info("LoginCheckDeleteUndo done");
     }
+
     @Test
     public void testMyDecorator(){
         TestPage testPage = new TestPage();
@@ -51,6 +52,7 @@ public class TestGmail {
                 .typeMail("mixer.log4j@gmail.com");
         Assert.assertTrue(testPage.varifyTextTyped());
     }
+
     @AfterMethod
     public void afterMethod(){
         SingletonDriver.getDriver().manage().deleteAllCookies();

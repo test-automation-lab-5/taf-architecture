@@ -49,8 +49,8 @@ public abstract class AbstractPage {
         return getWait().until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    protected AbstractElement waitUntilBeClickable(AbstractElement element) {
-        return elementFactory.create(element.getClass(), getWait().until(ExpectedConditions.elementToBeClickable(element.getWebElement())));
+    protected <E extends AbstractElement> E waitUntilBeClickable(E element) {
+        return (E)elementFactory.create(element.getClass(), getWait().until(ExpectedConditions.elementToBeClickable(element.getWebElement())));
     }
 
     protected WebDriverWait getWait() {

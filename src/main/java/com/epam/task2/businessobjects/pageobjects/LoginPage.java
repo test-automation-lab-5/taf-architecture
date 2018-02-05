@@ -31,7 +31,7 @@ public class LoginPage extends AbstractPage {
 
     public LoginPage typePassword(String password) {
         log.info("Type password");
-        ((InputField) waitUntilBeClickable(passwordField)).sendKeys(String.format("%s\n", password));
+        waitUntilBeClickable(passwordField).sendKeys(String.format("%s\n", password));
         return this;
     }
 }
