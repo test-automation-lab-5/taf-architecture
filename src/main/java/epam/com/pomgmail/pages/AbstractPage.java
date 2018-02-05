@@ -1,0 +1,22 @@
+package epam.com.pomgmail.pages;
+
+import epam.com.pomgmail.pomdecorator.CustomFieldDecorator;
+import epam.com.pomgmail.pomdecorator.InitElements;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
+
+abstract class AbstractPage {
+    WebDriver driver;
+
+    AbstractPage(){
+        driver = InstancePage.getInstance();
+        PageFactory.initElements(driver, this);
+//        PageFactory.initElements(new CustomFieldDecorator(driver), this);
+    }
+
+    AbstractPage(InitElements initElements){
+        driver = InstancePage.getInstance();
+        initElements.initElements(driver, this);
+    }
+
+}
