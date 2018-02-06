@@ -1,6 +1,4 @@
-package com.epam.lab.facadetask.model;
-
-import com.epam.lab.facadetask.model.User;
+package com.epam.lab.facadetask.testdata.model;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -13,10 +11,9 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Users implements Serializable {
     @XmlElement(name = "user", type = User.class)
-    private List<User> usersList = null;
+    private List<User> usersList;
 
-    public Users() {
-    }
+    public Users(){}
 
     public Users(List<User> usersList) {
         this.usersList = usersList;

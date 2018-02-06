@@ -1,8 +1,8 @@
-package com.epam.lab.facadetask.pages;
+package com.epam.lab.facadetask.decorator.bo.pages;
 
 
+import com.epam.lab.facadetask.decorator.handler.CustomPageFactory;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -31,8 +31,8 @@ public class GmailPage extends AbstractPage{
     @FindBy(xpath = "//span[@class='bofITb']")
     private WebElement movedToTrashMessage;
 
-    public GmailPage() throws IOException {
-        super();
+    public GmailPage(){
+        super(new CustomPageFactory());
     }
 
     public void sendMessage(String to, String sub, String mess){

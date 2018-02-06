@@ -1,24 +1,17 @@
-package com.epam.lab.facadetask.bo;
+package com.epam.lab.facadetask.decorator.bo.businessobjects;
 
-import com.epam.lab.facadetask.model.User;
-import com.epam.lab.facadetask.pages.LoginPage;
-
-import java.io.IOException;
+import com.epam.lab.facadetask.testdata.model.User;
+import com.epam.lab.facadetask.decorator.bo.pages.LoginPage;
 
 public class Login {
 
-    LoginPage loginPage = new LoginPage();
+    private LoginPage loginPage = new LoginPage();
 
-    public Login() throws IOException {
-    }
-
+    public Login() {}
 
     public void login(User user)  {
         typeLoginAndSubmit(user.getEmail());
         typePasswordAndSubmit(user.getPassword());
-    }
-
-    public void getGmailLocator() {
         loginPage.getGmailPage().click();
     }
 

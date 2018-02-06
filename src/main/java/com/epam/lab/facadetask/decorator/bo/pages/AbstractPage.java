@@ -1,24 +1,24 @@
-package com.epam.lab.facadetask.pages;
+package com.epam.lab.facadetask.decorator.bo.pages;
 
+import com.epam.lab.facadetask.decorator.handler.CustomPageFactory;
+import com.epam.lab.facadetask.decorator.bo.elements.ElementFactory;
 import com.epam.lab.facadetask.driver.DriverObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.io.IOException;
-
 public class AbstractPage {
     private WebDriver driver;
+    private ElementFactory elementFactory = new ElementFactory();
 
-    AbstractPage() throws IOException {
+    AbstractPage(CustomPageFactory pageFactory) {
         this.driver = DriverObject.getDriver();
-        PageFactory.initElements(driver, this);
+        pageFactory.initElements(driver, this);
     }
 
     protected WebDriverWait getWait() {
-        return (new WebDriverWait(driver, 40));
+        return (new WebDriverWait(driver, 30));
     }
 
     protected WebElement waitToBeClickable(WebElement element) {

@@ -1,4 +1,4 @@
-package com.epam.lab.facadetask.model;
+package com.epam.lab.facadetask.testdata.model;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;

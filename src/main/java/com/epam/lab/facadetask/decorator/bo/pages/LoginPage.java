@@ -1,6 +1,6 @@
-package com.epam.lab.facadetask.pages;
+package com.epam.lab.facadetask.decorator.bo.pages;
 
-import org.openqa.selenium.WebDriver;
+import com.epam.lab.facadetask.decorator.handler.CustomPageFactory;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -19,8 +19,8 @@ public class LoginPage extends AbstractPage {
     @FindBy(className="WaidBe")
     private WebElement gmailPage;
 
-    public LoginPage() throws IOException {
-        super();
+    public LoginPage()  {
+        super(new CustomPageFactory());
     }
 
     public void login(String email){

@@ -1,7 +1,7 @@
 package com.epam.lab.facadetask.testdata.marshall;
 
-import com.epam.lab.facadetask.model.User;
-import com.epam.lab.facadetask.model.Users;
+import com.epam.lab.facadetask.testdata.model.User;
+import com.epam.lab.facadetask.testdata.model.Users;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;

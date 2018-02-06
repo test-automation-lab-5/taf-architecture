@@ -13,15 +13,20 @@ public class DriverObject {
 
     DriverObject() {}
 
-    private static void createDriver() throws IOException {
-        ReadPropertyFile reader = new ReadPropertyFile();
+    private static void createDriver() {
+        ReadPropertyFile reader = null;
+        try {
+            reader = new ReadPropertyFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         System.setProperty(reader.readDriverPath(), reader.readChromeDriver());
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
-    public static WebDriver getDriver() throws IOException {
+    public static WebDriver getDriver() {
         if (driver == null) {
         createDriver();
         }

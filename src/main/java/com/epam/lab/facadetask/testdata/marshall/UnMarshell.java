@@ -1,6 +1,6 @@
 package com.epam.lab.facadetask.testdata.marshall;
 
-import com.epam.lab.facadetask.model.TestMessage;
+import com.epam.lab.facadetask.testdata.model.TestMessage;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
