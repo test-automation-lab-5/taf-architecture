@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite" parallel="tests" thread-count="5" >
+
+    <test name="GmailTest_User1" >
+        <parameter name="email" value="ivanhorintest@gmail.com"></parameter>
+        <parameter name="password" value="Test12345"></parameter>
+        <classes>
+            <class name="com.epam.lab5.GmailTest">
+            </class>
+        </classes>
+    </test>
+
+    <test name="GmailTest_User2" >
+        <parameter name="email" value="ivanhorintest@gmail.com"></parameter>
+        <parameter name="password" value="Test12345"></parameter>
+        <classes>
+            <class name="com.epam.lab5.GmailTest">
+            </class>
+        </classes>
+    </test>
+
+    <test name="GmailTest_User3">
+        <parameter name="email" value="ivanhorintest@gmail.com"></parameter>
+        <parameter name="password" value="Test12345"></parameter>
+        <classes>
+            <class name="com.epam.lab5.GmailTest">
+            </class>
+        </classes>
+    </test>
+
+    <test name="GmailTest_User4">
+        <parameter name="email" value="ivanhorintest@gmail.com"></parameter>
+        <parameter name="password" value="Test12345"></parameter>
+        <classes>
+            <class name="com.epam.lab5.GmailTest">
+            </class>
+        </classes>
+    </test>
+
+    <test name="GmailTest_User5">
+        <parameter name="email" value="ivanhorintest@gmail.com"></parameter>
+        <parameter name="password" value="Test12345"></parameter>
+        <classes>
+            <class name="com.epam.lab5.GmailTest">
+            </class>
+        </classes>
+    </test>
+</suite>
