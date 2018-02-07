@@ -1,33 +1,38 @@
 package com.epam.lab.pages;
 
 
+import com.epam.lab.elements.Button;
+import com.epam.lab.elements.CheckBox;
+import com.epam.lab.elements.Element;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 import java.util.List;
 
 public class GmailMainPage extends DefaultPage{
 
     @FindBy(xpath = ".//*[@role='checkbox']")
-    private List<WebElement> checkboxes;
+    private List<CheckBox> checkboxes;
 
     @FindBy(xpath = "//div[@act='10']")
-    private WebElement deleteButton;
+    private Button deleteButton;
 
     @FindBy(xpath = ".//*[@id='link_undo']")
-    private WebElement undoButton;
+    private Button undoButton;
 
     @FindBy(xpath = ".//*[@class='bofITb']")
-    private WebElement messageCanceled;
+    private Element messageCanceled;
 
     @FindBy(xpath = "//*[@class='bog']")
-    private List<WebElement> subjects;
+    private List<Element> subjects;
 
 
     public GmailMainPage(WebDriver webDriver) {
 
         super(webDriver);
+        Assert.assertTrue( checkboxes.get( 1 ).isDisplayed());
     }
 
     public void selectCheckboxes(int quantity) {
@@ -54,7 +59,7 @@ public class GmailMainPage extends DefaultPage{
     public int expectedResult(String subject) {
         int expectedResult = 0;
 
-        for (WebElement el : subjects) {
+        for (Element el : subjects) {
             if (el.getText().equals( subject )) {
                 expectedResult = 1;
             }

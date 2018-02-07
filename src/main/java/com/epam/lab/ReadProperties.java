@@ -49,6 +49,13 @@ public class ReadProperties {
     String getChromePath() {
         return prop.getProperty( "chrome.path" );
     }
+    String getIEDriver() {
+        return prop.getProperty( "ie.driver" );
+    }
+
+    String getIEPath() {
+        return prop.getProperty( "ie.path" );
+    }
 
     public String getUrlLoginPassed() {
         return prop.getProperty( "url.login.passed" );

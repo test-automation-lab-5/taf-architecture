@@ -1,9 +1,10 @@
 package com.epam.lab.pages;
 
+import com.epam.lab.decorator.CustomFieldDecorator;
+import com.epam.lab.decorator.MyExpectedConditions;
+import com.epam.lab.elements.Element;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 class DefaultPage {
@@ -11,14 +12,15 @@ class DefaultPage {
 
     DefaultPage(WebDriver webDriver) {
         this.webDriver = webDriver;
-        PageFactory.initElements(webDriver, this);
+        PageFactory.initElements( new CustomFieldDecorator(webDriver), this);
     }
+
 
     private WebDriverWait getWait() {
 
         return (new WebDriverWait( webDriver, 20));
     }
-    WebElement waitToBeClickable(WebElement element) {
-        return getWait().until( ExpectedConditions.elementToBeClickable(element));
+    Element waitToBeClickable(Element element) {
+        return getWait().until( MyExpectedConditions.elementToBeClickable(element));
     }
 }

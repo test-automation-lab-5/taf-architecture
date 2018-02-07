@@ -1,9 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="GmailTests" verbose="5">
-    <test name="GoogleTest">
+<suite name="GmailTests" verbose="5" parallel="tests" thread-count="5">
+    <test name="GoogleTestChrome1">
+        <parameter name="email" value="mixer.log4j@gmail.com" />
+        <parameter name="pass" value="Kids12345a" />
+        <parameter name="browser" value="chrome" />
         <classes>
             <class name="com.epam.lab.GoogleTest" />
         </classes>
     </test>
+    <test name="GoogleTestChrome2">
+        <parameter name="email" value="annrusnaktest12345@gmail.com" />
+        <parameter name="pass" value="annatest123" />
+        <parameter name="browser" value="chrome" />
+        <classes>
+            <class name="com.epam.lab.GoogleTest" />
+        </classes>
+    </test>
+    <test name="GoogleTestFF1">
+        <parameter name="email" value="mixer.log4j@gmail.com" />
+        <parameter name="pass" value="Kids12345a" />
+        <parameter name="browser" value="firefox" />
+        <classes>
+            <class name="com.epam.lab.GoogleTest" />
+        </classes>
+    </test>
+    <test name="GoogleTestFF2">
+        <parameter name="email" value="annrusnaktest12345@gmail.com" />
+        <parameter name="pass" value="annatest123" />
+        <parameter name="browser" value="firefox" />
+        <classes>
+            <class name="com.epam.lab.GoogleTest" />
+        </classes>
+    </test>
+    <test name="GoogleTestChrome3">
+        <parameter name="email" value="mixer.automation1@gmail.com" />
+        <parameter name="pass" value="Kids12345a" />
+        <parameter name="browser" value="chrome" />
+        <classes>
+            <class name="com.epam.lab.GoogleTest" />
+        </classes>
+    </test>
+
+
 </suite>

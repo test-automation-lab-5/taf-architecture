@@ -6,22 +6,23 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class GoogleTest {
 
     private WebDriver webDriver;
-
+    @Parameters({ "browser" })
     @BeforeMethod
-    public void setupDriver() {
-        webDriver = WebDriverFactory.getInstance();
+    public void setupDriver(String browser) {
+        webDriver = WebDriverFactory.getInstance(browser);
     }
-
+    @Parameters({"email", "pass"})
     @Test
-    public void gmailTest() throws InterruptedException {
+    public void gmailTest(String email, String pass) {
         GmailBO gmailBO = new GmailBO();
-        gmailBO.login( webDriver );
-        Assert.assertEquals( webDriver.getCurrentUrl(), gmailBO.expectedUrl() );
+        gmailBO.login( webDriver , email, pass);
+      //  Assert.assertEquals( webDriver.getCurrentUrl(), gmailBO.expectedUrl() );
 
         gmailBO.deleteEmails( webDriver );
 

@@ -7,14 +7,14 @@ import static com.epam.lab.ReadProperties.readDataFile;
 public class GmailBO {
     private ReadProperties data = new ReadProperties();
 
-    public void login(WebDriver webDriver) {
+    public void login(WebDriver webDriver, String email, String pass) {
         readDataFile(data);
         webDriver.get( data.getUrl() );
         webDriver.manage().window().maximize();
 
         GmailLoginPage gmailLoginPage = new GmailLoginPage( webDriver );
-        gmailLoginPage.enterEmailClickNextButton( data.getEmail() );
-        gmailLoginPage.enterPasswordClickNextButton( data.getPassword() );
+        gmailLoginPage.enterEmailClickNextButton( email );//data.getEmail()
+        gmailLoginPage.enterPasswordClickNextButton( pass );// data.getPassword()
 
     }
     public String expectedUrl(){
