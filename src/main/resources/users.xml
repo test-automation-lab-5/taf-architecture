@@ -4,21 +4,26 @@
 	<userData>
 		<userMail>mixer.log4j@gmail.com</userMail>
 		<userPassword>Kids12345a</userPassword>
+        <elementsCount>3</elementsCount>
 	</userData>
 	<userData>
-		<userMail>mixer.automation1@gmail.com</userMail>
+        <userMail>mixer.automation0@gmail.com</userMail>
 		<userPassword>Kids12345a</userPassword>
+        <elementsCount>3</elementsCount>
 	</userData>
 	<userData>
-		<userMail>mixer.automation2@gmail.com</userMail>
+        <userMail>mixer.automation1@gmail.com</userMail>
 		<userPassword>Kids12345a</userPassword>
+        <elementsCount>3</elementsCount>
 	</userData>
 	<userData>
 		<userMail>mixer.automation3@gmail.com</userMail>
 		<userPassword>Kids12345a</userPassword>
+        <elementsCount>3</elementsCount>
 	</userData>
 	<userData>
 		<userMail>mixer.automation4@gmail.com</userMail>
 		<userPassword>Kids12345a</userPassword>
+        <elementsCount>3</elementsCount>
 	</userData>
 </usersData>

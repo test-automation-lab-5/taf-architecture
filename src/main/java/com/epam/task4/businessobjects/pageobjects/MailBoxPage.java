@@ -2,7 +2,6 @@ package com.epam.task4.businessobjects.pageobjects;
 
 import com.epam.task4.businessobjects.pageobjects.decorator.elements.Button;
 import com.epam.task4.businessobjects.pageobjects.decorator.elements.CheckBox;
-import com.epam.task4.businessobjects.pageobjects.decorator.heandlers.MyPageFactory;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.support.FindBy;
 
@@ -20,11 +19,6 @@ public class MailBoxPage extends AbstractPage {
     @FindBy(id = "link_undo")
     private Button undoLink;
 
-
-    public MailBoxPage() {
-        super(new MyPageFactory());
-    }
-
     public MailBoxPage checkFirstNCheckboxesFromCurrentPool(int n) {
         log.info("Check messages from inbox");
         waitUntilBeClickable(visibleCheckbox);
@@ -41,6 +35,7 @@ public class MailBoxPage extends AbstractPage {
 
     public MailBoxPage clickVisibleDeleteButton() {
         log.info("Click on delete button");
+        waitUntilBeClickable(visibleDeleteButton);
         visibleDeleteButton.click();
         return this;
     }

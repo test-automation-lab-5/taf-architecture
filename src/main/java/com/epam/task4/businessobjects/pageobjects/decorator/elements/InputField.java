@@ -8,10 +8,11 @@ public class InputField extends AbstractElement implements SendKeys {
         super(webElement);
     }
 
-    public void sendKeys(CharSequence... var1){
+    public void sendKeys(CharSequence... var1) {
         webElement.sendKeys(var1);
     }
-    public String getValue(){
+
+    public String getValue() {
         return webElement.getAttribute("value");
     }
 }

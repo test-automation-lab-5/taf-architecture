@@ -4,7 +4,7 @@ import com.epam.task4.businessobjects.pageobjects.MailBoxPage;
 
 import java.util.List;
 
-public class MailBoxBO {
+public class MailboxBO {
     public List<String> deleteFirstNMailsFromCurrentPool(int n) {
         MailBoxPage mailboxPage = new MailBoxPage();
         List<String> deletedIdList = mailboxPage.getIdsOfFirstNMailsFromCurrentPool(n);
@@ -15,9 +15,13 @@ public class MailBoxBO {
         return deletedIdList;
     }
 
-    public boolean undoActionAndVerifyRestoration(List<String> idsOfElementsToBeRestored) {
+    public MailboxBO undoAction() {
+        new MailBoxPage().clickUndoLink();
+        return this;
+    }
+
+    public boolean verifyMessageRestoration(List<String> idsOfElementsToBeRestored) {
         new MailBoxPage()
-                .clickUndoLink()
                 .waitMessageBeRestored(idsOfElementsToBeRestored);
         return true;
     }

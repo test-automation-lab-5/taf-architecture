@@ -4,22 +4,13 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "userData")
-public class UserData {
+public class TestData {
     @XmlElement(name = "userMail")
     private String userMail;
     @XmlElement(name = "userPassword")
     private String userPassword;
-
-
-    UserData() {
-        userMail = null;
-        userPassword = null;
-    }
-
-    UserData(String userMail, String userPassword) {
-        this.userMail = userMail;
-        this.userPassword = userPassword;
-    }
+    @XmlElement(name = "elementsCount")
+    private int elementsCount;
 
     public String getUserMail() {
         return userMail;
@@ -27,5 +18,14 @@ public class UserData {
 
     public String getUserPassword() {
         return userPassword;
+    }
+
+    public int getElementsCount() {
+        return elementsCount;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s, %s", userMail, userPassword);
     }
 }

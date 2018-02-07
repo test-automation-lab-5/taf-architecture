@@ -1,7 +1,6 @@
 package com.epam.task4.businessobjects.pageobjects;
 
 import com.epam.task4.businessobjects.pageobjects.decorator.elements.InputField;
-import com.epam.task4.businessobjects.pageobjects.decorator.heandlers.MyPageFactory;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.support.FindBy;
 
@@ -12,10 +11,6 @@ public class LoginPage extends AbstractPage {
     private InputField mailField;
     @FindBy(xpath = "//input[@type='password']")
     private InputField passwordField;
-
-    public LoginPage() {
-        super(new MyPageFactory());
-    }
 
     public LoginPage openPage() {
         log.info("Open login page");

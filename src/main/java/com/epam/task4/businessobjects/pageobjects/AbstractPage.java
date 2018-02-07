@@ -11,38 +11,40 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public abstract class AbstractPage {
+import java.util.Objects;
+
+abstract class AbstractPage {
 
     private WebDriver driver;
     private MyElementFactory elementFactory = new MyElementFactory();
 
-    protected AbstractPage(MyPageFactory myPageFactory) {
+    AbstractPage() {
         driver = SingletonDriver.getDriver();
-        myPageFactory.initElements(driver, this);
+        MyPageFactory.initElements(driver, this);
     }
 
-    protected void openPage(String pageURL) {
+    void openPage(String pageURL) {
         driver.get(pageURL);
     }
 
-    protected void waitPageRedirectToURL(String pageUrl) {
+    void waitPageRedirectToURL(String pageUrl) {
         waitUntilTrue(func -> driver.getCurrentUrl().equals(pageUrl));
     }
 
-    protected void waitPageLoad() {
+    void waitPageLoad() {
         waitUntilTrue(func ->
-                ((JavascriptExecutor) func).executeScript("return document.readyState").equals("complete"));
+                !Objects.isNull(func) && ((JavascriptExecutor) func).executeScript("return document.readyState").equals("complete"));
     }
 
-    protected void waitUntilTrue(ExpectedCondition<Boolean> expectedCondition) {
+    void waitUntilTrue(ExpectedCondition<Boolean> expectedCondition) {
         getWait().until(expectedCondition);
     }
 
-    protected <E extends AbstractElement> E waitUntilBeClickable(E element) {
-        return (E) elementFactory.create(element.getClass(), getWait().until(ExpectedConditions.elementToBeClickable(element.getWebElement())));
+    <E extends AbstractElement> E waitUntilBeClickable(E element) {
+        return elementFactory.create((Class<E>) element.getClass(), getWait().until(ExpectedConditions.elementToBeClickable(element.getWebElement())));
     }
 
-    protected WebDriverWait getWait() {
-        return (new WebDriverWait(driver, Preferences.preferencesTestGmail.getTimeOutInSeconds()));
+    private WebDriverWait getWait() {
+        return (new WebDriverWait(driver, Preferences.preferencesTestGmail.getTimeOutInSeconds(), Preferences.preferencesTestGmail.getSleepInMillis()));
     }
 }

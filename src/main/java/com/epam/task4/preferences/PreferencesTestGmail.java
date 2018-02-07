@@ -10,28 +10,28 @@ public class PreferencesTestGmail extends PreferencesLoader {
 
     private String driverType = null;
     private String driverURL = null;
-    private String userMail = null;
-    private String userPassword = null;
-    private Integer elementsCount = null;
     private Integer implicitlyWait = null;
     private Integer timeOutInSeconds = null;
+    private Integer sleepInMillis = null;
+    private Integer threadsLimit = null;
 
     @Override
     public void loadPreferences(String preferencesFileURL) throws IOException, PreferencesLoadException {
+        log.info("Load TestGmail preferences");
         try {
             prop = new Properties();
             prop.load(PreferencesTestGmail.class.getResourceAsStream(preferencesFileURL));
             driverType = loadProperty("driverType");
             driverURL = loadProperty("driverURL");
-            userMail = loadProperty("userMail");
-            userPassword = loadProperty("userPassword");
-            elementsCount = Integer.parseInt(loadProperty("elementsCount"));
             implicitlyWait = Integer.parseInt(loadProperty("implicitlyWait"));
             timeOutInSeconds = Integer.parseInt(loadProperty("timeOutInSeconds"));
+            sleepInMillis = Integer.parseInt(loadProperty("sleepInMillis"));
+            threadsLimit = Integer.parseInt(loadProperty("threadsLimit"));
         } catch (IOException | PreferencesLoadException exception) {
             log.error(exception.getMessage());
             throw exception;
         }
+        log.info("TestGmail preferences loaded");
     }
 
     public String getDriverType() {
@@ -42,23 +42,19 @@ public class PreferencesTestGmail extends PreferencesLoader {
         return driverURL;
     }
 
-    public String getUserMail() {
-        return userMail;
-    }
-
-    public String getUserPassword() {
-        return userPassword;
-    }
-
-    public Integer getElementsCount() {
-        return elementsCount;
-    }
-
     public Integer getImplicitlyWait() {
         return implicitlyWait;
     }
 
     public Integer getTimeOutInSeconds() {
         return timeOutInSeconds;
+    }
+
+    public Integer getSleepInMillis() {
+        return sleepInMillis;
+    }
+
+    public Integer getThreadsLimit() {
+        return threadsLimit;
     }
 }

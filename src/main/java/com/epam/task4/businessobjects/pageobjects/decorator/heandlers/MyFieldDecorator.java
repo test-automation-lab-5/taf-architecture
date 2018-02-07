@@ -2,7 +2,6 @@ package com.epam.task4.businessobjects.pageobjects.decorator.heandlers;
 
 import com.epam.task4.businessobjects.pageobjects.decorator.elements.AbstractElement;
 import com.epam.task4.businessobjects.pageobjects.decorator.elements.MyElementFactory;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.pagefactory.DefaultFieldDecorator;
 import org.openqa.selenium.support.pagefactory.ElementLocator;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
@@ -16,7 +15,7 @@ import java.util.List;
 public class MyFieldDecorator extends DefaultFieldDecorator {
     private MyElementFactory elementFactory = new MyElementFactory();
 
-    public MyFieldDecorator(ElementLocatorFactory factory) {
+    MyFieldDecorator(ElementLocatorFactory factory) {
         super(factory);
     }
 
@@ -32,17 +31,15 @@ public class MyFieldDecorator extends DefaultFieldDecorator {
     }
 
     private Object decorateElement(final ClassLoader loader, final Field field) {
-        final WebElement wrappedElement = this.proxyForLocator(loader, this.factory.createLocator(field));
-        return elementFactory.create((Class<? extends AbstractElement>) field.getType(), wrappedElement);
+        return elementFactory.create((Class<? extends AbstractElement>) field.getType(), this.proxyForLocator(loader, this.factory.createLocator(field)));
     }
 
     private Object decorateElements(final ClassLoader loader, final Field field) {
         return this.proxyMyForListLocator(loader, this.factory.createLocator(field), (Class<?>) ((ParameterizedType) field.getGenericType()).getActualTypeArguments()[0]);
     }
 
-    protected <T extends AbstractElement> List<T> proxyMyForListLocator(ClassLoader loader, ElementLocator locator, Class type) {
+    private List proxyMyForListLocator(ClassLoader loader, ElementLocator locator, Class type) {
         InvocationHandler handler = new MyElementsListHandler(locator, type);
-        List<T> proxy = (List) Proxy.newProxyInstance(loader, new Class[]{List.class}, handler);
-        return proxy;
+        return (List) Proxy.newProxyInstance(loader, new Class[]{List.class}, handler);
     }
 }

@@ -1,19 +1,19 @@
 package com.epam.task4.preferences;
 
-import java.io.IOException;
-
 import org.apache.log4j.Logger;
 
-public class Preferences {
-	private static final Logger log = Logger.getLogger(Preferences.class);
-	public static final PreferencesTestGmail preferencesTestGmail = new PreferencesTestGmail();
+import java.io.IOException;
 
-	private Preferences() {
-	}
+public final class Preferences {
+    private static final Logger log = Logger.getLogger(Preferences.class);
+    public static final PreferencesTestGmail preferencesTestGmail = new PreferencesTestGmail();
 
-	public static void loadPreferences(String preferencesFileURL) throws IOException, PreferencesLoadException {
-		log.info("Load TestGmail preferences");
-		preferencesTestGmail.loadPreferences(preferencesFileURL);
-		log.info("TestGmail preferences loaded");
-	}
+    private Preferences() {
+    }
+
+    public static void initPreferences(String preferencesFileURL) throws IOException, PreferencesLoadException {
+        log.info("Init preferences");
+        preferencesTestGmail.loadPreferences(preferencesFileURL);
+        log.info("Preferences init complete");
+    }
 }

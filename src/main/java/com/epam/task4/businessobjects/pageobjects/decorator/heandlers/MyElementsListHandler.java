@@ -16,12 +16,13 @@ public class MyElementsListHandler implements InvocationHandler {
     private final Class type;
     private final MyElementFactory myElementFactory;
 
-    public MyElementsListHandler(ElementLocator locator, Class type) {
+    public <E extends AbstractElement> MyElementsListHandler(ElementLocator locator, Class<E> type) {
         this.locator = locator;
         this.type = type;
         this.myElementFactory = new MyElementFactory();
     }
 
+    @Override
     public Object invoke(Object object, Method method, Object[] objects) throws Throwable {
         List<AbstractElement> elements = new ArrayList<>();
         for (WebElement element : locator.findElements())
