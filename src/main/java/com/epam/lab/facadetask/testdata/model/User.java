@@ -8,13 +8,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "user")
 public class User {
-    private String signin;
     private String email;
     private String password;
-
-    public String getSignin() { return signin; }
-
-    public void setSignin(String signin) { this.signin = signin; }
 
     public String getEmail() {
         return email;

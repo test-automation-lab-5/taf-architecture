@@ -1,6 +1,5 @@
 package com.epam.lab.facadetask.decorator.bo.businessobjects;
 
-import com.epam.lab.facadetask.testdata.model.User;
 import com.epam.lab.facadetask.decorator.bo.pages.LoginPage;
 
 public class Login {
@@ -9,19 +8,10 @@ public class Login {
 
     public Login() {}
 
-    public void login(User user)  {
-        typeLoginAndSubmit(user.getEmail());
-        typePasswordAndSubmit(user.getPassword());
-        loginPage.getGmailPage().click();
+    public void login(String login, String password)  {
+        loginPage.login(login);
+        loginPage.setPassword(password);
+        loginPage.openGmail();
     }
 
-    private void typeLoginAndSubmit(String login) {
-        loginPage.getEmailInput().sendKeys(login);
-        loginPage.getEmailNext().click();
-    }
-
-    private void typePasswordAndSubmit(String password) {
-        loginPage.getPasswordInput().sendKeys(password);
-        loginPage.getPasswordNext().click();
-    }
 }

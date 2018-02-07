@@ -39,23 +39,4 @@ public class LoginPage extends AbstractPage {
         gmailPage.click();
     }
 
-    public WebElement getEmailInput(){
-        return emailInput;
-    }
-
-    public WebElement getEmailNext() {
-        return emailNext;
-    }
-
-    public WebElement getGmailPage() {
-        return gmailPage;
-    }
-
-    public WebElement getPasswordInput() {
-        return passwordInput;
-    }
-
-    public WebElement getPasswordNext() {
-        return passwordNext;
-    }
 }
