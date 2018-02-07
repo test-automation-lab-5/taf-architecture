@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<users>
+	<user>
+		<login>
+			ForHometaskTest
+		</login>
+		<password>
+			12345aKids
+		</password>
+	</user>
+	<user>
+		<login>
+			annrusnaktest12345
+		</login>
+		<password>
+			annatest123
+		</password>
+	</user>
+</users>
