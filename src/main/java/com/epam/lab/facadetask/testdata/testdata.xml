@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<testMessage>
-    <receiver>jamesdaw11101993@gmail.com</receiver>
-    <subject>subject</subject>
-    <message>test message</message>
-</testMessage>
+<testMessages>
+    <testMessage>
+        <receiver>jamesdaw11101993@gmail.com</receiver>
+        <subject>subject</subject>
+        <message>test message</message>
+    </testMessage>
+    <testMessage>
+        <receiver>hanszimmer11101993@gmail.com</receiver>
+        <subject>subject</subject>
+        <message>test message</message>
+    </testMessage>
+    <testMessage>
+        <receiver>hannabretsko@gmail.com</receiver>
+        <subject>subject</subject>
+        <message>test message</message>
+    </testMessage>
+</testMessages>
     

@@ -6,10 +6,10 @@ import com.epam.lab.facadetask.driver.DriverObject;
 
 import com.epam.lab.facadetask.testdata.marshall.UnMarshell;
 import com.epam.lab.facadetask.testdata.model.TestMessage;
+import com.epam.lab.facadetask.testdata.model.TestMessages;
 import com.epam.lab.facadetask.testdata.model.User;
 import com.epam.lab.facadetask.testdata.marshall.JAXB;
 
-import com.epam.lab.facadetask.testdata.model.Users;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -20,7 +20,6 @@ import java.util.List;
 
 public class GmailTest {
     private static WebDriver driver;
-    private TestMessage message;
     private List<User> usersList;
 
     @BeforeMethod
@@ -31,20 +30,24 @@ public class GmailTest {
     @DataProvider(name = "users", parallel = true)
     public Object[][] getData() {
         File usersXml = new File("src\\\\main\\\\java\\\\com\\\\epam\\\\lab\\\\facadetask\\\\testdata\\\\users.xml");
-        message = UnMarshell.unmarshaller();
+        TestMessages messages =  UnMarshell.unmarshaller();
+        assert messages != null;
+        List<TestMessage> mess = messages.getTestMessages();
         try {
             usersList = JAXB.unmarshal(usersXml);
         } catch (JAXBException e) {
             e.printStackTrace();
         }
         return new Object[][]{
-                {message, usersList.get(0)},
-                {message, usersList.get(1)},
-                {message, usersList.get(2)},
-                {message, usersList.get(3)},
-                {message, usersList.get(4)},
+                {mess.get(0), usersList.get(0)},
+                {mess.get(1), usersList.get(1)},
+                {mess.get(2), usersList.get(2)},
+                {mess.get(2), usersList.get(3)},
+                {mess.get(2), usersList.get(4)},
+
         };
     }
+
 
     @Test(dataProvider = "users")
     public void testGmail(TestMessage message, User users) {
@@ -58,13 +61,13 @@ public class GmailTest {
         Assert.assertTrue(gmailPage.isRemoved());
 
     }
-    /*@AfterMethod
+    @AfterMethod
     public static void quitBrowser(){
         try{
             driver.close();
         }finally{
-        driver.quit();
+            driver.quit();
         }
-    }*/
+    }
 }
 
