@@ -20,6 +20,7 @@ public class FactoryTest {
 
     @Test()
     public void testGmail() {
+        DriverObject.getDriver().get("https://accounts.google.com/signin");
         GmailBO gmailBO = new GmailBO();
         gmailBO.login(user.getLogin(), user.getPassword());
         gmailBO.sendMail(letterData.getSentTo(), letterData.getSubject(), letterData.getMessage());

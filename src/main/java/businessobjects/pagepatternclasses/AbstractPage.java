@@ -10,19 +10,17 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AbstractPage {
-    private static   WebDriver driver;
+    private static WebDriver driver;
     private MyElementFactory elementFactory = new MyElementFactory();
 
     protected AbstractPage(MyPageFactory myPageFactory) {
         driver = DriverObject.getDriver();
         myPageFactory.initElements(driver, this);
     }
-    protected static void driverClose(){
-        driver.close();
-    }
-    protected  void getUrl(){
-        driver.get("https://accounts.google.com/signin");
-    }
+
+//    protected void getUrl() {
+//        driver.get("https://accounts.google.com/signin");
+//    }
 
     protected WebDriverWait getWait() {
         return (new WebDriverWait(driver, 25));
