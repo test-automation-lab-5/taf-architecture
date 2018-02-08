@@ -21,11 +21,14 @@ public class GmailBO {
 
     public void sendMail(String sentTo, String subject, String message) {
         gmailPage.sendLetter(sentTo, subject, message);
+    }
+    public void getSentPage(){
+        System.out.println("getSent");
         gmailPage.getSentPage();
     }
 
-    public String getSubject() {
-        return gmailPage.getSubject();
+    public String getSubject(String subject) {
+        return gmailPage.getSubject(subject);
     }
 
     public void moveLetter() {

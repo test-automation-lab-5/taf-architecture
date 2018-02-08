@@ -1,9 +1,12 @@
 package testdata.xmlmodels;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "letterData")
 public class LetterData {
     private String sentTo;
     private String subject;
@@ -13,7 +16,6 @@ public class LetterData {
         return sentTo;
     }
 
-    @XmlElement
     public void setSentTo(String sentTo) {
         this.sentTo = sentTo;
     }
@@ -22,7 +24,6 @@ public class LetterData {
         return subject;
     }
 
-    @XmlElement
     public void setSubject(String subject) {
         this.subject = subject;
     }
@@ -31,7 +32,6 @@ public class LetterData {
         return message;
     }
 
-    @XmlElement
     public void setMessage(String message) {
         this.message = message;
     }

@@ -19,9 +19,9 @@ public class GmailPage extends AbstractPage {
     private TextInputImpl messageInput;
     @FindBy(xpath = "//div[@class='J-J5-Ji btA']")
     private ButtonImpl sendButton;
-    @FindBy(xpath = "//a[@href='https://mail.google.com/mail/#sent']")
+    @FindBy(xpath = "//a[@title='Sent Mail']")
     private ButtonImpl sentPage;
-    @FindBy(xpath = "//td[@class='oZ-x3 xY']")
+    @FindBy(xpath = "//div[@role='main']//div[@role='checkbox']")
     private CheckBoxImpl choosenMail;
     @FindBy(xpath = "//div[@gh='mtb']//div[@act='10']")
     private ButtonImpl deleteButton;
@@ -62,10 +62,8 @@ public class GmailPage extends AbstractPage {
         return message;
     }
 
-    public String getSubject() {
-        LetterData letterData = LetterDataUnMarshaller.unmarsaller();
-        String subject = letterData.getSubject();
-        String letterSubject = getSubject(subject);
+    public String getSubject(String subject) {
+        String letterSubject = subject;
         return letterSubject;
     }
 
