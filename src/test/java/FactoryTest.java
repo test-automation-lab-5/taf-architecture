@@ -26,10 +26,8 @@ public class FactoryTest {
         gmailBO.sendMail(letterData.getSentTo(), letterData.getSubject(), letterData.getMessage());
         gmailBO.getSentPage();
         Assert.assertEquals(letterData.getSubject(), gmailBO.getSubject(letterData.getSubject()));
-        System.out.println("assert");
         gmailBO.moveLetter();
-        System.out.println("muve");
-        Assert.assertEquals("The conversation has been moved to the Trash.", gmailBO.getMovedMessage());
+        Assert.assertTrue(gmailBO.getMovedMessage());
     }
     @AfterMethod
     public void driverQuit(){

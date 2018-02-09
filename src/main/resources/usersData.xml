@@ -2,16 +2,20 @@
 <users>
     <user>
         <login>homeworkbohdan@gmail.com</login>
-        <password>*******</password>
+        <password>******</password>
     </user>
     <user>
         <login>dovbysh.bohdan@gmail.com</login>
-        <password>********</password>
+        <password>******</password>
 
     </user>
     <user>
         <login>homevorkvit@gmail.com</login>
-        <password>*********</password>
+        <password>*******</password>
     </user>
-//719113719113
+    <user>
+        <login>autoteatnumber4@gmail.com</login>
+        <password>******</password>
+    </user>
+    //719113719113
 </users>

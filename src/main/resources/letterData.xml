@@ -15,4 +15,9 @@
         <sentTo>homevorkvit@gmail.com</sentTo>
         <subject>homevorkvit@gmail.com</subject>
     </letterData>
+    <letterData>
+        <message>Test4</message>
+        <sentTo>autoteatnumber4@gmail.com</sentTo>
+        <subject>Test4</subject>
+    </letterData>
 </letters>

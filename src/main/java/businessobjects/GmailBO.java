@@ -22,8 +22,8 @@ public class GmailBO {
     public void sendMail(String sentTo, String subject, String message) {
         gmailPage.sendLetter(sentTo, subject, message);
     }
-    public void getSentPage(){
-        System.out.println("getSent");
+
+    public void getSentPage() {
         gmailPage.getSentPage();
     }
 
@@ -36,7 +36,7 @@ public class GmailBO {
         gmailPage.pushDeleteOkButton();
     }
 
-    public String getMovedMessage() {
+    public boolean getMovedMessage() {
         return gmailPage.getMovedMessage();
     }
 }

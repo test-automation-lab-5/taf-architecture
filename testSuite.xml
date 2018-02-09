@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="TestNG Load Testing Suite" parallel="instances">
-    <test name="GmailTests"  thread-count="5">
+<suite name="TestNG Load Testing Suite">
+    <test name="GmailTests" parallel="instances" thread-count="5">
         <classes>
             <class name="FactoryTest" />
         </classes>

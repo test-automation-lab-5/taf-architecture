@@ -57,9 +57,8 @@ public class GmailPage extends AbstractPage {
         deleteOkButton.click();
     }
 
-    public String getMovedMessage() {
-        String message = movedMessage.getText();
-        return message;
+    public boolean getMovedMessage() {
+        return movedMessage.isPresent();
     }
 
     public String getSubject(String subject) {

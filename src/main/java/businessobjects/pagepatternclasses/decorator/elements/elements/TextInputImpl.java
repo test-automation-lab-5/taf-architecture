@@ -17,5 +17,9 @@ public class TextInputImpl extends AbstractElement implements TextInput {
     public String getText() {
         return webElement.getText();
     }
+
+    public boolean isPresent(){
+        return webElement.isDisplayed();
+    }
 }
 
