@@ -1,4 +1,4 @@
-package epam.com.pomgmaltest.tests;
+package epam.com.pomgmailtest.tests;
 
 import epam.com.pomgmail.businessobjects.LoginBO;
 import epam.com.pomgmail.businessobjects.MessageBO;
@@ -15,7 +15,17 @@ import java.util.concurrent.TimeUnit;
 public class POMGmailTest {
     private WebDriver driver;
     ModelProperties model;
-    private List<User> users;
+    private static List<User> users;
+    private User dataUsers;
+
+    POMGmailTest(){
+
+    }
+
+    @Factory( dataProvider = "authentication")
+    POMGmailTest(User dataUsers){
+        this.dataUsers = dataUsers;
+    }
 
     @BeforeMethod
     public void setUpDriver() {
@@ -23,31 +33,34 @@ public class POMGmailTest {
         model.setProperties();
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         driver = InstancePage.getInstance().getDriver();
-//        driver.get(model.getUrl());
-//        driver.get("https://mail.google.com");
+        driver.get(model.getUrl());
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }
 
     @DataProvider(name = "authentication", parallel = true)
-    public Object[] credentials() {
+    public static Object[][] credentials() {
         try {
             users = ParseXML.unmarshalXML();
         }catch (Exception e){
             e.printStackTrace();
         }
-        return new Object[]{users.get(0), users.get(1)};//, users.get(2)
+
+        Object[][] res = new Object[users.size()][1];
+        for (int i = 0; i < users.size(); i++)
+            res[i][0] = users.get(i);
+        return res;
     }
 
-    @Test(dataProvider = "authentication", threadPoolSize = 3)
-    public void loginAndPasswordTest(User users) throws InterruptedException {
-        driver.get("https://mail.google.com");
+    @Test( threadPoolSize = 3)
+    public void loginAndPasswordTest() throws InterruptedException {
         LoginBO login = new LoginBO();
-        login.typeLoginAndPassword(users.getLogin().trim(), users.getPassword().trim());
+        login.typeLoginAndPassword(dataUsers.getLogin().trim(), dataUsers.getPassword().trim());
 
         Assert.assertEquals("Gmail", driver.getTitle(), "Title not works.");
 
         MessageBO message = new MessageBO();
         message.interactionWithMessages(driver);
+        message.checkImportantMessages(driver);
 
         Assert.assertTrue(message.verifyImportantMessages(driver), "Letters aren't present in Important.");
 
@@ -57,9 +70,9 @@ public class POMGmailTest {
 
 
 
-//    @AfterMethod
-//    public void closeDriver() {
-//
-//        driver.quit();
-//    }
+    @AfterMethod
+    public void closeDriver() {
+
+        InstancePage.getInstance().quitDriver();
+    }
 }

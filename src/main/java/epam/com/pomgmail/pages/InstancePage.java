@@ -8,10 +8,6 @@ import java.util.Map;
 import java.util.Objects;
 
 public class InstancePage {
-//
-//    private static WebDriver driver;
-//
-//    private static Map<Long, WebDriver> driverMap = new HashMap<>();
 
     private InstancePage(){
 
@@ -36,22 +32,9 @@ public class InstancePage {
         return driver.get();
     }
 
-//    public static WebDriver openBrowser(){
-//        driver = new ChromeDriver();
-//        return driver;
-//    }
-//
-//    public static WebDriver getInstance(){
-//        long currentThreadId = Thread.currentThread().getId();
-//        WebDriver driver = driverMap.get(currentThreadId);
-//        if(driver == null){
-//            driver = openBrowser();
-//            driverMap.put(currentThreadId, driver);
-//        }
-//        return driverMap.get(currentThreadId);
-//        long currentThreadId = Thread.currentThread().getId();
-//        if(Objects.isNull(driverMap.get(currentThreadId)))
-//            driverMap.put(currentThreadId, new ChromeDriver());
-//        return driverMap.get(currentThreadId);
-//    }
+    public void quitDriver()
+    {
+        driver.get().quit();
+        driver.remove();
+    }
 }

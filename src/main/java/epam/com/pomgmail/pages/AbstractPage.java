@@ -11,7 +11,6 @@ abstract class AbstractPage {
     AbstractPage(){
         driver = InstancePage.getInstance().getDriver();
         PageFactory.initElements(driver, this);
-//        PageFactory.initElements(new CustomFieldDecorator(driver), this);
     }
 
     AbstractPage(InitElements initElements){

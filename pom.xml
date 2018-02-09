@@ -32,9 +32,12 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.20.1</version>
         <configuration>
-          <includes>
-            <include>POMGmailTest.java</include>
-          </includes>
+          <suiteXmlFiles>
+            <suiteXmlFile>suite.xml</suiteXmlFile>
+          </suiteXmlFiles>
+          <!--<includes>-->
+            <!--<include>epam.com.pomgmailtest.tests.POMGmailTest</include>-->
+          <!--</includes>-->
         </configuration>
       </plugin>
     </plugins>

@@ -2,10 +2,26 @@
 <users>
 	<user>
 		<login>
-			ForHometaskTest
+			mixer.automation1@gmail.com
 		</login>
 		<password>
-			12345aKids
+			Kids12345a
+		</password>
+	</user>
+	<user>
+		<login>
+			bread.with.batter@gmail.com
+		</login>
+		<password>
+			qwezxcasd123
+		</password>
+	</user>
+	<user>
+		<login>
+			bread.with.jem@gmail.com
+		</login>
+		<password>
+			qwezxcasd123
 		</password>
 	</user>
 	<user>

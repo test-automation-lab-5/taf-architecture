@@ -1,5 +1,6 @@
 package epam.com.pomgmail.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -58,6 +59,7 @@ public class GmailHomePage extends AbstractPage {
     public void setMessageImportant(){
 //        for (int i = 0; i < 3; i++){
 //            importants.get(i).click();
+//            System.out.println(importants.get(i).findElement(By.xpath("//span[contains(@class, 'bog')]")).getText());
 //        }
         importantOne.click();
         importantTwo.click();
@@ -99,10 +101,7 @@ public class GmailHomePage extends AbstractPage {
         for (int i = 0; i < importantSubject.size(); i++){
             verifiesList.add(importantSubject.get(i).getText());
         }
-        if (verifiesList.containsAll(titleList))
-            return true;
-        else
-            return false;
+        return (verifiesList.containsAll(titleList)) ? true : false;
     }
 
     public void clickDeleteAndMoreLinks(){
