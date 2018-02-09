@@ -27,7 +27,7 @@ public class GmailTest {
                 {lettersData.get(1), usersData.get(1)},
                 {lettersData.get(2), usersData.get(2)},
                 {lettersData.get(3), usersData.get(3)},
-                {lettersData.get(0), usersData.get(0)}
+                {lettersData.get(4), usersData.get(4)}
         };
 
     }

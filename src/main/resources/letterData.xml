@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <letters>
     <letterData>
-    <message>TestMessage</message>
+    <message>Test1</message>
     <sentTo>homeworkbohdan@gmail.com</sentTo>
     <subject>Test1</subject>
     </letterData>
     <letterData>
-        <message>TestMessage</message>
+        <message>Test2</message>
         <sentTo>dovbysh.bohdan@gmail.com</sentTo>
         <subject>Test2</subject>
     </letterData>
     <letterData>
-        <message>homevorkvit@gmail.com</message>
+        <message>test3</message>
         <sentTo>homevorkvit@gmail.com</sentTo>
-        <subject>homevorkvit@gmail.com</subject>
+        <subject>test3</subject>
     </letterData>
     <letterData>
         <message>Test4</message>
         <sentTo>autoteatnumber4@gmail.com</sentTo>
         <subject>Test4</subject>
+    </letterData>
+    <letterData>
+        <message>Test5</message>
+        <sentTo>aototestnumber5@gmail.com</sentTo>
+        <subject>Test5</subject>
     </letterData>
 </letters>
