@@ -2,7 +2,7 @@ package com.epam.lab.businessObjects;
 
 import org.openqa.selenium.WebDriver;
 
-//3.Implement business object layer to keep test layer isolated from page object layer (Use façade design pattern)
+
 public class LoginBusinessObject {
     private LoginPage loginPage;
     private PasswordPage passwordPage;

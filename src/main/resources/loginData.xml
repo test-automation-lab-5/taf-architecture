@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<loginData>
+    <loginDataProps>
+        <loginData>tosts.with.batter</loginData>
+        <passwordData>qwezxcasd123</passwordData>
+    </loginDataProps>
+    <loginDataProps>
+        <loginData>test.iryna.mail</loginData>
+        <passwordData>testmail</passwordData>
+    </loginDataProps>
+    <loginDataProps>
+        <loginData>bread.with.batter</loginData>
+        <passwordData>qwezxcasd123</passwordData>
+    </loginDataProps>
+    <loginDataProps>
+        <loginData>bread.with.batter</loginData>
+        <passwordData>qwezxcasd123</passwordData>
+    </loginDataProps>
+    <loginDataProps>
+        <loginData>lvivprofc</loginData>
+        <passwordData>profc110912</passwordData>
+    </loginDataProps>
+</loginData>

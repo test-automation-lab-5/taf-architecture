@@ -3,6 +3,7 @@ package com.epam.lab.businessObjects;
 import com.epam.lab.decorator.MyButton;
 import com.epam.lab.decorator.MyDecorator;
 import com.epam.lab.decorator.MyTextInput;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -47,11 +48,11 @@ public class MailPage {
     private MyButton lastMessageButton;
 
     public MailPage(WebDriver driver) {
-
         PageFactory.initElements(new MyDecorator(new DefaultElementLocatorFactory(driver)), this);
     }
 
     public void typeMessage(String incorrectMessage, String subject, String message) {
+
         composeButton.click();
         senderMailField.sendKeys(incorrectMessage);
         subjectMailField.sendKeys(subject);
@@ -59,14 +60,17 @@ public class MailPage {
     }
 
     public boolean verifyAlertMessage() {
+
         return alertOkButton.exists();
     }
 
     public void clickAlertMessage() {
+
         alertOkButton.click();
     }
 
     public void typeCorrectMessage(String correctMessage) {
+
         composeMailField.click();
         closeSenderMailButton.click();
         senderMailField.sendKeys(correctMessage);
@@ -74,10 +78,12 @@ public class MailPage {
 
 
     public void submitMessage() {
+
         submitButton.click();
     }
 
     public String checkSentMail() {
+
         sentMailFolderButton.click();
         // openSentMailButton.click();
         lastMessageButton.click();
