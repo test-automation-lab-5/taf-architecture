@@ -14,4 +14,9 @@ public class DraftsBusinessObject {
         draftsPage.waitForDraftsLoad();
         draftsPage.openLetterFromDraftsWithSameSubject(subject);
     }
+
+    public void openUserAlert() {
+        draftsPage.openProfileAlert();
+        draftsPage.clickLogOut();
+    }
 }

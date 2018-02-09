@@ -11,7 +11,7 @@ public class LetterWindowPageBusinessObject {
         letterWindowPage = new LetterWindowPage(Driver.getDriver());
 
         letterWindowPage.clickComposeButton();
-        letterWindowPage.waitUntilUrlContains();
+        letterWindowPage.waitUntilUrlWillContainsCompose();
         letterWindowPage.enterTo(data.getTo());
         letterWindowPage.enterCc(data.getCc());
         letterWindowPage.enterBcc(data.getBcc());
@@ -21,6 +21,7 @@ public class LetterWindowPageBusinessObject {
     }
 
     public void sendLetter() {
+        letterWindowPage.waitUntilUrlWillContainsCompose();
         letterWindowPage.sendLetter();
     }
 

@@ -52,7 +52,6 @@ public class DomXmlParsing {
                 messageData.setTo(singleLetter.getElementsByTagName("to").item(0).getChildNodes().item(0).getNodeValue());
                 messageData.setCc(singleLetter.getElementsByTagName("cc").item(0).getChildNodes().item(0).getNodeValue());
                 messageData.setBcc(singleLetter.getElementsByTagName("bcc").item(0).getChildNodes().item(0).getNodeValue());
-                messageData.setSubject(singleLetter.getElementsByTagName("subject").item(0).getChildNodes().item(0).getNodeValue());
                 messageData.setMessage(singleLetter.getElementsByTagName("message").item(0).getChildNodes().item(0).getNodeValue());
 
                 messageDatas.add(messageData);

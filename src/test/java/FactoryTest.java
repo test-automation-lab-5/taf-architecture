@@ -37,6 +37,8 @@ public class FactoryTest {
 
         letterWindowPageBusinessObject.sendLetter();
 
+        draftsBusinessObject.openUserAlert();
+
         Assert.assertEquals(actualSubject, expectedSubject);
     }
 

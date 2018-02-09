@@ -4,6 +4,7 @@ import main.pages.decorator.elements.AbstractElement;
 import main.pages.decorator.factory.CustomPageFactory;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -33,11 +34,25 @@ public class AbstractGmailPage {
         (new WebDriverWait(driver, 5)).until(ExpectedConditions.textToBePresentInElementValue(element.getWebElement(), text));
     }
 
-    public void waitUntilUrlContains() {
-        (new WebDriverWait(driver, 20)).until(ExpectedConditions.urlMatches("compose"));
-    }
-
     public void waitUntilAttributeBeVisible(AbstractElement element) {
         (new WebDriverWait(driver, 5)).until(ExpectedConditions.attributeToBeNotEmpty(element.getWebElement(), "style"));
+    }
+
+    public void waitUntilUrlWillContainsCompose() {
+        (new WebDriverWait(driver, 10)).until(ExpectedConditions.urlContains("compose"));
+    }
+
+    public void waitUntilUrlWillContainsAccounts() {
+        (new WebDriverWait(driver, 10)).until(ExpectedConditions.urlContains("accounts"));
+    }
+
+    public boolean waitUntilAlertBePresent() {
+        try {
+            (new WebDriverWait(driver, 10)).until(ExpectedConditions.alertIsPresent());
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
+
     }
 }

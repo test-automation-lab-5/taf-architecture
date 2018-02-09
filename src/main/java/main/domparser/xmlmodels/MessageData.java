@@ -6,14 +6,12 @@ public class MessageData {
     private String to;
     private String cc;
     private String bcc;
-    private String subject;
     private String message;
 
-    public MessageData(String to, String cc, String bcc, String subject, String message) {
+    public MessageData(String to, String cc, String bcc, String message) {
         this.to = to;
         this.cc = cc;
         this.bcc = bcc;
-        this.subject = subject;
         this.message = message;
     }
 
@@ -44,14 +42,6 @@ public class MessageData {
         this.bcc = bcc;
     }
 
-    public String getSubject() {
-        return subject;
-    }
-
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
-
     public String getMessage() {
         return message;
     }
@@ -77,7 +67,6 @@ public class MessageData {
                 "to='" + to + '\'' +
                 ", cc='" + cc + '\'' +
                 ", bcc='" + bcc + '\'' +
-                ", subject='" + subject + '\'' +
                 ", message='" + message + '\'' +
                 '}';
     }
