@@ -21,6 +21,8 @@ public class LoginTest {
     private String myEmail;
     private String myPassword;
 
+    public LoginTest() {
+    }
 
     @Factory(dataProviderClass = ParallelTestData.class, dataProvider = "testData")
     public LoginTest(String myEmail, String myPassword) {
