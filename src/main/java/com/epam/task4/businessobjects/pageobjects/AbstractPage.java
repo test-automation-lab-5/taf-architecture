@@ -31,6 +31,10 @@ abstract class AbstractPage {
         waitUntilTrue(func -> driver.getCurrentUrl().equals(pageUrl));
     }
 
+    void waitPageURLEndsWith(String urlEnd) {
+        waitUntilTrue(func -> driver.getCurrentUrl().endsWith(urlEnd));
+    }
+
     void waitPageLoad() {
         waitUntilTrue(func ->
                 !Objects.isNull(func) && ((JavascriptExecutor) func).executeScript("return document.readyState").equals("complete"));

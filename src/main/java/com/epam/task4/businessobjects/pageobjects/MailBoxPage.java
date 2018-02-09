@@ -28,7 +28,7 @@ public class MailBoxPage extends AbstractPage {
 
     public MailBoxPage waitMailboxPageLoad() {
         log.info("Wait mailbox load");
-        waitPageRedirectToURL("https://mail.google.com/mail/#inbox");
+        waitPageURLEndsWith("#inbox");
         waitPageLoad();
         return this;
     }
