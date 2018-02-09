@@ -25,4 +25,8 @@ public class DraftsBO  {
     public void openDraftMailWithSubject(){
         draftsPage.clickDraftMailWithSubject(testDataReader.getSubjectFieldValue());
     }
+
+    public boolean isElementDisplayed(){
+        return draftsPage.isMailWasSentWindowDisplayed();
+    }
 }

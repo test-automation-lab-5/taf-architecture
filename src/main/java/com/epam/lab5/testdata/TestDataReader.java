@@ -9,19 +9,19 @@ import static com.epam.lab5.consts.Paths.TEST_DATA_XML_FILE_PATH;
 
 public class TestDataReader {
 
-    public String getToFieldValue(){
+    public static String getToFieldValue(){
         return getMailComponent().getToField();
     }
 
-    public String getSubjectFieldValue(){
+    public static  String getSubjectFieldValue(){
         return getMailComponent().getSubjectField();
     }
 
-    public String getMessageFieldValue(){
+    public static String getMessageFieldValue(){
         return getMailComponent().getMessageField();
     }
 
-    private MailComponent getMailComponent()  {
+    private static MailComponent getMailComponent()  {
         MailComponent mailComponent = null;
         try {
             mailComponent = xmlJaxbReader(TEST_DATA_XML_FILE_PATH);

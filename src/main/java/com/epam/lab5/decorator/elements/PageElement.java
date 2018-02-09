@@ -6,7 +6,7 @@ import java.util.List;
 
 public class PageElement implements WebElement {
 
-    private WebElement webElement;
+    WebElement webElement; //package-private->child must see
 
     public PageElement(WebElement webElement) {
         this.webElement = webElement;

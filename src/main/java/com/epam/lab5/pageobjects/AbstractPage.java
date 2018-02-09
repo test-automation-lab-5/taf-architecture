@@ -1,18 +1,25 @@
 package com.epam.lab5.pageobjects;
 
 import com.epam.lab5.decorator.MyFieldDecorator;
+import com.epam.lab5.decorator.elements.PageElement;
+import com.epam.lab5.driver.DriverFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AbstractPage {
-     WebDriver driver;
+
+    WebDriver driver = DriverFactory.getInstance().getDriver();
 
     public AbstractPage(WebDriver driver) {
-        this.driver = driver;
         PageFactory.initElements(new MyFieldDecorator(
                 new DefaultElementLocatorFactory(driver)
         ), this);
     }
 
+    public void waitElementBeVisible(PageElement element, int seconds){
+        (new WebDriverWait(driver, seconds)).until(ExpectedConditions.visibilityOf(element));
+    }
 }

@@ -14,8 +14,8 @@ public class ComposeBO  {
         composePage= new ComposePage(driver);
     }
 
-    public void composeMail(){
-        composePage.enterMailTo(testDataReader.getToFieldValue());
+    public void composeMail(String mailTo){
+        composePage.enterMailTo(mailTo);
         composePage.enterMailSubject(testDataReader.getSubjectFieldValue());
         composePage.enterMailMessage(testDataReader.getMessageFieldValue());
         composePage.closeComposeWindow();

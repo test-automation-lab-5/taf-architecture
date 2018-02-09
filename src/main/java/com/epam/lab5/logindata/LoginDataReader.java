@@ -1,4 +1,4 @@
-package com.epam.lab5.propdata;
+package com.epam.lab5.logindata;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -15,9 +15,6 @@ public class LoginDataReader {
         inputStream.close();
     }
 
-    public String getMailLink() {
-        return properties.getProperty("mail.link");
-    }
 
     public String getMailAddress(){
         return properties.getProperty("mail.address");

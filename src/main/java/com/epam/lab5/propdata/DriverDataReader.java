@@ -8,7 +8,7 @@ import static com.epam.lab5.consts.Paths.DRIVER_PROP_FILE_PATH;
 
 public class DriverDataReader {
 
-    Properties properties = new Properties();
+   static Properties  properties = new Properties();
 
     public DriverDataReader() throws IOException {
         FileInputStream inputStream = new FileInputStream(DRIVER_PROP_FILE_PATH);
@@ -20,7 +20,11 @@ public class DriverDataReader {
         return properties.getProperty("driver.chrome");
     }
 
-    public String getDriverPath(){
+    public  String getDriverPath(){
         return properties.getProperty("driver.path");
+    }
+
+    public static String getMailLink() {
+        return properties.getProperty("driver.link");
     }
 }

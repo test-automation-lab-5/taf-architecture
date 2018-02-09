@@ -1,6 +1,8 @@
 package com.epam.lab5.pageobjects;
 
 import com.epam.lab5.decorator.elements.PageElement;
+import com.epam.lab5.decorator.elements.TextInput;
+import com.epam.lab5.driver.DriverFactory;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -12,17 +14,17 @@ public class LoginPage extends AbstractPage {
     private static final Logger log = Logger.getLogger(LoginPage.class);
 
     @FindBy(name = "identifier")
-    private PageElement emailInput;
+    private TextInput emailInput;
 
     @FindBy(name="password")
-    private PageElement passwordInput;
+    private TextInput passwordInput;
 
     public LoginPage(WebDriver driver) {
         super(driver);
     }
 
     public void openLoginPage(String loginPageLink){
-        driver.get(loginPageLink);
+        DriverFactory.getInstance().getDriver().get(loginPageLink);
         log.info("Link was got.");
     }
 

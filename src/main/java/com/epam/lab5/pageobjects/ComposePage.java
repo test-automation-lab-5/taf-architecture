@@ -1,6 +1,8 @@
 package com.epam.lab5.pageobjects;
 
+import com.epam.lab5.decorator.elements.Button;
 import com.epam.lab5.decorator.elements.PageElement;
+import com.epam.lab5.decorator.elements.TextInput;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -12,16 +14,16 @@ public class ComposePage extends AbstractPage {
     private static final Logger log = Logger.getLogger(ComposePage.class);
 
     @FindBy(css = ".oj div textarea" )
-    private PageElement mailToInput;
+    private TextInput mailToInput;
 
     @FindBy(name = "subjectbox")
-    private PageElement mailSubjectInput;
+    private TextInput mailSubjectInput;
 
     @FindBy(css = ".Ar.Au div")
-    private PageElement mailMessageInput;
+    private TextInput mailMessageInput;
 
     @FindBy(css=".Ha")
-    private PageElement composeWindowCloseButton;
+    private Button composeWindowCloseButton;
 
 
     public ComposePage(WebDriver driver) {
