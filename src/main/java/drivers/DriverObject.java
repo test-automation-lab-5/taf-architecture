@@ -10,13 +10,12 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class DriverObject {
-
-    private static WebDriver driver;
     private static Map<String, WebDriver> driverMap = new HashMap<>();
-    private DriverObject() {}
 
+    private DriverObject() {
+    }
 
-    private static WebDriver createDriver(){
+    private static WebDriver createDriver() {
         WebDriverProp webDriverProp = null;
         try {
             webDriverProp = new WebDriverProp();
@@ -24,15 +23,20 @@ public class DriverObject {
             e.printStackTrace();
         }
         System.setProperty(webDriverProp.chromeDriver(), webDriverProp.readUrl());
-        driver = new ChromeDriver();
+        WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
         return driver;
     }
-    public static WebDriver driverQuit(){
+
+    public static WebDriver driverQuit() {
         String currentThread = Thread.currentThread().getName();
         WebDriver driver = driverMap.get(currentThread);
-        if (driver != null){
-            driver.quit();
+        if (driver != null) {
+            try {
+                driver.quit();
+            } finally {
+                driver.quit();
+            }
         }
         return driver;
     }

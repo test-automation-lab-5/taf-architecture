@@ -28,7 +28,7 @@ public class GmailBO {
     }
 
     public String getSubject(String subject) {
-        return gmailPage.getSubject(subject);
+        return gmailPage.getLetterSubject(subject);
     }
 
     public void moveLetter() {

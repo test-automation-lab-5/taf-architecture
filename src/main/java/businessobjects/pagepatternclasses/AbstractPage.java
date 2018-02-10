@@ -18,10 +18,6 @@ public class AbstractPage {
         myPageFactory.initElements(driver, this);
     }
 
-//    protected void getUrl() {
-//        driver.get("https://accounts.google.com/signin");
-//    }
-
     protected WebDriverWait getWait() {
         return (new WebDriverWait(driver, 25));
     }

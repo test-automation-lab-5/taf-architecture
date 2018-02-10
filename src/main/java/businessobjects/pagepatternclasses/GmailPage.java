@@ -4,6 +4,7 @@ import businessobjects.pagepatternclasses.decorator.elements.elements.ButtonImpl
 import businessobjects.pagepatternclasses.decorator.elements.elements.CheckBoxImpl;
 import businessobjects.pagepatternclasses.decorator.elements.elements.TextInputImpl;
 import businessobjects.pagepatternclasses.decorator.elements.handlers.MyPageFactory;
+import drivers.DriverObject;
 import org.openqa.selenium.support.FindBy;
 import testdata.LetterDataUnMarshaller;
 import testdata.xmlmodels.LetterData;
@@ -61,9 +62,8 @@ public class GmailPage extends AbstractPage {
         return movedMessage.isPresent();
     }
 
-    public String getSubject(String subject) {
-        String letterSubject = subject;
-        return letterSubject;
+    public String getLetterSubject(String subject) {
+        return getSubject(subject);
     }
 
 }
