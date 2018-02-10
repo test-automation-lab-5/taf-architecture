@@ -4,7 +4,7 @@ import main.driver.Driver;
 import main.pages.DraftsPage;
 
 public class DraftsBusinessObject {
-    DraftsPage draftsPage = new DraftsPage(Driver.getDriver());
+    private DraftsPage draftsPage = new DraftsPage(Driver.getDriver());
     public void openDrafts(String subject) {
         draftsPage.openDrafts();
         draftsPage.waitForDraftsLoad();
