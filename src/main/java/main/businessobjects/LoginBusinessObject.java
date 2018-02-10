@@ -1,11 +1,11 @@
 package main.businessobjects;
 
-import main.Driver;
+import main.driver.Driver;
 import main.domparser.xmlmodels.User;
 import main.pages.LoginPage;
 import properties.DataProp;
 
-public class LoginPageBusinessObject {
+public class LoginBusinessObject {
 
     public void login(User user) {
         DataProp dataProp = new DataProp();

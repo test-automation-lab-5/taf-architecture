@@ -4,35 +4,35 @@ public class User {
     private String email;
     private String password;
 
-    public User(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
-
-    public User() {
+    private User(Builder builder) {
+        this.email = builder.email;
+        this.password = builder.password;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    public static class Builder {
+        private String email;
+        private String password;
 
-    @Override
-    public String toString() {
-        return "User{" +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+        public Builder setEmail(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public Builder setPassword(String password) {
+            this.password = password;
+            return this;
+        }
+
+        public User build() {
+            return new User(this);
+        }
     }
 }

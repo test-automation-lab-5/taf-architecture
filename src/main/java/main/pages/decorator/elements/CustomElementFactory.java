@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import java.lang.reflect.InvocationTargetException;
 
 public class CustomElementFactory {
-    public <E extends AbstractElement> E create(final Class<E> elementClass, final WebElement wrapper) {
+    public <Element extends AbstractElement> Element create(final Class<Element> elementClass, final WebElement wrapper) {
         try {
             return findElementFor(elementClass).getDeclaredConstructor(WebElement.class).newInstance(wrapper);
         } catch (IllegalAccessException | InstantiationException | InvocationTargetException | NoSuchMethodException e) {
@@ -13,9 +13,9 @@ public class CustomElementFactory {
         }
     }
 
-    private <E extends AbstractElement> Class<? extends E> findElementFor(final Class<E> elementClass) {
+    private <Element extends AbstractElement> Class<? extends Element> findElementFor(final Class<Element> elementClass) {
         try {
-            return (Class<? extends E>) Class.forName(String.format("%s.%s", getClass().getPackage().getName(), elementClass.getSimpleName()));
+            return (Class<? extends Element>) Class.forName(String.format("%s.%s", getClass().getPackage().getName(), elementClass.getSimpleName()));
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }

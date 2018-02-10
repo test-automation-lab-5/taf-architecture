@@ -1,9 +1,8 @@
 package main.pages;
 
+import main.constants.Constants;
 import main.pages.decorator.elements.AbstractElement;
 import main.pages.decorator.factory.CustomPageFactory;
-import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -13,40 +12,26 @@ import java.util.concurrent.TimeUnit;
 
 public class AbstractGmailPage {
 
-    private static final Logger log = Logger.getLogger(AbstractGmailPage.class);
-
     WebDriver driver;
 
-    protected AbstractGmailPage(WebDriver driver) {
+    AbstractGmailPage(WebDriver driver) {
         this.driver = driver;
         CustomPageFactory.initElements(driver, this);
-        PropertyConfigurator.configure("src\\main\\resources\\log4j.properties");
-        driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
     }
 
-    public void waitUntilElementBeClickable(AbstractElement element, int seconds) {
-        log.info(String.format("Wait %s seconds until element be clickable", seconds));
-        (new WebDriverWait(driver, seconds)).until(ExpectedConditions.elementToBeClickable(element.getWebElement()));
-    }
-
-    public void waitUntilTextToBePresentInElement(AbstractElement element, String text) {
-        log.info(String.format("Wait until text %s be present in element", text));
+    void waitUntilTextToBePresentInElement(AbstractElement element, String text) {
         (new WebDriverWait(driver, 5)).until(ExpectedConditions.textToBePresentInElementValue(element.getWebElement(), text));
     }
 
-    public void waitUntilAttributeBeVisible(AbstractElement element) {
-        (new WebDriverWait(driver, 5)).until(ExpectedConditions.attributeToBeNotEmpty(element.getWebElement(), "style"));
+    void waitUntilAttributeBeVisible(AbstractElement element) {
+        (new WebDriverWait(driver, 10)).until(ExpectedConditions.attributeToBeNotEmpty(element.getWebElement(), Constants.STYLE));
     }
 
-    public void waitUntilUrlWillContainsCompose() {
-        (new WebDriverWait(driver, 10)).until(ExpectedConditions.urlContains("compose"));
+    public void waitUntilUrlWillContains(String value) {
+        (new WebDriverWait(driver, 10)).until(ExpectedConditions.urlContains(value));
     }
 
-    public void waitUntilUrlWillContainsAccounts() {
-        (new WebDriverWait(driver, 10)).until(ExpectedConditions.urlContains("accounts"));
-    }
-
-    public boolean waitUntilAlertBePresent() {
+    boolean waitUntilAlertBePresent() {
         try {
             (new WebDriverWait(driver, 10)).until(ExpectedConditions.alertIsPresent());
             return true;

@@ -1,5 +1,7 @@
 package properties;
 
+import main.constants.Constants;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -21,14 +23,14 @@ public class DataProp {
     }
 
     public String driver() {
-        return properties.getProperty("driver");
+        return properties.getProperty(Constants.DRIVER);
     }
 
     public String driverPath() {
-        return properties.getProperty("driverPath");
+        return properties.getProperty(Constants.DRIVER_PATH);
     }
 
     public String getURL() {
-        return properties.getProperty("url");
+        return properties.getProperty(Constants.URL);
     }
 }

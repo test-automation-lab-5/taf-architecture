@@ -1,15 +1,13 @@
 package main.pages;
 
+import main.constants.Constants;
 import main.pages.decorator.elements.Button;
 import main.pages.decorator.elements.Input;
 import main.pages.decorator.elements.Link;
-import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 public class LetterWindowPage extends AbstractGmailPage {
-
-    private static final Logger log = Logger.getLogger(LetterWindowPage.class);
 
     @FindBy(xpath = "//div[@role='button' and @class='T-I J-J5-Ji T-I-KE L3']")
     private Button composeButton;
@@ -49,57 +47,45 @@ public class LetterWindowPage extends AbstractGmailPage {
     }
 
     public void enterTo(String to) {
-        log.info("Enter data in \"to\" input");
         waitUntilAttributeBeVisible(inputTo);
         inputTo.sendKeys(to);
     }
 
     public void enterCc(String cc) {
-        log.info("Click on \"cc\"");
         this.cc.click();
-
-        log.info("Enter data in \"cc\" input");
         inputCc.sendKeys(cc);
     }
 
     public void enterBcc(String bcc) {
-        log.info("Click on \"bcc\"");
         this.bcc.click();
-
-        log.info("Enter data in \"bcc\" input");
         inputBcc.sendKeys(bcc);
     }
 
     public void closeAndSaveLetter() {
-        log.info("Click save and close");
         closeAndSave.click();
     }
 
     public void enterSubject(String subject) {
-        log.info("Enter data in \"subject\" input");
         subjectInput.sendKeys(subject);
     }
 
     public void enterMessage(String message) {
-        log.info("Enter data in \"message\" input");
         messageTextArea.sendKeys(message);
     }
 
     public void sendLetter() {
-        log.info("Click send");
         sendButton.click();
     }
 
     public String getSubjectFromInput() {
-        if (hiddenSubjectInput.getWebElement().getAttribute("value").length() == 0) {
+        if (hiddenSubjectInput.getWebElement().getAttribute(Constants.VALUE).length() == 0) {
             return null;
         } else {
-            return subjectInput.getWebElement().getAttribute("value");
+            return subjectInput.getWebElement().getAttribute(Constants.VALUE);
         }
     }
 
     public void clickComposeButton() {
-        log.info("Click \"compose\" button");
         composeButton.click();
     }
 }

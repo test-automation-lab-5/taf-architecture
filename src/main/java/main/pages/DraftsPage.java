@@ -3,16 +3,12 @@ package main.pages;
 import main.pages.decorator.elements.Button;
 import main.pages.decorator.elements.Input;
 import main.pages.decorator.elements.Link;
-import org.apache.log4j.Logger;
-import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.io.IOException;
-
 public class DraftsPage extends AbstractGmailPage {
-
-    private static final Logger LOG = Logger.getLogger(DraftsPage.class);
 
     @FindBy(xpath = "//a[contains(@href, '#drafts')]")
     private Link drafts;
@@ -31,7 +27,6 @@ public class DraftsPage extends AbstractGmailPage {
     }
 
     public void openDrafts() {
-        LOG.info("Click on \"drafts\"");
         drafts.click();
     }
 
@@ -40,9 +35,7 @@ public class DraftsPage extends AbstractGmailPage {
     }
 
     public void openLetterFromDraftsWithSameSubject(String subject) {
-        LOG.info("find necessary letter in drafts");
         WebElement letter = driver.findElement(By.xpath("//table[@cellpadding='0']/tbody/tr/td[@class='xY a4W']/div/div/div/span[text()='" + subject + "']"));
-        LOG.info("click on this message");
         letter.click();
     }
 
@@ -52,9 +45,9 @@ public class DraftsPage extends AbstractGmailPage {
 
     public void clickLogOut() {
         signOut.click();
-        if (waitUntilAlertBePresent()){
+        if (waitUntilAlertBePresent()) {
             driver.switchTo().alert().accept();
         }
-        waitUntilUrlWillContainsAccounts();
+        waitUntilUrlWillContains("accounts");
     }
 }

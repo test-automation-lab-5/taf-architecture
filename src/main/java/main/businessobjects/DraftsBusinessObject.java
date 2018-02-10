@@ -1,11 +1,7 @@
 package main.businessobjects;
 
-import main.Driver;
-import main.domparser.xmlmodels.MessageData;
+import main.driver.Driver;
 import main.pages.DraftsPage;
-import org.openqa.selenium.WebDriver;
-
-import java.io.IOException;
 
 public class DraftsBusinessObject {
     DraftsPage draftsPage = new DraftsPage(Driver.getDriver());
@@ -15,7 +11,7 @@ public class DraftsBusinessObject {
         draftsPage.openLetterFromDraftsWithSameSubject(subject);
     }
 
-    public void openUserAlert() {
+    public void logOut() {
         draftsPage.openProfileAlert();
         draftsPage.clickLogOut();
     }

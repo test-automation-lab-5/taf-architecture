@@ -12,6 +12,4 @@ public class Button extends AbstractElement implements ButtonInterface {
     public void click() {
         webElement.click();
     }
-
-
 }

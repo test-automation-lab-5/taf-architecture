@@ -1,5 +1,6 @@
 package main.domparser;
 
+import main.constants.Constants;
 import main.domparser.xmlmodels.MessageData;
 import main.domparser.xmlmodels.User;
 import org.w3c.dom.Document;
@@ -18,23 +19,20 @@ public class DomXmlParsing {
         List<User> users = new ArrayList<>();
 
         try {
-            Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse("src\\main\\resources\\usersData.xml");
-            NodeList usersNodeList = document.getElementsByTagName("user");
+            Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(Constants.USER_XML_PATH);
+            NodeList usersNodeList = document.getElementsByTagName(Constants.USER);
 
             for (int i = 0; i < usersNodeList.getLength(); i++) {
                 Element singleUser = (Element) usersNodeList.item(i);
-                User user = new User();
 
-                user.setEmail(singleUser.getElementsByTagName("email").item(0).getChildNodes().item(0).getNodeValue());
-                user.setPassword(singleUser.getElementsByTagName("password").item(0).getChildNodes().item(0).getNodeValue());
-
-                users.add(user);
+                users.add(new User.Builder()
+                        .setEmail(singleUser.getElementsByTagName(Constants.EMAIL).item(0).getChildNodes().item(0).getNodeValue())
+                        .setPassword(singleUser.getElementsByTagName(Constants.PASSWORD).item(0).getChildNodes().item(0).getNodeValue())
+                        .build());
             }
-
         } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }
-
         return users;
     }
 
@@ -42,24 +40,21 @@ public class DomXmlParsing {
         List<MessageData> messageDatas = new ArrayList<>();
 
         try {
-            Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse("src\\main\\resources\\letterData.xml");
-            NodeList letters = document.getElementsByTagName("letter");
+            Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(Constants.MESSAGE_DATA_XML_PATH);
+            NodeList letters = document.getElementsByTagName(Constants.LETTER);
 
             for (int i = 0; i < letters.getLength(); i++) {
                 Element singleLetter = (Element) letters.item(i);
-                MessageData messageData = new MessageData();
-
-                messageData.setTo(singleLetter.getElementsByTagName("to").item(0).getChildNodes().item(0).getNodeValue());
-                messageData.setCc(singleLetter.getElementsByTagName("cc").item(0).getChildNodes().item(0).getNodeValue());
-                messageData.setBcc(singleLetter.getElementsByTagName("bcc").item(0).getChildNodes().item(0).getNodeValue());
-                messageData.setMessage(singleLetter.getElementsByTagName("message").item(0).getChildNodes().item(0).getNodeValue());
-
-                messageDatas.add(messageData);
+                messageDatas.add(new MessageData.Builder()
+                        .setTo(singleLetter.getElementsByTagName(Constants.TO).item(0).getChildNodes().item(0).getNodeValue())
+                        .setBcc(singleLetter.getElementsByTagName(Constants.BCC).item(0).getChildNodes().item(0).getNodeValue())
+                        .setCc(singleLetter.getElementsByTagName(Constants.CC).item(0).getChildNodes().item(0).getNodeValue())
+                        .setMessage(singleLetter.getElementsByTagName(Constants.MESSAGE).item(0).getChildNodes().item(0).getNodeValue())
+                        .build());
             }
         } catch (SAXException | IOException | ParserConfigurationException e) {
             e.printStackTrace();
         }
-
         return messageDatas;
     }
 }

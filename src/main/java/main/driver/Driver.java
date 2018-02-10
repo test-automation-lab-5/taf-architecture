@@ -1,4 +1,4 @@
-package main;
+package main.driver;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -18,18 +18,13 @@ public class Driver {
         DataProp dataProp = new DataProp();
         System.setProperty(dataProp.driver(), dataProp.driverPath());
         WebDriver driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
         return driver;
     }
 
     public static WebDriver getDriver() {
         Long id = Thread.currentThread().getId();
-        WebDriver driver = drivers.get(id);
-        if (driver == null) {
-            driver = Driver.getInstance();
-            drivers.put(id, driver);
-        }
-        return driver;
+        return drivers.computeIfAbsent(id, k -> Driver.getInstance());
     }
 
     public static void destroy() {

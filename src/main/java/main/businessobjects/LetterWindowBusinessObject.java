@@ -1,17 +1,18 @@
 package main.businessobjects;
 
-import main.Driver;
+import main.constants.Constants;
+import main.driver.Driver;
 import main.domparser.xmlmodels.MessageData;
 import main.pages.LetterWindowPage;
 
-public class LetterWindowPageBusinessObject {
+public class LetterWindowBusinessObject {
     private LetterWindowPage letterWindowPage;
 
     public void composeLetter(MessageData data, String subject) {
         letterWindowPage = new LetterWindowPage(Driver.getDriver());
 
         letterWindowPage.clickComposeButton();
-        letterWindowPage.waitUntilUrlWillContainsCompose();
+        letterWindowPage.waitUntilUrlWillContains(Constants.COMPOSE);
         letterWindowPage.enterTo(data.getTo());
         letterWindowPage.enterCc(data.getCc());
         letterWindowPage.enterBcc(data.getBcc());
@@ -21,7 +22,7 @@ public class LetterWindowPageBusinessObject {
     }
 
     public void sendLetter() {
-        letterWindowPage.waitUntilUrlWillContainsCompose();
+        letterWindowPage.waitUntilUrlWillContains(Constants.COMPOSE);
         letterWindowPage.sendLetter();
     }
 

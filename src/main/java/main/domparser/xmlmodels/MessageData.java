@@ -8,46 +8,27 @@ public class MessageData {
     private String bcc;
     private String message;
 
-    public MessageData(String to, String cc, String bcc, String message) {
-        this.to = to;
-        this.cc = cc;
-        this.bcc = bcc;
-        this.message = message;
-    }
-
-    public MessageData() {
+    private MessageData(Builder builder) {
+        this.to = builder.to;
+        this.cc = builder.cc;
+        this.bcc = builder.bcc;
+        this.message = builder.message;
     }
 
     public String getTo() {
         return to;
     }
 
-    public void setTo(String to) {
-        this.to = to;
-    }
-
     public String getCc() {
         return cc;
-    }
-
-    public void setCc(String cc) {
-        this.cc = cc;
     }
 
     public String getBcc() {
         return bcc;
     }
 
-    public void setBcc(String bcc) {
-        this.bcc = bcc;
-    }
-
     public String getMessage() {
         return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 
     public String generateSubject() {
@@ -61,13 +42,34 @@ public class MessageData {
         return subject;
     }
 
-    @Override
-    public String toString() {
-        return "MessageData{" +
-                "to='" + to + '\'' +
-                ", cc='" + cc + '\'' +
-                ", bcc='" + bcc + '\'' +
-                ", message='" + message + '\'' +
-                '}';
+    public static class Builder {
+        private String to;
+        private String cc;
+        private String bcc;
+        private String message;
+
+        public Builder setTo(String to) {
+            this.to = to;
+            return this;
+        }
+
+        public Builder setCc(String cc) {
+            this.cc = cc;
+            return this;
+        }
+
+        public Builder setBcc(String bcc) {
+            this.bcc = bcc;
+            return this;
+        }
+
+        public Builder setMessage(String message) {
+            this.message = message;
+            return this;
+        }
+
+        public MessageData build() {
+            return new MessageData(this);
+        }
     }
 }
