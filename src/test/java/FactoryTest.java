@@ -1,14 +1,9 @@
 import main.driver.Driver;
-import main.businessobjects.DraftsBusinessObject;
-import main.businessobjects.LetterWindowBusinessObject;
-import main.businessobjects.LoginBusinessObject;
-import main.domparser.xmlmodels.MessageData;
-import main.domparser.xmlmodels.User;
+import main.businessobjects.*;
+import main.domparser.xmlmodels.*;
+import net.bytebuddy.utility.RandomString;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Factory;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import properties.DataProp;
 
 public class FactoryTest {
@@ -33,6 +28,11 @@ public class FactoryTest {
         draftsBusinessObject = new DraftsBusinessObject();
     }
 
+    @AfterMethod
+    public void after() {
+        Driver.destroy();
+    }
+
     @Test
     public void testGmail() {
         Driver.getDriver().get(properties.getURL());
@@ -49,10 +49,5 @@ public class FactoryTest {
         draftsBusinessObject.logOut();
 
         Assert.assertEquals(actualSubject, expectedSubject);
-    }
-
-    @AfterMethod
-    public void after() {
-        Driver.destroy();
     }
 }

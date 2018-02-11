@@ -1,5 +1,7 @@
 package main.domparser.xmlmodels;
 
+import net.bytebuddy.utility.RandomString;
+
 import java.util.Random;
 
 public class MessageData {
@@ -32,14 +34,7 @@ public class MessageData {
     }
 
     public String generateSubject() {
-        String subject = "";
-        Random random = new Random();
-
-        for (int i = 0; i < 20; i++) {
-            subject += (char) (random.nextInt(75) + 48);
-        }
-
-        return subject;
+        return RandomString.make(20);
     }
 
     public static class Builder {

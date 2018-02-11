@@ -11,8 +11,7 @@ import java.util.concurrent.TimeUnit;
 public class Driver {
     private static Map<Long, WebDriver> drivers = new HashMap<>();
 
-    private Driver() {
-    }
+    private Driver() {}
 
     private static WebDriver getInstance() {
         DataProp dataProp = new DataProp();
@@ -23,8 +22,7 @@ public class Driver {
     }
 
     public static WebDriver getDriver() {
-        Long id = Thread.currentThread().getId();
-        return drivers.computeIfAbsent(id, k -> Driver.getInstance());
+        return drivers.computeIfAbsent(Thread.currentThread().getId(), k -> Driver.getInstance());
     }
 
     public static void destroy() {
