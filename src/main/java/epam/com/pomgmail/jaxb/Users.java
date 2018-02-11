@@ -10,19 +10,8 @@ public class Users {
     @XmlElement(name="user")
     private List<User> users = null;
 
-    Users(){
-
-    }
-
-    Users(List<User> users){
-        this.users = users;
-    }
-
     public List<User> getUsers() {
         return users;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
 }

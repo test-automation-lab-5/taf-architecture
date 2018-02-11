@@ -2,7 +2,7 @@ package epam.com.pomgmailtest.tests;
 
 import epam.com.pomgmail.businessobjects.LoginBO;
 import epam.com.pomgmail.businessobjects.MessageBO;
-import epam.com.pomgmail.jaxb.ParseXML;
+import epam.com.pomgmail.jaxb.RetrieveUsersData;
 import epam.com.pomgmail.jaxb.User;
 import epam.com.pomgmail.pages.*;
 import org.openqa.selenium.WebDriver;
@@ -31,41 +31,35 @@ public class POMGmailTest {
     public void setUpDriver() {
         model = new ModelProperties();
         model.setProperties();
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
-        driver = InstancePage.getInstance().getDriver();
+        driver = CreateDriver.getInstance().getDriver();
         driver.get(model.getUrl());
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }
 
     @DataProvider(name = "authentication", parallel = true)
     public static Object[][] credentials() {
-        try {
-            users = ParseXML.unmarshalXML();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        users = RetrieveUsersData.getXMLUsersComponent();
 
-        Object[][] res = new Object[users.size()][1];
+        Object[][] result = new Object[users.size()][1];
         for (int i = 0; i < users.size(); i++)
-            res[i][0] = users.get(i);
-        return res;
+            result[i][0] = users.get(i);
+        return result;
     }
 
     @Test( threadPoolSize = 3)
     public void loginAndPasswordTest() throws InterruptedException {
         LoginBO login = new LoginBO();
-        login.typeLoginAndPassword(dataUsers.getLogin().trim(), dataUsers.getPassword().trim());
+        login.login(dataUsers);
 
         Assert.assertEquals("Gmail", driver.getTitle(), "Title not works.");
 
         MessageBO message = new MessageBO();
-        message.interactionWithMessages(driver);
-        message.checkImportantMessages(driver);
+        message.interactionWithMessages();
+        message.checkImportantMessages();
 
-        Assert.assertTrue(message.verifyImportantMessages(driver), "Letters aren't present in Important.");
+        Assert.assertTrue(message.verifyImportantMessages(), "Letters aren't present in Important.");
 
-        message.deleteCheckedMessages(driver);
-        Assert.assertTrue(message.verifyIsMessagesDeleted(driver),"Wasn't deleted.");
+        message.deleteCheckedMessages();
+        Assert.assertTrue(message.isMessagesDeleted(),"Wasn't deleted.");
     }
 
 
@@ -73,6 +67,6 @@ public class POMGmailTest {
     @AfterMethod
     public void closeDriver() {
 
-        InstancePage.getInstance().quitDriver();
+        CreateDriver.getInstance().quitDriver();
     }
 }

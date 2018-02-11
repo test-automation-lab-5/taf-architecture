@@ -2,34 +2,34 @@
 <users>
 	<user>
 		<login>
-			mixer.automation1@gmail.com
-		</login>
-		<password>
-			Kids12345a
-		</password>
-	</user>
-	<user>
-		<login>
-			bread.with.batter@gmail.com
-		</login>
-		<password>
-			qwezxcasd123
-		</password>
-	</user>
-	<user>
-		<login>
-			bread.with.jem@gmail.com
-		</login>
-		<password>
-			qwezxcasd123
-		</password>
-	</user>
-	<user>
-		<login>
-			annrusnaktest12345
+			annrusnaktest12345@gmail.com
 		</login>
 		<password>
 			annatest123
+		</password>
+	</user>
+	<user>
+		<login>
+			sometastypear@gmail.com
+		</login>
+		<password>
+			children12345
+		</password>
+	</user>
+	<user>
+		<login>
+			sometastyplum@gmail.com
+		</login>
+		<password>
+			children12345
+		</password>
+	</user>
+	<user>
+		<login>
+			sometastycherry@gmail.com
+		</login>
+		<password>
+			children12345
 		</password>
 	</user>
 </users>

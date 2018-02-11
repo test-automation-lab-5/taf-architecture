@@ -7,10 +7,6 @@ import org.openqa.selenium.support.FindBy;
 
 public class GmailLoginPage extends AbstractPage {
 
-    public GmailLoginPage() {
-        super(new InitElements());
-    }
-
     @FindBy(xpath = "//input[contains(@type,'email')]")
     private TextInput loginInput;
 

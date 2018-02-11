@@ -10,27 +10,27 @@ public class MessageBO {
     GmailHomePage homePage = new GmailHomePage();
     List<String> titleList;
 
-    public void interactionWithMessages(WebDriver driver) {
+    public void interactionWithMessages() throws InterruptedException {
         homePage.setMessageImportant();
-        titleList = homePage.getInboxSubject(driver);
+        titleList = homePage.getInboxSubject();
     }
 
-    public void checkImportantMessages(WebDriver driver) throws InterruptedException {
+    public void checkImportantMessages() throws InterruptedException {
         homePage.clickImportantLink();
-        homePage.checkMessages(driver);
+        homePage.checkMessages();
     }
 
-    public boolean verifyImportantMessages(WebDriver driver){
-        return homePage.getImportantSubject(driver);
+    public boolean verifyImportantMessages(){
+        return homePage.getImportantSubject();
     }
 
-    public void deleteCheckedMessages(WebDriver driver){
+    public void deleteCheckedMessages(){
         homePage.clickDeleteAndMoreLinks();
-        homePage.clickTrashLink(driver);
+        homePage.clickTrashLink();
     }
 
-    public boolean verifyIsMessagesDeleted(WebDriver driver){
-        List<String> deletedList = homePage.getDeletedSubject(driver);
-        return (deletedList.containsAll(titleList)) ? true : false;
+    public boolean isMessagesDeleted(){
+        List<String> deletedList = homePage.getDeletedSubject();
+        return deletedList.containsAll(titleList);
     }
 }

@@ -7,10 +7,6 @@ import org.openqa.selenium.support.FindBy;
 
 public class GmailPasswordPage extends AbstractPage {
 
-    public GmailPasswordPage(){
-        super(new InitElements());
-    }
-
     @FindBy(xpath = "//input[@name='password']")
     private TextInput passwordInput;
 

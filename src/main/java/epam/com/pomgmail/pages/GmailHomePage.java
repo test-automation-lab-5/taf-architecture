@@ -1,10 +1,8 @@
 package epam.com.pomgmail.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import epam.com.pomgmail.jaxb.RetrieveUsersData;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -12,10 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GmailHomePage extends AbstractPage {
-
-    public GmailHomePage(){
-
-    }
 
     @FindBy(xpath="//div[contains(@class, 'UI')]//table//tr[1]//td[4]")
     private WebElement importantOne;
@@ -54,54 +48,52 @@ public class GmailHomePage extends AbstractPage {
     @FindBy(xpath="//div[@role='main']//div[contains(@gh, 'tl')]//span[contains(@class, 'bog')] | div[@role='main']//div[contains(@gh, 'tl')]//span[contains(@class, 'bog')]//b")
     private List<WebElement> deleteSubject;
 
-    List<String> titleList;
+    private List<String> titleList;
+    private int count = RetrieveUsersData.getXMLComponent();
 
-    public void setMessageImportant(){
-//        for (int i = 0; i < 3; i++){
-//            importants.get(i).click();
-//            System.out.println(importants.get(i).findElement(By.xpath("//span[contains(@class, 'bog')]")).getText());
-//        }
+    public void setMessageImportant() throws InterruptedException {
+        WebDriverWait wait;
+        wait = new WebDriverWait(CreateDriver.getInstance().getDriver(), 20);
+        wait.until(ExpectedConditions.elementToBeClickable(importantOne));
         importantOne.click();
         importantTwo.click();
         importantThree.click();
     }
 
-    public List<String> getInboxSubject(WebDriver driver){
-        (new WebDriverWait(driver, 10))
+    public List<String> getInboxSubject(){
+        (new WebDriverWait(CreateDriver.getInstance().getDriver(), 20))
                 .until(ExpectedConditions.visibilityOfAllElements(inboxesSubject));
         titleList = new ArrayList<>();
-        if(inboxesSubject.size() >= 3){
-            for (int i = 0; i < 3; i++){
-                titleList.add(inboxesSubject.get(i).getText());
-            }
+        for (int i = 0; i < count; i++){
+            titleList.add(inboxesSubject.get(i).getText());
         }
         return titleList;
     }
 
-    public void clickImportantLink() {
+    public void clickImportantLink() throws InterruptedException {
+        Thread.sleep(3000);
         importantLink.click();
     }
 
-    public void checkMessages(WebDriver driver) throws InterruptedException {
+    public void checkMessages() throws InterruptedException {
         Thread.sleep(2000);
-        (new WebDriverWait(driver, 20))
+        (new WebDriverWait(CreateDriver.getInstance().getDriver(), 20))
                 .until(ExpectedConditions.visibilityOfAllElements(checkboxes));
-        for (int i = 0; i < 3; i++){
-            checkboxes.get(i).click();
-        }
+
+        checkboxes.stream().limit(count).forEach(checkboxes -> checkboxes.click());
     }
 
-    public boolean getImportantSubject(WebDriver driver) {
+    public boolean getImportantSubject() {
         WebDriverWait wait;
-        wait = new WebDriverWait(driver, 15);
+        wait = new WebDriverWait(CreateDriver.getInstance().getDriver(), 15);
         wait.until(ExpectedConditions.visibilityOfAllElements(importantSubject));
 
         List<String> verifiesList = new ArrayList<>();
 
-        for (int i = 0; i < importantSubject.size(); i++){
-            verifiesList.add(importantSubject.get(i).getText());
+        for (WebElement anImportantSubject : importantSubject) {
+            verifiesList.add(anImportantSubject.getText());
         }
-        return (verifiesList.containsAll(titleList)) ? true : false;
+        return verifiesList.containsAll(titleList);
     }
 
     public void clickDeleteAndMoreLinks(){
@@ -109,20 +101,20 @@ public class GmailHomePage extends AbstractPage {
         moreBtn.click();
     }
 
-    public void clickTrashLink(WebDriver driver){
+    public void clickTrashLink(){
         WebDriverWait wait;
-        wait = new WebDriverWait(driver, 20);
+        wait = new WebDriverWait(CreateDriver.getInstance().getDriver(), 20);
         wait.until(ExpectedConditions.elementToBeClickable(trashBtn));
         trashBtn.click();
     }
 
-    public List<String> getDeletedSubject(WebDriver driver){
+    public List<String> getDeletedSubject(){
         WebDriverWait wait;
-        wait = new WebDriverWait(driver, 20);
+        wait = new WebDriverWait(CreateDriver.getInstance().getDriver(), 20);
         wait.until(ExpectedConditions.visibilityOfAllElements(deleteSubject));
         List<String> deletedList = new ArrayList<>();
-        for(int i = 0; i < deleteSubject.size(); i++) {
-            deletedList.add(deleteSubject.get(i).getText());
+        for (WebElement aDeleteSubject : deleteSubject) {
+            deletedList.add(aDeleteSubject.getText());
         }
         return deletedList;
     }

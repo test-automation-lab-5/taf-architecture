@@ -1,5 +1,6 @@
 package epam.com.pomgmail.businessobjects;
 
+import epam.com.pomgmail.jaxb.User;
 import epam.com.pomgmail.pages.GmailLoginPage;
 import epam.com.pomgmail.pages.GmailPasswordPage;
 import epam.com.pomgmail.pages.ModelProperties;
@@ -15,11 +16,11 @@ public class LoginBO {
         this.passwordPage = new GmailPasswordPage();
     }
 
-    public void typeLoginAndPassword(String login, String password){
+    public void login(User users){
 
-        loginPage.enterLoginAndSubmit(login);
+        loginPage.enterLoginAndSubmit(users.getLogin().trim());
 
-        passwordPage.enterPasswordAndSubmit(password);
+        passwordPage.enterPasswordAndSubmit(users.getPassword().trim());
     }
 
 }

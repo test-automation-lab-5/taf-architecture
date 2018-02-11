@@ -29,9 +29,9 @@ public class ModelProperties {
             file = new FileInputStream("data.properties");
             prop.load(file);
 
-            login = (prop.getProperty("LOGIN"));
-            password = (prop.getProperty("PASSWORD"));
-            url = (prop.getProperty("URL"));
+            login = (prop.getProperty("login"));
+            password = (prop.getProperty("password"));
+            url = (prop.getProperty("url"));
 
         } catch (IOException ex) {
             ex.printStackTrace();
