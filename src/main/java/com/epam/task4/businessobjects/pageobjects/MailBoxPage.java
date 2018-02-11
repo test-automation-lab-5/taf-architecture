@@ -10,9 +10,12 @@ import java.util.stream.Collectors;
 
 public class MailBoxPage extends AbstractPage {
     private static final Logger log = Logger.getLogger(MailBoxPage.class);
-    @FindBy(xpath = "//div[@role='main']//div[@role='checkbox']")
+
+    private final String checkboxXpath = "//div[@role='main']//div[@role='checkbox']";
+
+    @FindBy(xpath = checkboxXpath)
     private CheckBox visibleCheckbox;
-    @FindBy(xpath = "//div[@role='main']//div[@role='checkbox']")
+    @FindBy(xpath = checkboxXpath)
     private List<CheckBox> visibleCheckboxes;
     @FindBy(xpath = "//div[@gh='mtb']//div[@act='10']")
     private Button visibleDeleteButton;
@@ -35,8 +38,7 @@ public class MailBoxPage extends AbstractPage {
 
     public MailBoxPage clickVisibleDeleteButton() {
         log.info("Click on delete button");
-        waitUntilBeClickable(visibleDeleteButton);
-        visibleDeleteButton.click();
+        waitUntilBeClickable(visibleDeleteButton).click();
         return this;
     }
 

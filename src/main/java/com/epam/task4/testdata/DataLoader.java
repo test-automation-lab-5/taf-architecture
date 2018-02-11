@@ -11,9 +11,9 @@ import java.util.Objects;
 public class DataLoader {
     private static final Logger log = Logger.getLogger(DataLoader.class);
 
-    public static <E> E loadXML(String fileURL, Class<E> datatype) throws JAXBException {
+    public static <E> E loadXML(String fileURL, Class<E> dataType) throws JAXBException {
         File file = new File(fileURL);
-        JAXBContext jc = JAXBContext.newInstance(datatype);
+        JAXBContext jc = JAXBContext.newInstance(dataType);
         Unmarshaller unmarshaller = jc.createUnmarshaller();
         return (E) unmarshaller.unmarshal(file);
     }

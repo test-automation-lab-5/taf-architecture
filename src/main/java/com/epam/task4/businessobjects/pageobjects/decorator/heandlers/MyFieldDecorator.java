@@ -24,7 +24,7 @@ public class MyFieldDecorator extends DefaultFieldDecorator {
         if (AbstractElement.class.isAssignableFrom(field.getType())) {
             return decorateElement(loader, field);
         }
-        if (List.class.isAssignableFrom(field.getType())) {
+        if (List.class.isAssignableFrom(field.getType()) && AbstractElement.class.isAssignableFrom((Class<?>) ((ParameterizedType) field.getGenericType()).getActualTypeArguments()[0])) {
             return decorateElements(loader, field);
         }
         return super.decorate(loader, field);

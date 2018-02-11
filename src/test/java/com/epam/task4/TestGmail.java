@@ -16,14 +16,13 @@ import org.testng.annotations.*;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
-import java.lang.reflect.Method;
 import java.util.List;
 
 public class TestGmail {
     private static final Logger log = Logger.getLogger(TestGmail.class);
 
     @DataProvider(name = "userData", parallel = true)
-    public static Object[][] getBrowserDataProvider(Method testMethod) throws JAXBException {
+    public static Object[][] getDataProvider() throws JAXBException {
         return DataProviderTransformer.transformListToObjects(DataLoader.loadXMLFromResources(Consts.CONST_INPUT_DATA, TestDataList.class).getTestDataList());
     }
 
@@ -32,32 +31,25 @@ public class TestGmail {
         Preferences.initPreferences(Consts.CONST_PROPERTY_FILE_NAME);
     }
 
-    @BeforeMethod
-    public void beforeMethod() throws InterruptedException {
-        SingletonDriver.acquireThread();
-    }
-
-    //@Test(dataProvider = "userData", threadPoolSize = 1, invocationCount = 2)
-    @Test(dataProvider = "userData")
-    public void testGmailDeleteMessage(TestData userData) {
+    @Test(dataProvider = "userData", retryAnalyzer = RetryAnalyzer.class)
+    public void testGmailDeleteMessage(TestData testData) {
         log.info("testGmailDeleteMessage start");
         new AuthorizationBO()
-                .authorizeAs(
-                        userData.getUserMail(),
-                        userData.getUserPassword());
+                .authorizeAs(testData);
         MailboxBO mailBoxBO = new MailboxBO();
-        List<String> idsOfDeletedElements = mailBoxBO
-                .deleteFirstNMailsFromCurrentPool(userData.getElementsCount());
-        Assert.assertTrue(mailBoxBO
-                .undoAction()
-                .verifyMessageRestoration(idsOfDeletedElements));
+        List<String> idsOfDeletedElements = mailBoxBO.deleteFirstNMailsFromCurrentPool(testData);
+        mailBoxBO.undoAction();
+        Assert.assertTrue(mailBoxBO.verifyMessageRestoration(idsOfDeletedElements));
         log.info("testGmailDeleteMessage done");
     }
 
     @AfterMethod
     public void afterMethod() {
         SingletonDriver.releaseThread();
-        /*if (!Objects.isNull(SingletonDriver.getDriver()))
-            SingletonDriver.getDriver().quit();*/
+    }
+
+    @AfterSuite
+    public void releaseAllThreads() {
+        SingletonDriver.releaseAllThreads();
     }
 }

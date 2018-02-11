@@ -16,7 +16,7 @@ public class MyElementsListHandler implements InvocationHandler {
     private final Class type;
     private final MyElementFactory myElementFactory;
 
-    public <E extends AbstractElement> MyElementsListHandler(ElementLocator locator, Class<E> type) {
+    <E extends AbstractElement> MyElementsListHandler(ElementLocator locator, Class<E> type) {
         this.locator = locator;
         this.type = type;
         this.myElementFactory = new MyElementFactory();

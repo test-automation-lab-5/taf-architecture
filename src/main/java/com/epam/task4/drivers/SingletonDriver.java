@@ -11,7 +11,6 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
 public class SingletonDriver {
-    //private static WebDriver driver;
     private static Map<Long, WebDriver> drivers = new HashMap<>();
     private static Semaphore semaphore = new Semaphore(Preferences.preferencesTestGmail.getThreadsLimit());
 
@@ -19,6 +18,11 @@ public class SingletonDriver {
     }
 
     private static WebDriver newInstance() {
+        try {
+            semaphore.acquire();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         System.setProperty(Preferences.preferencesTestGmail.getDriverType(), Preferences.preferencesTestGmail.getDriverURL());
         return new ChromeDriver() {
             {
@@ -31,16 +35,16 @@ public class SingletonDriver {
         return drivers.computeIfAbsent(Thread.currentThread().getId(), f -> newInstance());
     }
 
-    public static void acquireThread() throws InterruptedException {
-        semaphore.acquire();
-        getDriver();
-    }
-
     public static void releaseThread() {
-        if (!Objects.isNull(SingletonDriver.getDriver()))
-            SingletonDriver.getDriver().quit();
+        SingletonDriver.getDriver().quit();
         drivers.remove(Thread.currentThread().getId());
         semaphore.release();
     }
 
+    public static void releaseAllThreads() {
+        for (Map.Entry<Long, WebDriver> entry : drivers.entrySet()) {
+            entry.getValue().quit();
+            semaphore.release();
+        }
+    }
 }

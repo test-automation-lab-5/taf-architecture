@@ -1,16 +1,17 @@
 package com.epam.task4.businessobjects;
 
 import com.epam.task4.businessobjects.pageobjects.MailBoxPage;
+import com.epam.task4.testdata.TestData;
 
 import java.util.List;
 
 public class MailboxBO {
-    public List<String> deleteFirstNMailsFromCurrentPool(int n) {
+    public List<String> deleteFirstNMailsFromCurrentPool(TestData testData) {
         MailBoxPage mailboxPage = new MailBoxPage();
-        List<String> deletedIdList = mailboxPage.getIdsOfFirstNMailsFromCurrentPool(n);
+        mailboxPage.waitMailboxPageLoad();
+        List<String> deletedIdList = mailboxPage.getIdsOfFirstNMailsFromCurrentPool(testData.getElementsCount());
         mailboxPage
-                .waitMailboxPageLoad()
-                .checkFirstNCheckboxesFromCurrentPool(n)
+                .checkFirstNCheckboxesFromCurrentPool(testData.getElementsCount())
                 .clickVisibleDeleteButton();
         return deletedIdList;
     }
@@ -21,8 +22,7 @@ public class MailboxBO {
     }
 
     public boolean verifyMessageRestoration(List<String> idsOfElementsToBeRestored) {
-        new MailBoxPage()
-                .waitMessageBeRestored(idsOfElementsToBeRestored);
+        new MailBoxPage().waitMessageBeRestored(idsOfElementsToBeRestored);
         return true;
     }
 }
