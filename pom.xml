@@ -57,10 +57,13 @@
             <version>6.1.1</version>
             <scope>test</scope>
         </dependency>
+<<<<<<< HEAD
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>htmlunit-driver</artifactId>
             <version>2.24</version>
         </dependency>
+=======
+>>>>>>> 4a37cdde6779335b16b0fafbf43aa5a141a8f955
     </dependencies>
 </project>
