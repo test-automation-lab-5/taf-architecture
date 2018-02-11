@@ -1,28 +1,36 @@
-package com.epam.decoratorpattern.businessobjects;
+package com.epam.fivethreads.businessobjects;
 
+import com.epam.fivethreads.data.model.User;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.WebDriver;
 
-import com.epam.decoratorpattern.page.LogInPage;
-import com.epam.decoratorpattern.page.PasswordPage;
-import com.epam.decoratorpattern.page.StartPage;
+import com.epam.fivethreads.pages.LogInPage;
+import com.epam.fivethreads.pages.PasswordPage;
+import com.epam.fivethreads.pages.HomePage;
 
-public class GmailLogInBO extends BasicBO{
-	private static final Logger LOG = Logger.getLogger(GmailLogInBO.class);
-	
-	public boolean login(String userLogin, String userPassword) {
-		LOG.info(" ---- GmailLogInBO.loginGmail() ---- ");
-		LogInPage logInPage = new LogInPage();
-		logInPage.openPage();	
-		PasswordPage passwordPage=logInPage.inputLogIn(userLogin);
-		passwordPage.inputPassword(userPassword);
-		return isUserLoggedIn();
-	}
-	
-	public boolean isUserLoggedIn() {
-		LOG.info(" ---- GmailLogInBO.isUserLoggedIn() ---- ");
-		StartPage startPage = new StartPage();
-		return startPage.isOpened();
-	}
+public class GmailLogInBO {
+    private static final Logger LOG = Logger.getLogger(GmailLogInBO.class);
+    private LogInPage logInPage;
+    private HomePage homePage;
+
+    public GmailLogInBO() {
+        logInPage = new LogInPage();
+        homePage = new HomePage();
+    }
+
+    public void openLoginPage() {
+        LOG.info(String.format(" ---- %s.openLoginPage() ----- ", this.getClass().getSimpleName()));
+        logInPage.openPage();
+    }
+
+    public void login(User user) {
+        LOG.info(String.format(" ---- %s.login() ----- ", this.getClass().getSimpleName()));
+        PasswordPage passwordPage = logInPage.inputLogIn(user.getUserLogin());
+        passwordPage.inputPassword(user.getUserPassword());
+    }
+
+    public boolean isUserLoggedIn() {
+        LOG.info(String.format(" ---- %s.isUserLoggedIn() ----- ", this.getClass().getSimpleName()));
+        return homePage.isOpened();
+    }
 
 }

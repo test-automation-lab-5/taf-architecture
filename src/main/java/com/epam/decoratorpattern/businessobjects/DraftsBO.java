@@ -1,33 +1,54 @@
-package com.epam.decoratorpattern.businessobjects;
+package com.epam.fivethreads.businessobjects;
 
+import com.epam.fivethreads.data.model.Letter;
+import com.epam.fivethreads.pages.HomePage;
+import com.epam.fivethreads.pages.SentPage;
 import org.apache.log4j.Logger;
 
-import com.epam.decoratorpattern.page.DraftsPage;
-import com.epam.decoratorpattern.page.StartPage;
+import com.epam.fivethreads.pages.DraftsPage;
 
-public class DraftsBO extends BasicBO{
-	private static final Logger LOG = Logger.getLogger(DraftsBO.class);
-	
-	public void openDrafts() {
-		LOG.info(" ---- DraftsBO.openDrafts() ---- ");
-		DraftsPage draftsPage = new DraftsPage();
-		draftsPage.openPage();
-	}
+public class DraftsBO {
+    private static final Logger LOG = Logger.getLogger(DraftsBO.class);
+    private DraftsPage draftsPage;
+    private HomePage homePage;
+    private SentPage sentPage;
 
-	public void createDraft(String messageSentTo, String messageSubject, String messageText) {
-		LOG.info(" ---- DraftsBO.createDraft() ---- ");
-		StartPage startPage = new StartPage();
-		startPage.craeteMessage(messageSentTo, messageSubject, messageText);
 
-	}
+    public DraftsBO() {
+        draftsPage = new DraftsPage();
+        homePage = new HomePage();
+        sentPage = new SentPage();
+    }
 
-	public boolean isMessageInDrafts(String messageText) {
-		LOG.info(" ---- DraftsBO.isMessageInDrafts() ---- ");
-		DraftsPage draftsPage = new DraftsPage();
-		return draftsPage.isMasageFound(messageText);
+    public void openDrafts() {
+        LOG.info(String.format(" ---- %s.openDrafts() ----- ", this.getClass().getSimpleName()));
+        draftsPage.openPage();
+    }
 
-	}
+    public void createDraft(Letter letter) {
+        LOG.info(String.format(" ---- %s.createDraft() ----- ", this.getClass().getSimpleName()));
+        homePage.craeteMessage(letter.getSentTo(), letter.getMessageSubject(), letter.getMessageText());
+    }
 
-	
+    public boolean isMessageInDrafts(Letter letter) {
+        LOG.info(String.format(" ---- %s.isMessageInDrafts() ----- ", this.getClass().getSimpleName()));
+        return draftsPage.isMasageFound(letter.getMessageSubject());
+    }
+    public void sendMessageFromDrafts(Letter letter) {
+        LOG.info(" ---- DraftsBO.sendMessageFromDrafts() ---- ");
+        draftsPage.sendMasageFound(letter.getMessageSubject());
+    }
+
+    public void openSentMails() {
+        LOG.info(String.format(" ---- %s.openSentMails() ----- ", this.getClass().getSimpleName()));
+        sentPage.openPage();
+    }
+
+    public boolean isMessageInSent(Letter letter) {
+        LOG.info(String.format(" ---- %s.isMessageInSent() ----- ", this.getClass().getSimpleName()));
+        return sentPage.isMasageFound(letter.getMessageSubject());
+    }
+
+
 
 }
