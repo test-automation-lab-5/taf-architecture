@@ -41,7 +41,7 @@ public class GmailDraftTestFactory {
         return Data2ArrayConverter.getData(users, letters);
     }
 
-    @Test( threadPoolSize = 1)
+    @Test
     public void draftSentLetterTest() {
 
         GmailLogInBO gmailLogInBO = new GmailLogInBO();

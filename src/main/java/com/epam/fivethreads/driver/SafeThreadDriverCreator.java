@@ -47,6 +47,7 @@ public class SafeThreadDriverCreator {
 
     private WebDriver createDriver() {
            System.setProperty(driverData.getDriver(), driverData.getUrl());
+
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(GLOBAL_WAIT_TIME, TimeUnit.SECONDS);
         return driver;
