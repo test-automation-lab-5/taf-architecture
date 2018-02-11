@@ -17,7 +17,6 @@ public abstract class AbstractPage {
     protected final WebDriver driver;
 
     public AbstractPage() {
-        //this.driver  = DriverManager.getDriverThreadLocal();    //One Driver
         this.driver = SafeThreadDriverCreator.getInstance().getDriverThreadLocal();  //Multi-thread driver
         PageFactory.initElements(new CustomFieldDecorator(driver), this);
     }

@@ -49,7 +49,7 @@ public class GmailDraftTestFactory {
         gmailLogInBO.login(user);
         System.out.println(user.toString());
         assertTrue(gmailLogInBO.isUserLoggedIn());
-/*
+
         DraftsBO draftsBO = new DraftsBO();
         draftsBO.createDraft(letter);
         draftsBO.openDrafts();
@@ -59,7 +59,7 @@ public class GmailDraftTestFactory {
 
         draftsBO.openSentMails();
         assertTrue(draftsBO.isMessageInSent(letter));
-        */
+
     }
 
     @AfterMethod(description = "close browser")
