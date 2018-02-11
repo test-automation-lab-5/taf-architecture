@@ -13,7 +13,7 @@ import static com.epam.fivethreads.constant.Constant.*;
 
 public class DriverManager {
     private static final Logger LOG = Logger.getLogger(DriverManager.class);
-    public static Semaphore semaphore = new Semaphore(3);
+    //public static Semaphore semaphore = new Semaphore(3);
     private static WebDriver driver;
 
     private DriverManager() {
@@ -31,11 +31,12 @@ public class DriverManager {
     public static WebDriver getDriver() {
 
         if (null == driver) {
-            try {
+            /*try {
                 semaphore.acquire();
             } catch (InterruptedException e) {
                 System.out.println("Exception in driver getDriverThreadLocal");
             }
+            */
             driver = createDriver();
         }
         return driver;

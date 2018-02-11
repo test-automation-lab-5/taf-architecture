@@ -39,7 +39,7 @@ public class SafeThreadDriverCreator {
                 System.out.println("Exception in driver remove");
             }
             driverThreadLocal.remove();
-            DriverManager.semaphore.release();
+            //DriverManager.semaphore.release();
         }
     }
 }
