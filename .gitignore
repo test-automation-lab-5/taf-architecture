@@ -1,0 +1,10 @@
+/bin/
+target/
+resources/
+src/libs/
+src/.idea/
+.classpath
+.project
+.settings/
+.metadata/
+RemoteSystemsTempFiles
