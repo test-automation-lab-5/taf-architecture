@@ -7,4 +7,6 @@ src/.idea/
 .project
 .settings/
 .metadata/
+.idea/
 RemoteSystemsTempFiles
+objectpattern.iml
