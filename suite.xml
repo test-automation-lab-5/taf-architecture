@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<<<<<<< HEAD
-<suite name="TestNG Load Testing Suite" parallel="true">
+<suite name="TestNG Load Testing Suite" parallel="true" thread-count="5">
  <test name="GmailTests">
-=======
-<suite name="TestNG Load Testing Suite">
- <test name="GmailTests" parallel="instances" thread-count="3">
->>>>>>> parent of c7ef919... Test factory for 5 threads together
   <classes>
-   <class name="com.epam.fivethreads.GmailDraftTest" />
+   <class name="com.epam.fivethreads.GmailDraftTestFactory" />
   </classes>
  </test> 
 </suite>

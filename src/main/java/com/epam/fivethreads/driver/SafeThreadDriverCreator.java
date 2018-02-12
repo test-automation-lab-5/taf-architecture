@@ -11,8 +11,7 @@ import static com.epam.fivethreads.constant.Constant.GLOBAL_WAIT_TIME;
 
 public class SafeThreadDriverCreator {
 
-    //public static Semaphore semaphore = new Semaphore(3);
-    private      DriverData driverData = new DriverData();
+    private DriverData driverData = new DriverData();
     private static SafeThreadDriverCreator instance = new SafeThreadDriverCreator();
 
     private ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<WebDriver>() {
@@ -22,6 +21,7 @@ public class SafeThreadDriverCreator {
         }
     };
     private WebDriver driver;
+
     private SafeThreadDriverCreator() {
     }
 
@@ -41,25 +41,18 @@ public class SafeThreadDriverCreator {
                 System.out.println("Exception in driver remove");
             }
             driverThreadLocal.remove();
-            //DriverManager.semaphore.release();
         }
     }
 
     private WebDriver createDriver() {
-           System.setProperty(driverData.getDriver(), driverData.getUrl());
-
+        System.setProperty(driverData.getDriver(), driverData.getUrl());
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(GLOBAL_WAIT_TIME, TimeUnit.SECONDS);
         return driver;
     }
 
-    public WebDriver getDriver() {
+    private WebDriver getDriver() {
         if (null == driver) {
-            /*try {
-                semaphore.acquire();
-            } catch (InterruptedException e) {
-                System.out.println("Exception in driver getDriverThreadLocal");
-            }            */
             driver = createDriver();
         }
         return driver;
