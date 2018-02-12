@@ -21,7 +21,7 @@ public class GmailPage extends AbstractPage {
     private ButtonImpl sendButton;
     @FindBy(xpath = "//span[@id='link_vsm']")
     private LabelImpl sentMessageConfirmation;
-    @FindBy(xpath = "//a[@title='Sent Mail']")
+    @FindBy(xpath = "//a[contains(@href, '#sent')]")
     private ButtonImpl sentPage;
     @FindBy(xpath = "//div[@role='main']//div[@role='checkbox']")
     private CheckBoxImpl choosenMail;

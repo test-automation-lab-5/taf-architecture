@@ -10,11 +10,19 @@ public class WebDriverProp {
     private static Properties properties;
     private FileInputStream fileInputStream;
 
-    public WebDriverProp() throws IOException {
+    public WebDriverProp() {
 
         properties = new Properties();
-        fileInputStream = new FileInputStream(PROPERTY_PATH);
-        properties.load(fileInputStream);
+        try {
+            fileInputStream = new FileInputStream(PROPERTY_PATH);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            properties.load(fileInputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public String chromeDriver() {

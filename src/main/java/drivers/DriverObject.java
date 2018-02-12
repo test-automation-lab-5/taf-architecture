@@ -7,20 +7,22 @@ import properties.WebDriverProp;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
 public class DriverObject {
     private static Map<Long, WebDriver> driverMap = new HashMap<>();
+    private static Semaphore semaphore = new Semaphore(3);
 
     private DriverObject() {
     }
 
     private static WebDriver createDriver() {
-        WebDriverProp webDriverProp = null;
+        WebDriverProp webDriverProp = new WebDriverProp();
         try {
-            webDriverProp = new WebDriverProp();
-        } catch (IOException e) {
-            e.printStackTrace();
+            semaphore.acquire();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
         System.setProperty(webDriverProp.chromeDriver(), webDriverProp.readPath());
         WebDriver driver = new ChromeDriver();
@@ -28,12 +30,17 @@ public class DriverObject {
         return driver;
     }
 
-    public static void driverQuit() {
-        try {
-            DriverObject.getDriver().quit();
-        } finally {
-            DriverObject.getDriver().quit();
-        }
+ //   public static void driverQuit() {
+//        try {
+//            DriverObject.getDriver().quit();
+//        } finally {
+//            DriverObject.getDriver().quit();
+//        }
+//    }
+    public static void releaseThread() {
+        DriverObject.getDriver().quit();
+        driverMap.remove(Thread.currentThread().getId());
+        semaphore.release();
     }
 
     public static WebDriver getDriver() {

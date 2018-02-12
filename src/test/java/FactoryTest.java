@@ -33,7 +33,7 @@ public class FactoryTest {
     }
     @AfterMethod
     public void driverQuit(){
-        DriverObject.driverQuit();
+        DriverObject.releaseThread();
     }
 
 }
