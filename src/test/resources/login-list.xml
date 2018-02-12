@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<users>
+    <user>
+        <login>
+            annatest98765@gmail.com
+        </login>
+        <password>
+            poiu9876
+        </password>
+    </user>
+    <user>
+        <login>
+            annatest8765@gmail.com
+        </login>
+        <password>
+            poiu8765
+        </password>
+    </user>
+    <user>
+        <login>
+            annatest7654@gmail.com
+        </login>
+        <password>
+            poiu7654
+        </password>
+    </user>
+    <user>
+        <login>
+            annatest6543@gmail.com
+        </login>
+        <password>
+            poiu6543
+        </password>
+    </user>
+    <user>
+        <login>
+            annatest5432@gmail.com
+        </login>
+        <password>
+            poiu5432
+        </password>
+    </user>
+</users>
