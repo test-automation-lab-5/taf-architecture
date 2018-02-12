@@ -66,6 +66,7 @@ public class GmailPage extends AbstractPage{
         return composeButton.getText();
     }
     public String getMovedToTrashMessage(){
+        waitToBeVisible(movedToTrashMessage);
         return movedToTrashMessage.getText();
     }
 }

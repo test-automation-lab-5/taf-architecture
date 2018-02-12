@@ -28,18 +28,14 @@ public class FactoryTest {
         DriverObject.getDriver().get(gmailURL);
         Login loginPage = new Login();
         loginPage.login(user.getEmail(), user.getPassword());
-        GmailMessage gmailPage = new GmailMessage();
-        gmailPage.sendMessage(testMessage.getReceiver(), testMessage.getSubject(), testMessage.getMessage());
-        gmailPage.removeMessage();
-        Assert.assertTrue(gmailPage.isRemoved());
+        GmailMessage gmailMessage = new GmailMessage();
+        gmailMessage.sendMessage(testMessage.getReceiver(), testMessage.getSubject(), testMessage.getMessage());
+        gmailMessage.removeMessage();
+        Assert.assertTrue(gmailMessage.isRemoved());
     }
 
     @AfterMethod
     public void quitDriver(){
-        DriverObject.getDriver().quit();
+        DriverObject.releaseThread();
     }
-
-
-
-
 }

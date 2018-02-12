@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 public class DriverObject {
 
     private static Map<String, WebDriver> driverMap = new HashMap<>();
-    private static Semaphore semaphore = new Semaphore(3);
+    private static Semaphore semaphore = new Semaphore(3, true);
 
     private DriverObject() {
     }
@@ -50,7 +50,7 @@ public class DriverObject {
         return driver;
     }
 
-    public void releaseThread() {
+    public static void releaseThread() {
         DriverObject.getDriver().quit();
         driverMap.remove(Thread.currentThread().getName());
         semaphore.release();

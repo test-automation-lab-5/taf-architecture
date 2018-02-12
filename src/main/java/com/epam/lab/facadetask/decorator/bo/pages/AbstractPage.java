@@ -25,4 +25,8 @@ public class AbstractPage {
         return getWait().until(ExpectedConditions.elementToBeClickable(element));
     }
 
+    WebElement waitToBeVisible(WebElement element) {
+        return getWait().until(ExpectedConditions.visibilityOf(element));
+    }
+
 }
