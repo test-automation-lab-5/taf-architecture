@@ -1,4 +1,4 @@
-package com.epam.lab5.pageobjects;
+package com.epam.lab5.businessobjects.pageobjects;
 
 import com.epam.lab5.decorator.MyFieldDecorator;
 import com.epam.lab5.decorator.elements.PageElement;
@@ -22,4 +22,5 @@ public class AbstractPage {
     public void waitElementBeVisible(PageElement element, int seconds){
         (new WebDriverWait(driver, seconds)).until(ExpectedConditions.visibilityOf(element));
     }
+
 }

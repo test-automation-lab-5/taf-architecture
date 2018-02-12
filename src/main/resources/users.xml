@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <users>
     <user>
-        <email></email>
-        <password></password>
+        <email>ivanhorintest@gmail.com</email>
+        <password>Test12345</password>
     </user>
     <user>
-        <email></email>
-        <password></password>
+        <email>ivanhorintest1@gmail.com</email>
+        <password>test0001</password>
     </user>
     <user>
-        <email></email>
-        <password></password>
+        <email>ivanhorintest2@gmail.com</email>
+        <password>test0002</password>
     </user>
     <user>
-        <email></email>
-        <password></password>
+        <email>ivanhorintest3@gmail.com</email>
+        <password>test0003</password>
     </user>
     <user>
-        <email></email>
-        <password></password>
+        <email>ivanhorintest4@gmail.com</email>
+        <password>test0004</password>
     </user>
 </users>

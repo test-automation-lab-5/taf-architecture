@@ -1,4 +1,4 @@
-package com.epam.lab5.propdata;
+package com.epam.lab5.testdata.properties;
 
 import java.io.FileInputStream;
 import java.io.IOException;

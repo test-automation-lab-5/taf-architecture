@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 public class DriverFactory {
 
     private DriverFactory() {
-
     }
 
     private static DriverFactory instance = new DriverFactory();
@@ -13,7 +12,7 @@ public class DriverFactory {
         return instance;
     }
 
-    ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>() // thread local driver object for webdriver
+    ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>()
     {
         @Override
         protected WebDriver initialValue()
@@ -23,11 +22,13 @@ public class DriverFactory {
 
     };
 
-    public WebDriver getDriver() {
+    public  WebDriver getDriver() {
         return driver.get();
     }
 
     public void closeDriver() {
+        SingletonDriver.driverMap.remove(Thread.currentThread().getId());
+        SingletonDriver.semaphore.release();
         driver.get().quit();
         driver.remove();
 

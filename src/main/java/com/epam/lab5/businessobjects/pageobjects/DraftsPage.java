@@ -1,12 +1,13 @@
-package com.epam.lab5.pageobjects;
+package com.epam.lab5.businessobjects.pageobjects;
 
 import com.epam.lab5.decorator.elements.Button;
 import com.epam.lab5.decorator.elements.PageElement;
-import com.epam.lab5.driver.DriverFactory;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+
+import static com.epam.lab5.consts.Numbers.ELEMENT_BE_VISIBLE_WAIT_VALUE;
 
 public class DraftsPage extends AbstractPage {
 
@@ -25,7 +26,7 @@ public class DraftsPage extends AbstractPage {
     }
 
     public void openDraftsPage(){
-        waitElementBeVisible(draftsButton,20);
+        waitElementBeVisible(draftsButton,ELEMENT_BE_VISIBLE_WAIT_VALUE);
         draftsButton.click();
         log.info("'Drafts' page was opened.");
     }
@@ -42,7 +43,7 @@ public class DraftsPage extends AbstractPage {
     }
 
     public boolean isMailWasSentWindowDisplayed(){
-      waitElementBeVisible(mailWasSentWindow,20);
+      waitElementBeVisible(mailWasSentWindow,ELEMENT_BE_VISIBLE_WAIT_VALUE);
         return mailWasSentWindow.isDisplayed();
     }
 

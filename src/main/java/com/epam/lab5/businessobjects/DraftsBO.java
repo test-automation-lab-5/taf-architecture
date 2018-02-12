@@ -1,8 +1,8 @@
 package com.epam.lab5.businessobjects;
 
 
-import com.epam.lab5.pageobjects.DraftsPage;
-import com.epam.lab5.testdata.TestDataReader;
+import com.epam.lab5.businessobjects.pageobjects.DraftsPage;
+import com.epam.lab5.testdata.xml.TestDataReader;
 import org.openqa.selenium.WebDriver;
 
 public class DraftsBO  {

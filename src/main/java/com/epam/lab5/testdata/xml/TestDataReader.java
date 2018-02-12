@@ -1,4 +1,6 @@
-package com.epam.lab5.testdata;
+package com.epam.lab5.testdata.xml;
+
+import com.epam.lab5.testdata.xml.entities.MailComponent;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -9,19 +11,15 @@ import static com.epam.lab5.consts.Paths.TEST_DATA_XML_FILE_PATH;
 
 public class TestDataReader {
 
-    public static String getToFieldValue(){
-        return getMailComponent().getToField();
-    }
-
-    public static  String getSubjectFieldValue(){
+    public String getSubjectFieldValue(){
         return getMailComponent().getSubjectField();
     }
 
-    public static String getMessageFieldValue(){
+    public String getMessageFieldValue(){
         return getMailComponent().getMessageField();
     }
 
-    private static MailComponent getMailComponent()  {
+    private MailComponent getMailComponent()  {
         MailComponent mailComponent = null;
         try {
             mailComponent = xmlJaxbReader(TEST_DATA_XML_FILE_PATH);
@@ -31,11 +29,10 @@ public class TestDataReader {
         return mailComponent;
     }
 
-    private static<T> MailComponent xmlJaxbReader(String pathName) throws JAXBException {
+    private MailComponent xmlJaxbReader(String pathName) throws JAXBException {
         File file = new File(pathName);
         JAXBContext jaxbContext = JAXBContext.newInstance(MailComponent.class);
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-        T unmarshalledObject = (T) unmarshaller.unmarshal(file);
-        return (MailComponent)unmarshalledObject;
+        return (MailComponent) unmarshaller.unmarshal(file);
     }
 }

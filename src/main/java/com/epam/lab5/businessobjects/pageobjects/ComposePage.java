@@ -1,13 +1,13 @@
-package com.epam.lab5.pageobjects;
+package com.epam.lab5.businessobjects.pageobjects;
 
 import com.epam.lab5.decorator.elements.Button;
-import com.epam.lab5.decorator.elements.PageElement;
 import com.epam.lab5.decorator.elements.TextInput;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import static com.epam.lab5.consts.Numbers.ELEMENT_BE_VISIBLE_WAIT_VALUE;
 
 public class ComposePage extends AbstractPage {
 
@@ -52,6 +52,7 @@ public class ComposePage extends AbstractPage {
 
 
     public void sendMail(){
+        waitElementBeVisible(mailMessageInput,ELEMENT_BE_VISIBLE_WAIT_VALUE);
         mailMessageInput.sendKeys(Keys.CONTROL,Keys.ENTER);
         log.info("Mail from Draft was sent.");
     }

@@ -1,6 +1,6 @@
 package com.epam.lab5.businessobjects;
 
-import com.epam.lab5.pageobjects.InboxPage;
+import com.epam.lab5.businessobjects.pageobjects.InboxPage;
 import org.openqa.selenium.WebDriver;
 
 public class InboxBO  {
