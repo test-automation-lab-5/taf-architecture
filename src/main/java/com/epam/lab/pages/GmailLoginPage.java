@@ -27,18 +27,24 @@ class GmailLoginPage extends DefaultPage {
 
     GmailLoginPage(WebDriver webDriver) {
 
-        super(webDriver);
-        Assert.assertTrue(enterEmailField.isDisplayed());
+        super( webDriver );
+        Assert.assertTrue( enterEmailField.isDisplayed() );
     }
 
-     void enterEmailClickNextButton(String email) {
+    void enterEmail(String email) {
         enterEmailField.sendKeys( email );
+    }
+
+    void clickNextButton() {
         enterEmailNextButton.click();
     }
 
-    void enterPasswordClickNextButton(String password) {
-        waitToBeClickable(passwordField);
+    void enterPassword(String password) {
+        waitToBeClickable( passwordField );
         passwordField.sendKeys( password );
+    }
+
+    void clickLoginButton() {
         enterPasswordNextButton.click();
         waitToBeClickable( searchField );
     }

@@ -25,11 +25,6 @@ private static void setWait(WebDriver webDriver) {
         WebDriver webDriver;
         ReadProperties data = new ReadProperties();
         readPropertiesFile(data);
-    //  ReadProperties testData = new ReadProperties();
-       // readDataFile( testData );
-       // String browser = testData.getBrowserName();
-
-
 
         if (CHROME.equals( browser )) {
             System.setProperty( data.getChromeDriver(), data.getChromePath() );
@@ -47,5 +42,6 @@ private static void setWait(WebDriver webDriver) {
         } else throw new IllegalArgumentException( "Invalid browser property" );
         return webDriver;
     }
+
 }
 

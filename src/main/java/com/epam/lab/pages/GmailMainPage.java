@@ -11,7 +11,7 @@ import org.testng.Assert;
 
 import java.util.List;
 
-public class GmailMainPage extends DefaultPage{
+public class GmailMainPage extends DefaultPage {
 
     @FindBy(xpath = ".//*[@role='checkbox']")
     private List<CheckBox> checkboxes;
@@ -31,8 +31,8 @@ public class GmailMainPage extends DefaultPage{
 
     public GmailMainPage(WebDriver webDriver) {
 
-        super(webDriver);
-        Assert.assertTrue( checkboxes.get( 1 ).isDisplayed());
+        super( webDriver );
+        Assert.assertTrue( checkboxes.get( 1 ).isDisplayed() );
     }
 
     public void selectCheckboxes(int quantity) {
@@ -56,6 +56,7 @@ public class GmailMainPage extends DefaultPage{
         waitToBeClickable( messageCanceled );
 
     }
+
     public int expectedResult(String subject) {
         int expectedResult = 0;
 
@@ -67,11 +68,10 @@ public class GmailMainPage extends DefaultPage{
         return expectedResult;
     }
 
-    public String firstEmailSubject(){
+    public String firstEmailSubject() {
         return subjects.get( 0 ).getText();
 
     }
-
 
 
 }

@@ -12,15 +12,16 @@ class DefaultPage {
 
     DefaultPage(WebDriver webDriver) {
         this.webDriver = webDriver;
-        PageFactory.initElements( new CustomFieldDecorator(webDriver), this);
+        PageFactory.initElements( new CustomFieldDecorator( webDriver ), this );
     }
 
 
     private WebDriverWait getWait() {
 
-        return (new WebDriverWait( webDriver, 20));
+        return (new WebDriverWait( webDriver, 20 ));
     }
+
     Element waitToBeClickable(Element element) {
-        return getWait().until( MyExpectedConditions.elementToBeClickable(element));
+        return getWait().until( MyExpectedConditions.elementToBeClickable( element ) );
     }
 }
