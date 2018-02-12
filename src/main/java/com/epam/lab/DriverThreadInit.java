@@ -17,7 +17,7 @@ public class DriverThreadInit {
         return instance;
     }
 
-    public ThreadLocal<WebDriver> threadDriver = new ThreadLocal<WebDriver>() // thread local driver object for webdriver
+    public ThreadLocal<WebDriver> threadDriver = new ThreadLocal<WebDriver>()
     {
         @Override
         protected WebDriver initialValue() {
