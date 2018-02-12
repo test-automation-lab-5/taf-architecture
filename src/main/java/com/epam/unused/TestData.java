@@ -1,4 +1,4 @@
-package com.epam;
+package com.epam.unused;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;

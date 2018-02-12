@@ -1,123 +1,106 @@
 package com.epam.pageobject;
 
-import com.epam.pageobject.AbstractPage;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import com.epam.decorator.Button;
+import com.epam.decorator.TextInput;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class GmailHomePage  extends AbstractPage {
 
 
-    WebDriverWait wait;
-
-    public GmailHomePage (WebDriver driver){
-
-        super(driver);
-        wait = new WebDriverWait(driver,30);
-
-    }
-
-
-
     @FindBy(xpath = "//div[@class='z0']/div")
-    WebElement composeButton;
+    private Button composeButton;
 
 
-    //@FindBy(xpath = "//a[@title='Отправленные']")
     @FindBy(xpath = "//a[@href=\"https://mail.google.com/mail/u/0/#sent\"]")
-    WebElement sentEmailsButton;
+    private Button sentEmailsButton;
 
 
     @FindBy(xpath = "//div[@class='y6']//b[text()='Email subject']")
-    WebElement sentEmailSubject;
+    private Button sentEmailSubject;
 
 
     @FindBy(xpath = "//td//img[2]")
-    WebElement expandWindow;
+    private Button expandWindow;
 
 
     @FindBy(className = "vO")
-    WebElement gmailToAddress;
+    private TextInput gmailToAddress;
 
 
     @FindBy(className = "aoT")
-    WebElement gmailSubject;
+    private TextInput gmailSubject;
 
 
     @FindBy(css = "div[class='Am Al editable LW-avf']")
-    WebElement gmailBody;
+    private TextInput gmailBody;
 
 
-    //@FindBy(xpath = "//div[text()='Отправить']")
     @FindBy(xpath = "//div[@class='J-J5-Ji btA']")
-    WebElement sendButton;
+    private Button sendButton;
 
 
     @FindBy(xpath = "//div[@class='oh J-Z-I J-J5-Ji T-I-ax7']/div")
-    WebElement trashButton;
+    private Button trashButton;
 
-    public void  clickTrashButton (WebDriver driver){
-        JavascriptExecutor executor = (JavascriptExecutor)driver;
-        executor.executeScript("arguments[0].click()", trashButton);
+    public void  clickTrashButton (){
+
+        waitUntilBeClickable(trashButton);
+        trashButton.clickOn();
+
     }
 
     public void pressComposeButton (){
 
-        wait.until(ExpectedConditions.elementToBeClickable(composeButton));
-        composeButton.click();
+        waitUntilBeClickable( composeButton);
+        composeButton.clickOn();
 
     }
 
     public void goToSentEmails (){
 
-        sentEmailsButton.click();
+        waitUntilBeClickable(sentEmailsButton);
+                sentEmailsButton.clickOn();
 
     }
 
-    public void verifySendingEmail (){
+    public boolean checkIfWasSent (){
 
-
-        if (sentEmailSubject != null)
-        {
-            System.out.println("Email was sent successfully!");
-        }
-        else
-        {
-            System.out.println("Failed to send email");
-        }
+        return sentEmailSubject != null;
     }
 
 
     public void pressExpandWindow (){
 
-        expandWindow.click();
+        waitUntilBeClickable(expandWindow);
+        expandWindow.clickOn();
 
     }
 
     public void setToAddress(String addressInput){
 
-        gmailToAddress.sendKeys(addressInput);
+        waitUntilVisible(gmailToAddress);
+        gmailToAddress.enterText(addressInput);
 
     }
 
     public void setGmailSubject (String subjectInput){
 
-        gmailSubject.sendKeys(subjectInput);
+        waitUntilVisible(gmailSubject);
+        gmailSubject.enterText(subjectInput);
 
     }
 
     public void setGmailBody (String bodyInput){
 
-        gmailBody.sendKeys(bodyInput);
+        waitUntilVisible(gmailBody);
+        gmailBody.enterText(bodyInput);
 
     }
 
     public void pressSendButton (){
 
-        sendButton.click();
+        waitUntilBeClickable(sendButton);
+        sendButton.clickOn();
 
     }
 

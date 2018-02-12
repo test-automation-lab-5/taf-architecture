@@ -1,18 +1,23 @@
 package com.epam.businessobject;
 
-import com.epam.pageobject.GmailAlertPage;
+import com.epam.pageobject.GmailErrorPage;
 import com.epam.pageobject.GmailHomePage;
-import org.openqa.selenium.WebDriver;
+import org.apache.log4j.Logger;
+
+import static  com.epam.datasource.Constants.*;
+
 
 public class SendEmailBO {
 
+    private static final Logger LOG = Logger.getLogger(SendEmailBO.class);
+
     private GmailHomePage gmailHomePage;
-    private GmailAlertPage gmailAlertPage;
+    private GmailErrorPage gmailErrorPage;
 
 
-    public SendEmailBO(WebDriver driver){
-        gmailHomePage = new GmailHomePage(driver);
-        gmailAlertPage = new GmailAlertPage(driver);
+    public SendEmailBO(){
+        gmailHomePage = new GmailHomePage();
+        gmailErrorPage = new GmailErrorPage();
     }
 
     public void sendMessage (String address, String subject, String body){
@@ -27,19 +32,33 @@ public class SendEmailBO {
 
     }
 
-    public void closeMailWindow (WebDriver driver){
-        gmailHomePage.clickTrashButton(driver);
+    public void closeMailWindow (){
+        gmailHomePage.clickTrashButton();
     }
 
     public String processError (){
-        String actualError= gmailAlertPage.getAlertMessage();
-        System.out.println(String.format("Error message: %s", actualError));
-        gmailAlertPage.pressOkButton();
+
+        String actualError= gmailErrorPage.getAlertMessage();
+        LOG.info(String.format("Error message: %s", actualError));
+        gmailErrorPage.pressOkButton();
         return actualError;
+
     }
 
-    public void verifySendingEmail (){
+    public boolean verifySendingEmail (){
+
+        Boolean result;
         gmailHomePage.goToSentEmails();
-        gmailHomePage.verifySendingEmail();
+        if (gmailHomePage.checkIfWasSent()){
+            result = true;
+            LOG.info(String.format(" %s, %d", SUCCESS_MESSAGE, Thread.currentThread().getId()));
+        } else {
+            result = false;
+            LOG.info(String.format(" %s, %d", FAIL_MESSAGE, Thread.currentThread().getId()));
+        }
+        return result;
+        }
+
     }
-}
+
+

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<letters>
+    <letter>
+        <message>Mailbody</message>
+        <sentTo>olenayurkiv2017@gmail.com</sentTo>
+        <sentToWrong>ole</sentToWrong>
+        <subject>Email subject</subject>
+    </letter>
+</letters>

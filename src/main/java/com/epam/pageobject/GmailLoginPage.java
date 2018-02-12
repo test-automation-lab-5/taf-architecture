@@ -1,80 +1,79 @@
 package com.epam.pageobject;
 
-import com.epam.pageobject.AbstractPage;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import com.epam.decorator.Button;
+import com.epam.decorator.TextInput;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class GmailLoginPage extends AbstractPage {
+import static com.epam.datasource.Constants.*;
 
-    WebDriverWait wait;
 
-    public GmailLoginPage (WebDriver driver){
-
-        super(driver);
-        wait = new WebDriverWait(driver,30);
-
-    }
+public class GmailLoginPage extends  AbstractPage {
 
 
     @FindBy(xpath = "//input[@id='identifierId']")
-    private WebElement gmailAddress;
+    private TextInput gmailAddress;
 
 
     @FindBy(id = "identifierNext")
-    WebElement addressNext;
+    private Button addressNext;
 
 
     @FindBy(xpath = "//input[@name='password']")
-    private WebElement gmailPassword;
+    private TextInput gmailPassword;
 
 
     @FindBy(id = "passwordNext")
-    WebElement passwordNext;
+    private Button passwordNext;
 
 
     @FindBy(css = "a[class='WaidBe']")
-    WebElement gmailLogo;
+    private Button gmailLogo;
 
+
+    public void openInitialPage () {
+        openPage(INITIAL_PAGE_URL);
+    }
 
     public void setGmailAddress(String addressInput){
 
-        gmailAddress.sendKeys(addressInput);
+        waitUntilVisible(gmailAddress);
+        gmailAddress.enterText(addressInput);
 
     }
 
     public void pressAddressNextButton (){
 
-        addressNext.click();
+        waitUntilBeClickable(addressNext);
+        addressNext.clickOn();
 
     }
 
 
     public void setGmailPassword(String passwordInput){
 
-        gmailPassword.sendKeys(passwordInput);
+        waitUntilVisible(gmailPassword);
+        gmailPassword.enterText(passwordInput);
 
     }
 
     public void pressPasswordNextButton (){
 
-        wait.until(ExpectedConditions.elementToBeClickable(passwordNext));
-        passwordNext.click();
+        waitUntilBeClickable(passwordNext);
+        passwordNext.clickOn();
 
     }
 
     public void goToGmail (){
 
-        gmailLogo.click();
+        waitUntilBeClickable(gmailLogo);
+        gmailLogo.clickOn();
 
     }
 
-    public String getTitle (WebDriver driver){
+    public String getGmailTitle (){
 
-        wait.until(ExpectedConditions.titleContains("olenayurkiv.2017@gmail.com"));
-        return driver.getTitle();
+        waitUntilTitle(HOME_TITLE);
+        return getTitle();
     }
 
 }

@@ -1,9 +1,11 @@
 package com.epam.decorator;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class TextInput extends  AbstractElement implements ITextInput {
+public class TextInput extends  AbstractElement {
+
+    private static final Logger LOG = Logger.getLogger(TextInput.class);
 
     public TextInput(WebElement webElement) {
 
@@ -11,7 +13,8 @@ public class TextInput extends  AbstractElement implements ITextInput {
     }
 
     public void enterText(String string){
-        //логіка очікування
-        getWrappedElement().sendKeys(string);
+
+        webElement.sendKeys(string);
+        LOG.info(String.format("TextInput was entered  %d", Thread.currentThread().getId()));
     }
 }
