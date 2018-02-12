@@ -1,6 +1,5 @@
 package businessobjects;
 
-
 import businessobjects.pagepatternclasses.GmailPage;
 import businessobjects.pagepatternclasses.LoginPage;
 import testdata.xmlmodels.LetterData;

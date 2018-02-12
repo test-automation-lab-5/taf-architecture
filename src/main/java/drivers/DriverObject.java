@@ -30,13 +30,6 @@ public class DriverObject {
         return driver;
     }
 
- //   public static void driverQuit() {
-//        try {
-//            DriverObject.getDriver().quit();
-//        } finally {
-//            DriverObject.getDriver().quit();
-//        }
-//    }
     public static void releaseThread() {
         DriverObject.getDriver().quit();
         driverMap.remove(Thread.currentThread().getId());

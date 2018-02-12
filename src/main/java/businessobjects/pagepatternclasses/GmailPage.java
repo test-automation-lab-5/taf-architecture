@@ -36,7 +36,6 @@ public class GmailPage extends AbstractPage {
         super(new MyPageFactory());
     }
 
-
     public void sendLetter(LetterData letterData) {
         composeButton.click();
         sendToInput.sendKeys(letterData.getSentTo());

@@ -23,10 +23,6 @@ public class AbstractPage {
         return (new WebDriverWait(driver, 25));
     }
 
-    protected String getSubject(String subject) {
-        return driver.findElement(By.xpath("//*[@class='bog']//*[text()='" + String.format("%s", subject) + "']")).getText();
-    }
-
     protected AbstractElement waitUntilBeClickableAbstract(AbstractElement element) {
         return elementFactory.create(element.getClass(), getWait().until(ExpectedConditions.elementToBeClickable(element.getWebElement())));
     }
