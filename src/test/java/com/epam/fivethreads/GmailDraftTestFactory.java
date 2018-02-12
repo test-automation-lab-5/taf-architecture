@@ -33,7 +33,7 @@ public class GmailDraftTestFactory {
     }
 
     @DataProvider(name = "currentDataProvider", parallel = true)
-    public static Object[][] initUsers() {
+    public Object[][] initUsers() {
         Users users = new UsersDataReader().getUsers();
         Letters letters = new LattersDataCreator().getLetters();
         System.out.println(users.toString());
