@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<messages>
+        <message>
+                <content>Message_1</content>
+                <subject>Selenium</subject>
+                <receiver>bilokura@gmail.com</receiver>
+        </message>
+        <message>
+                <content>Message_2</content>
+                <subject>Selenium</subject>
+                <receiver>bilokura@gmail.com</receiver>
+        </message>
+        <message>
+                <content>Message_3</content>
+                <subject>Selenium</subject>
+                <receiver>bilokura@gmail.com</receiver>
+        </message>
+        <message>
+                <content>Message_4</content>
+                <subject>Selenium</subject>
+                <receiver>bilokura@gmail.com</receiver>
+        </message>
+        <message>
+                <content>Message_5</content>
+                <subject>Selenium</subject>
+                <receiver>bilokura@gmail.com</receiver>
+        </message>
+</messages>

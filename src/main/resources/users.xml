@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<users parallel="methods" thread-count="3" message-provider-thread-count="3">
+    <user>
+        <password>hnatko222</password>
+        <email>hnatko2@gmail.com</email>
+    </user>
+    <user>
+        <password>1997scvbfnk</password>
+        <email>kristinabilokura@gmail.com</email>
+    </user>
+    <user>
+        <password>Kids12345a</password>
+        <email>testbilokura@gmail.com</email>
+    </user>
+    <user>
+        <password>Kids12345a</password>
+        <email>test2bilokura@gmail.com</email>
+    </user>
+    <user>
+        <password>Kids12345a</password>
+        <email>test3bilokura@gmail.com</email>
+    </user>
+</users>
