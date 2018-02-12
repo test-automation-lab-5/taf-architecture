@@ -13,13 +13,11 @@ public class DraftsBO {
     private HomePage homePage;
     private SentPage sentPage;
 
-
     public DraftsBO() {
         draftsPage = new DraftsPage();
         homePage = new HomePage();
         sentPage = new SentPage();
     }
-
     public void openDrafts() {
         LOG.info(String.format(" ---- %s.openDrafts() ----- ", this.getClass().getSimpleName()));
         draftsPage.openPage();
@@ -34,6 +32,7 @@ public class DraftsBO {
         LOG.info(String.format(" ---- %s.isMessageInDrafts() ----- ", this.getClass().getSimpleName()));
         return draftsPage.isMasageFound(letter.getMessageSubject());
     }
+
     public void sendMessageFromDrafts(Letter letter) {
         LOG.info(" ---- DraftsBO.sendMessageFromDrafts() ---- ");
         draftsPage.sendMasageFound(letter.getMessageSubject());
@@ -48,7 +47,6 @@ public class DraftsBO {
         LOG.info(String.format(" ---- %s.isMessageInSent() ----- ", this.getClass().getSimpleName()));
         return sentPage.isMasageFound(letter.getMessageSubject());
     }
-
 
 
 }

@@ -9,7 +9,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
-import com.epam.fivethreads.decorator.elements.single.Button;
+import com.epam.fivethreads.decorator.elements.Button;
 
 import static com.epam.fivethreads.constant.Constant.*;
 
@@ -19,7 +19,6 @@ public class DraftsPage extends AbstractPage {
 
     @ElementName("[SEND button]")
     @FindBy(xpath = "//form[@enctype='multipart/form-data']/following::table/tbody/child::tr[2]/descendant::table//div[@role='button'][1]")
-    @CacheLookup
     private Button sentFormButton;
 
 
@@ -28,7 +27,7 @@ public class DraftsPage extends AbstractPage {
     }
 
     private WebElement findMessageBySubject(String subject) {
-        isAlertPresent();
+        //isAlertPresent();
         WebElement element = driver.findElement(By.xpath("//table[@cellpadding='0']/tbody/tr/td[@class='xY a4W']/div/div/div/span[text()='" + subject + "']"));
         return element;
     }

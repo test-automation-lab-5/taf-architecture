@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 import static com.epam.fivethreads.constant.Constant.GLOBAL_WAIT_TIME;
 
 public class SafeThreadDriverCreator {
-
+   // private static Semaphore semaphore = new Semaphore(3);
     private DriverData driverData = new DriverData();
     private static SafeThreadDriverCreator instance = new SafeThreadDriverCreator();
 
@@ -41,10 +41,16 @@ public class SafeThreadDriverCreator {
                 System.out.println("Exception in driver remove");
             }
             driverThreadLocal.remove();
+            //semaphore.release();
         }
     }
 
     private WebDriver createDriver() {
+       /* try {
+            semaphore.acquire();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }*/
         System.setProperty(driverData.getDriver(), driverData.getUrl());
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(GLOBAL_WAIT_TIME, TimeUnit.SECONDS);

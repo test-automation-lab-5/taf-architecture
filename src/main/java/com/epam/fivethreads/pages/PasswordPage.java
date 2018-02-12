@@ -8,8 +8,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import com.epam.fivethreads.decorator.elements.single.Button;
-import com.epam.fivethreads.decorator.elements.single.InputTextField;
+import com.epam.fivethreads.decorator.elements.Button;
+import com.epam.fivethreads.decorator.elements.InputTextField;
 @PageName("[PASSWORD page]")
 public class PasswordPage extends AbstractPage {
 	private static final Logger LOG = Logger.getLogger(PasswordPage.class);

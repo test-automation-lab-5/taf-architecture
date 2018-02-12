@@ -11,8 +11,9 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
-import com.epam.fivethreads.decorator.elements.single.Button;
-import com.epam.fivethreads.decorator.elements.single.TextField;
+import com.epam.fivethreads.decorator.elements.Button;
+import com.epam.fivethreads.decorator.elements.TextField;
+
 @PageName("[HOME page]")
 public class HomePage extends AbstractPage {
     private static final Logger LOG = Logger.getLogger(HomePage.class);
@@ -34,9 +35,6 @@ public class HomePage extends AbstractPage {
     @CacheLookup
     private TextField messageTexbox;
 
-
-
-
     public boolean isOpened() {
         String ss = driver.getCurrentUrl();
         return ss.equals(IS_LOGGED_IN_URL);
@@ -50,20 +48,31 @@ public class HomePage extends AbstractPage {
         }
     }
 
+    public void craeteMessage(String messageSentTo, String messageSubject, String messageText) {
+        openNewMessageForm();
+        inputMessageSentTo(messageSentTo);
+        inputMessageSubject(messageSubject);
+        messageTexbox.type(Keys.ESCAPE);
+    }
+
     private void openNewMessageForm() {
         composeButton.click();
     }
 
-    public void craeteMessage(String messageSentTo, String messageSubject, String messageText) {
-        openNewMessageForm();
+    private void inputMessageSentTo(String messageSentTo) {
         sentToTextarea.type(messageSentTo);
         sentToTextarea.click();
         messageTexbox.click();
+    }
+
+    private void inputMessageSubject(String messageSubject) {
         subjectBox.click();
         subjectBox.type(messageSubject);
+    }
+
+    private void inputMessageText(String messageText) {
         messageTexbox.click();
         messageTexbox.type(messageText);
-        messageTexbox.type(Keys.ESCAPE);
     }
 
 }

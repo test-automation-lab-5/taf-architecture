@@ -32,12 +32,10 @@ public class GmailDraftTestFactory {
         this.letter = letter;
     }
 
-    @DataProvider(name = "currentDataProvider", parallel = true)
+    @DataProvider(name = "currentDataProvider",parallel = true)
     public Object[][] initUsers() {
         Users users = new UsersDataReader().getUsers();
         Letters letters = new LattersDataCreator().getLetters();
-        System.out.println(users.toString());
-        System.out.println(letters.toString());
         return Data2ArrayConverter.getData(users, letters);
     }
 
@@ -65,7 +63,6 @@ public class GmailDraftTestFactory {
     @AfterMethod(description = "close browser")
     public void tearDownUserCanLogin() {
         SafeThreadDriverCreator.getInstance().removeDriver();
-
     }
 
 

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @XmlRootElement(name = "users")
-@XmlSeeAlso({ User.class})
+@XmlSeeAlso({User.class})
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Users {
     @XmlElement(name = "user")

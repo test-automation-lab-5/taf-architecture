@@ -1,10 +1,7 @@
-package com.epam.fivethreads.decorator.elements.single;
+package com.epam.fivethreads.decorator.elements;
 
-import com.epam.fivethreads.pages.AbstractPage;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
-
-import com.epam.fivethreads.decorator.elements.Element;
 
 public class Button implements Element{
 	private static final Logger LOG = Logger.getLogger(Button.class);

@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlType;
 public class Letter implements Cloneable {
     @XmlElement(required = true, name = "sent-to")
     private String sentTo;
-    //@XmlElement(required = true, name = "message-subject")
+
     private String messageSubject;
     @XmlElement(required = true, name = "message-text")
     private String messageText;

@@ -7,8 +7,8 @@ import com.epam.fivethreads.decorator.anotation.PageName;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.support.FindBy;
 
-import com.epam.fivethreads.decorator.elements.single.Button;
-import com.epam.fivethreads.decorator.elements.single.TextField;
+import com.epam.fivethreads.decorator.elements.Button;
+import com.epam.fivethreads.decorator.elements.TextField;
 @PageName("[LOGIN page]")
 public class LogInPage extends AbstractPage {
 
@@ -16,12 +16,10 @@ public class LogInPage extends AbstractPage {
 
 	@ElementName("[LOGIN textfield]")
 	@FindBy(xpath = "//input[@type='email'][@name='identifier']")
-	// @CacheLookup
 	private TextField logInField;
 
 	@ElementName("[NEXT button]")
 	@FindBy(id = "identifierNext")
-	// @CacheLookup
 	private Button logInNextButton;
 
 	public void openPage() {
