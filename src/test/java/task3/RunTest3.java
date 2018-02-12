@@ -18,12 +18,7 @@ public class RunTest3 {
     private static DataXML dataXML;
         @DataProvider(parallel = true)
         public Object[][] userData(){
-            List<User> usersList = DataXML.unmarshalUser();
-            List<Message> messagesList = DataXML.unmarshalMessage();
-            return IntStream
-                    .range(0, Constants.THREAD)
-                    .mapToObj((int i) -> new Object[]{Objects.requireNonNull(messagesList).get(i), Objects.requireNonNull(usersList).get(i)})
-                    .toArray(Object[][]::new);
+            return DataXML.parse();
         }
         @Test(dataProvider = "userData")
         public void GmailTest(Message message, User user) throws InterruptedException{
