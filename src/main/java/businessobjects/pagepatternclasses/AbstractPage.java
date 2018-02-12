@@ -10,7 +10,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AbstractPage {
-    private static WebDriver driver;
+
+    private WebDriver driver;
     private MyElementFactory elementFactory = new MyElementFactory();
 
     protected AbstractPage(MyPageFactory myPageFactory) {
@@ -29,5 +30,4 @@ public class AbstractPage {
     protected AbstractElement waitUntilBeClickableAbstract(AbstractElement element) {
         return elementFactory.create(element.getClass(), getWait().until(ExpectedConditions.elementToBeClickable(element.getWebElement())));
     }
-
 }

@@ -4,6 +4,7 @@ import businessobjects.pagepatternclasses.decorator.elements.elements.ButtonImpl
 import businessobjects.pagepatternclasses.decorator.elements.elements.TextInputImpl;
 import businessobjects.pagepatternclasses.decorator.elements.handlers.MyPageFactory;
 import org.openqa.selenium.support.FindBy;
+import testdata.xmlmodels.User;
 
 public class LoginPage extends AbstractPage {
     @FindBy(xpath = "//input[@id='identifierId']")
@@ -21,16 +22,15 @@ public class LoginPage extends AbstractPage {
         super(new MyPageFactory());
     }
 
-    public void loginGmail(String login) {
-       // getUrl();
-        loginInput.sendKeys(login);
+    public void loginGmail(User user) {
+        loginInput.sendKeys(user.getLogin());
         loginNextButton.click();
     }
 
 
-    public void setPasswordInput(String password) {
+    public void setPasswordInput(User user) {
         waitUntilBeClickableAbstract(passwordInput);
-        passwordInput.sendKeys(password);
+        passwordInput.sendKeys(user.getPassword());
         passwordNextButton.click();
     }
 

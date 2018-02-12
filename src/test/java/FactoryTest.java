@@ -2,8 +2,10 @@ import businessobjects.GmailBO;
 import drivers.DriverObject;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.Factory;
 import org.testng.annotations.Test;
+import properties.WebDriverProp;
 import testdata.xmlmodels.LetterData;
 import testdata.xmlmodels.User;
 
@@ -18,16 +20,16 @@ public class FactoryTest {
         this.user = user;
     }
 
-    @Test()
+    @Test
     public void testGmail() {
-        DriverObject.getDriver().get("https://accounts.google.com/signin");
+        DriverObject.getDriver().get(WebDriverProp.readUrl());
         GmailBO gmailBO = new GmailBO();
-        gmailBO.login(user.getLogin(), user.getPassword());
-        gmailBO.sendMail(letterData.getSentTo(), letterData.getSubject(), letterData.getMessage());
+        gmailBO.login(user);
+        gmailBO.sendMail(letterData);
+        Assert.assertTrue(gmailBO.isMessageSent());
         gmailBO.getSentPage();
-        Assert.assertEquals(letterData.getSubject(), gmailBO.getSubject(letterData.getSubject()));
         gmailBO.moveLetter();
-        Assert.assertTrue(gmailBO.getMovedMessage());
+        Assert.assertTrue(gmailBO.isMovedMessagePresent());
     }
     @AfterMethod
     public void driverQuit(){

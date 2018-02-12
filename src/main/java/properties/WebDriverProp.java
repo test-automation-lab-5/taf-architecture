@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public class WebDriverProp {
     private final static String PROPERTY_PATH = "src\\\\main\\\\resources\\\\webDriver.properties";
-    private Properties properties;
+    private static Properties properties;
     private FileInputStream fileInputStream;
 
     public WebDriverProp() throws IOException {
@@ -22,8 +22,12 @@ public class WebDriverProp {
         return chromeDriver;
     }
 
-    public String readUrl(){
+    public String readPath(){
         String chromeDriverPath = properties.getProperty("path");
         return chromeDriverPath;
     }
+    public static String readUrl(){
+        return properties.getProperty("url");
+    }
+
 }

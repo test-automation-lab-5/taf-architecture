@@ -3,6 +3,8 @@ package businessobjects;
 
 import businessobjects.pagepatternclasses.GmailPage;
 import businessobjects.pagepatternclasses.LoginPage;
+import testdata.xmlmodels.LetterData;
+import testdata.xmlmodels.User;
 
 public class GmailBO {
     private LoginPage loginPage;
@@ -13,22 +15,22 @@ public class GmailBO {
         this.gmailPage = new GmailPage();
     }
 
-    public void login(String login, String password) {
-        loginPage.loginGmail(login);
-        loginPage.setPasswordInput(password);
+    public void login(User user) {
+        loginPage.loginGmail(user);
+        loginPage.setPasswordInput(user);
         loginPage.openGmailPage();
     }
 
-    public void sendMail(String sentTo, String subject, String message) {
-        gmailPage.sendLetter(sentTo, subject, message);
+    public void sendMail(LetterData letterData) {
+        gmailPage.sendLetter(letterData);
+    }
+
+    public boolean isMessageSent() {
+        return gmailPage.isMessageSent();
     }
 
     public void getSentPage() {
         gmailPage.getSentPage();
-    }
-
-    public String getSubject(String subject) {
-        return gmailPage.getLetterSubject(subject);
     }
 
     public void moveLetter() {
@@ -36,7 +38,7 @@ public class GmailBO {
         gmailPage.pushDeleteOkButton();
     }
 
-    public boolean getMovedMessage() {
-        return gmailPage.getMovedMessage();
+    public boolean isMovedMessagePresent() {
+        return gmailPage.isMovedMessagePresent();
     }
 }

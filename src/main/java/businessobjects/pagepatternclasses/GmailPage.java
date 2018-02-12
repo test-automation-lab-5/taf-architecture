@@ -2,11 +2,10 @@ package businessobjects.pagepatternclasses;
 
 import businessobjects.pagepatternclasses.decorator.elements.elements.ButtonImpl;
 import businessobjects.pagepatternclasses.decorator.elements.elements.CheckBoxImpl;
+import businessobjects.pagepatternclasses.decorator.elements.elements.LabelImpl;
 import businessobjects.pagepatternclasses.decorator.elements.elements.TextInputImpl;
 import businessobjects.pagepatternclasses.decorator.elements.handlers.MyPageFactory;
-import drivers.DriverObject;
 import org.openqa.selenium.support.FindBy;
-import testdata.LetterDataUnMarshaller;
 import testdata.xmlmodels.LetterData;
 
 public class GmailPage extends AbstractPage {
@@ -20,6 +19,8 @@ public class GmailPage extends AbstractPage {
     private TextInputImpl messageInput;
     @FindBy(xpath = "//div[@class='J-J5-Ji btA']")
     private ButtonImpl sendButton;
+    @FindBy(xpath = "//span[@id='link_vsm']")
+    private LabelImpl sentMessageConfirmation;
     @FindBy(xpath = "//a[@title='Sent Mail']")
     private ButtonImpl sentPage;
     @FindBy(xpath = "//div[@role='main']//div[@role='checkbox']")
@@ -29,19 +30,23 @@ public class GmailPage extends AbstractPage {
     @FindBy(xpath = "//div[@role='alertdialog']//button[@name='ok']")
     private ButtonImpl deleteOkButton;
     @FindBy(xpath = "//span[@class='bofITb']")
-    private TextInputImpl movedMessage;
+    private LabelImpl movedMessage;
 
     public GmailPage() {
         super(new MyPageFactory());
     }
 
 
-    public void sendLetter(String to, String subject, String message) {
+    public void sendLetter(LetterData letterData) {
         composeButton.click();
-        sendToInput.sendKeys(to);
-        subjectInput.sendKeys(subject);
-        messageInput.sendKeys(message);
+        sendToInput.sendKeys(letterData.getSentTo());
+        subjectInput.sendKeys(letterData.getSubject());
+        messageInput.sendKeys(letterData.getMessage());
         sendButton.click();
+    }
+
+    public boolean isMessageSent() {
+        return sentMessageConfirmation.isPresent();
     }
 
     public void getSentPage() {
@@ -58,12 +63,7 @@ public class GmailPage extends AbstractPage {
         deleteOkButton.click();
     }
 
-    public boolean getMovedMessage() {
+    public boolean isMovedMessagePresent() {
         return movedMessage.isPresent();
     }
-
-    public String getLetterSubject(String subject) {
-        return getSubject(subject);
-    }
-
 }

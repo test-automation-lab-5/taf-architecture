@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class DriverObject {
-    private static Map<String, WebDriver> driverMap = new HashMap<>();
+    private static Map<Long, WebDriver> driverMap = new HashMap<>();
 
     private DriverObject() {
     }
@@ -22,31 +22,25 @@ public class DriverObject {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.setProperty(webDriverProp.chromeDriver(), webDriverProp.readUrl());
+        System.setProperty(webDriverProp.chromeDriver(), webDriverProp.readPath());
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
         return driver;
     }
 
-    public static WebDriver driverQuit() {
-        String currentThread = Thread.currentThread().getName();
-        WebDriver driver = driverMap.get(currentThread);
-        if (driver != null) {
-            try {
-                driver.quit();
-            } finally {
-                driver.quit();
-            }
+    public static void driverQuit() {
+        try {
+            DriverObject.getDriver().quit();
+        } finally {
+            DriverObject.getDriver().quit();
         }
-        return driver;
     }
 
     public static WebDriver getDriver() {
-        String currentThread = Thread.currentThread().getName();
+        long currentThread = Thread.currentThread().getId();
         WebDriver driver = driverMap.get(currentThread);
         if (driver == null) {
             driver = createDriver();
-            System.out.println(Thread.currentThread().getName());
             driverMap.put(currentThread, driver);
         }
         return driver;
