@@ -8,25 +8,25 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class DataXML {
-    public static List<User> unmarshalUser() {
+    public static Object[][] parse() {
         try {
             File file = new File(Constants.FILE_PATH_USERSDATA);
             JAXBContext jaxbContext = JAXBContext.newInstance(Users.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             Users users = (Users) jaxbUnmarshaller.unmarshal(file);
-            return users.getUser();
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-    public static List<Message> unmarshalMessage() {
-        try {
+
             File fileData = new File(Constants.FILE_PATH_DATA);
-            JAXBContext jaxbContext = JAXBContext.newInstance(Messages.class);
-            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            Messages messages = (Messages) jaxbUnmarshaller.unmarshal(fileData);
-            return messages.getMessage();
+            JAXBContext jaxbContext2 = JAXBContext.newInstance(Messages.class);
+            Unmarshaller jaxbUnmarshaller2 = jaxbContext2.createUnmarshaller();
+            Messages messages = (Messages) jaxbUnmarshaller2.unmarshal(fileData);
+
+            List<User> usersList = users.getUser();
+            List<Message> messagesList = messages.getMessage();
+
+            return IntStream
+                    .range(0, Constants.THREAD)
+                    .mapToObj((int i) -> new Object[]{Objects.requireNonNull(messagesList).get(i), Objects.requireNonNull(usersList).get(i)})
+                    .toArray(Object[][]::new);
         } catch (JAXBException e) {
             e.printStackTrace();
         }
