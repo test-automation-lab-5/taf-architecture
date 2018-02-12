@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<users>
+	<user>
+		<login>
+			annrusnaktest12345@gmail.com
+		</login>
+		<password>
+			annatest123
+		</password>
+	</user>
+	<user>
+		<login>
+			sometastypear@gmail.com
+		</login>
+		<password>
+			children12345
+		</password>
+	</user>
+	<user>
+		<login>
+			sometastyplum@gmail.com
+		</login>
+		<password>
+			children12345
+		</password>
+	</user>
+	<user>
+		<login>
+			sometastycherry@gmail.com
+		</login>
+		<password>
+			children12345
+		</password>
+	</user>
+</users>
