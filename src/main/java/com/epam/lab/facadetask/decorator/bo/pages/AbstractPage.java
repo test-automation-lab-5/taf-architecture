@@ -13,19 +13,16 @@ public class AbstractPage {
     private ElementFactory elementFactory = new ElementFactory();
 
     AbstractPage(CustomPageFactory pageFactory) {
-        this.driver = DriverObject.getDriver();
-        pageFactory.initElements(driver, this);
+        driver = DriverObject.getDriver();
+        CustomPageFactory.initElements(driver, this);
     }
 
-    protected WebDriverWait getWait() {
+    private WebDriverWait getWait() {
         return (new WebDriverWait(driver, 30));
     }
 
-    protected WebElement waitToBeClickable(WebElement element) {
+    WebElement waitToBeClickable(WebElement element) {
         return getWait().until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    protected WebElement waitToBeVisible(WebElement element){
-        return getWait().until(ExpectedConditions.visibilityOf(element));
-    }
 }

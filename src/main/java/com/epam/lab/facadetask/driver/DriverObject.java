@@ -7,17 +7,25 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
 public class DriverObject {
 
     private static Map<String, WebDriver> driverMap = new HashMap<>();
+    private static Semaphore semaphore = new Semaphore(3);
 
-    DriverObject() {
+    private DriverObject() {
     }
 
     private static WebDriver createDriver() {
         ReadPropertyFile reader = null;
+        try{
+            semaphore.acquire();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
         try {
             reader = new ReadPropertyFile();
         } catch (IOException e) {
@@ -42,12 +50,10 @@ public class DriverObject {
         return driver;
     }
 
-    public void destroyDriver() {
-        String identifier = Thread.currentThread().getName();
-        WebDriver driver = driverMap.remove(identifier);
-        if (driver != null) {
-            driver.quit();
-        }
+    public void releaseThread() {
+        DriverObject.getDriver().quit();
+        driverMap.remove(Thread.currentThread().getName());
+        semaphore.release();
     }
 }
 

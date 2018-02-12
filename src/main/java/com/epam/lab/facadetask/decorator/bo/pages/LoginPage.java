@@ -20,6 +20,7 @@ public class LoginPage extends AbstractPage {
     private WebElement gmailPage;
 
     public LoginPage()  {
+
         super(new CustomPageFactory());
     }
 
@@ -27,7 +28,6 @@ public class LoginPage extends AbstractPage {
         emailInput.sendKeys(email);
         emailNext.click();
     }
-
 
     public void setPassword(String pass){
         waitToBeClickable(passwordInput);

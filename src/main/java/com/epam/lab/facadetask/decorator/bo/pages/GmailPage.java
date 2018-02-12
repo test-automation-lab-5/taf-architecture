@@ -32,6 +32,7 @@ public class GmailPage extends AbstractPage{
     private WebElement movedToTrashMessage;
 
     public GmailPage(){
+
         super(new CustomPageFactory());
     }
 
@@ -59,30 +60,6 @@ public class GmailPage extends AbstractPage{
         deleteButton.click();
         confirmDeleteButton.click();
         log.info("Confirmed removal");
-    }
-
-    public WebElement getCheckbox() {
-        return checkbox;
-    }
-
-    public WebElement getComposeButton() {
-        return composeButton;
-    }
-
-    public WebElement getConfirmDeleteButton() {
-        return confirmDeleteButton;
-    }
-
-    public WebElement getDeleteButton() {
-        return deleteButton;
-    }
-
-    public WebElement getSentFolder() {
-        return sentFolder;
-    }
-
-    public WebElement getEnterButton() {
-        return enterButton;
     }
 
     public String getComposeCheck(){

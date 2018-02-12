@@ -15,5 +15,16 @@
         <subject>subject</subject>
         <message>test message</message>
     </testMessage>
+    <testMessage>
+        <receiver>bread.with.batter@gmail.com</receiver>
+        <subject>subject</subject>
+        <message>test message</message>
+    </testMessage>
+    <testMessage>
+        <receiver>hannabrets@gmail.com</receiver>
+        <subject>subject</subject>
+        <message>test message</message>
+    </testMessage>
+
 </testMessages>
     
