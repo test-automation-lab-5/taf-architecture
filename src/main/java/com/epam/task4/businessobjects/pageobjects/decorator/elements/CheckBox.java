@@ -14,12 +14,12 @@ public class CheckBox extends AbstractElement implements Click {
     }
 
     public void check() {
-        if (webElement.getAttribute("aria-checked").equals("false"))
+        if (!webElement.getAttribute("aria-checked").equals("true"))
             webElement.click();
     }
 
     public void unCheck() {
-        if (webElement.getAttribute("aria-checked").equals("true"))
+        if (!webElement.getAttribute("aria-checked").equals("false"))
             webElement.click();
     }
 }

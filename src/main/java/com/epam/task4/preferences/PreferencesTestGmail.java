@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public class PreferencesTestGmail extends PreferencesLoader {
     private static final Logger log = Logger.getLogger(PreferencesTestGmail.class);
-
+    
     private String driverType = null;
     private String driverURL = null;
     private Integer implicitlyWait = null;
@@ -21,12 +21,12 @@ public class PreferencesTestGmail extends PreferencesLoader {
         try {
             prop = new Properties();
             prop.load(PreferencesTestGmail.class.getResourceAsStream(preferencesFileURL));
-            driverType = loadProperty("driverType");
-            driverURL = loadProperty("driverURL");
-            implicitlyWait = Integer.parseInt(loadProperty("implicitlyWait"));
-            timeOutInSeconds = Integer.parseInt(loadProperty("timeOutInSeconds"));
-            sleepInMillis = Integer.parseInt(loadProperty("sleepInMillis"));
-            threadsLimit = Integer.parseInt(loadProperty("threadsLimit"));
+            driverType = loadProperty("driver.type");
+            driverURL = loadProperty("driver.URL");
+            implicitlyWait = Integer.parseInt(loadProperty("wait.implicitlyWait"));
+            timeOutInSeconds = Integer.parseInt(loadProperty("wait.timeOutInSeconds"));
+            sleepInMillis = Integer.parseInt(loadProperty("wait.sleepInMillis"));
+            threadsLimit = Integer.parseInt(loadProperty("threads.limit"));
         } catch (IOException | PreferencesLoadException exception) {
             log.error(exception.getMessage());
             throw exception;

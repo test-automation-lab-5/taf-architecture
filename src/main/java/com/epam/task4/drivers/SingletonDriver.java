@@ -46,5 +46,6 @@ public class SingletonDriver {
             entry.getValue().quit();
             semaphore.release();
         }
+        drivers.clear();
     }
 }

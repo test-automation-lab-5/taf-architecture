@@ -48,7 +48,7 @@ public class TestGmail {
         SingletonDriver.releaseThread();
     }
 
-    @AfterSuite
+    @AfterTest
     public void releaseAllThreads() {
         SingletonDriver.releaseAllThreads();
     }
