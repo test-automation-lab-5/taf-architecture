@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 public class SingletonDriver {
 
+
     private static WebDriver driver = null;
 
     private static WebDriver InitDriver() {
@@ -20,7 +21,6 @@ public class SingletonDriver {
 
     public static WebDriver getDriver() {
         driver = InitDriver();
-
         return driver;
     }
 

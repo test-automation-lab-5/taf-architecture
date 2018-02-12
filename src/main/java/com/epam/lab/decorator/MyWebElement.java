@@ -1,6 +1,7 @@
 package com.epam.lab.decorator;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
@@ -8,18 +9,9 @@ public class MyWebElement implements WebElement {
 
     private WebElement element;
 
+
     public MyWebElement(WebElement element) {
         this.element = element;
-    }
-
-
-    public boolean exists() {
-        try {
-            String innerHTML = element.getAttribute("innerHTML");
-            return true;
-        } catch (NoSuchElementException e) {
-            return false;
-        }
     }
 
 
@@ -107,5 +99,14 @@ public class MyWebElement implements WebElement {
     @Override
     public <X> X getScreenshotAs(OutputType<X> outputType) throws WebDriverException {
         return null;
+    }
+
+    public boolean exists() {
+        try {
+            String innerHTML = element.getAttribute("innerHTML");
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
 }

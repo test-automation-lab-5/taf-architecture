@@ -10,14 +10,12 @@ public class ParallelTestData {
     @DataProvider(name = "testData", parallel = true)
     public Object[][] testData() {
         List<LoginDataProp> list = XmlToObject.getData();
-
-        return new Object[][]{
-
-                {list.get(0).getLoginData(), list.get(0).getPasswordData()},
-                {list.get(1).getLoginData(), list.get(1).getPasswordData()},
-                {list.get(2).getLoginData(), list.get(2).getPasswordData()},
-                {list.get(3).getLoginData(), list.get(3).getPasswordData()},
-                {list.get(4).getLoginData(), list.get(4).getPasswordData()},
-        };
+        Object[][] data = new Object[list.size()][1];
+        int count = 0;
+        while (count < list.size()) {
+            data[count] = new Object[]{list.get(count).getLoginData(), list.get(count).getPasswordData()};
+            count++;
+        }
+        return data;
     }
 }

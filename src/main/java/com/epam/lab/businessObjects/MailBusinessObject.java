@@ -1,6 +1,6 @@
 package com.epam.lab.businessObjects;
 
-import org.openqa.selenium.WebDriver;
+import com.epam.lab.pageObject.MailPage;
 
 
 public class MailBusinessObject {
@@ -8,28 +8,22 @@ public class MailBusinessObject {
     private MailPage mailPage;
 
 
-    public MailBusinessObject(WebDriver driver) {
-        this.mailPage = new MailPage(driver);
+    public MailBusinessObject() {
+        this.mailPage = new MailPage();
     }
 
 
-    public void composeWrongMail(String email, String subject, String message) {
-        mailPage.typeMessage(email, subject, message);
-        mailPage.submitMessage();
-
-    }
-
-    public void composeRightMail(String email) {
-        mailPage.typeCorrectMessage(email);
+    public void writeMessage(String... arg) {
+        mailPage.typeMessage(arg);
         mailPage.submitMessage();
     }
 
-    public boolean verifyAlertMessage() {
-        return mailPage.verifyAlertMessage();
+    public boolean verifyWarningMessageExists() {
+        return mailPage.verifyWarningMessageExists();
     }
 
-    public void clickAlertMessage() {
-        mailPage.clickAlertMessage();
+    public void closeWarningMessage() {
+        mailPage.clickWarningMessage();
     }
 
     public String checkMail() {

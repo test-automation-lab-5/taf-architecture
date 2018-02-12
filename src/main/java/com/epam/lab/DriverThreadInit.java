@@ -1,6 +1,9 @@
 package com.epam.lab;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.util.concurrent.TimeUnit;
 
 public class DriverThreadInit {
 
@@ -14,17 +17,16 @@ public class DriverThreadInit {
         return instance;
     }
 
-    ThreadLocal<WebDriver> threadDriver = new ThreadLocal<WebDriver>() // thread local driver object for webdriver
+    public ThreadLocal<WebDriver> threadDriver = new ThreadLocal<WebDriver>() // thread local driver object for webdriver
     {
-        //@Override
-      /*  protected WebDriver initialValue()
-        {
-            return new ChromeDriver(); // can be replaced with other browser drivers
-        }*/
         @Override
         protected WebDriver initialValue() {
-            return SingletonDriver.getDriver();
+            WebDriver driver;
+            driver = new ChromeDriver();
+            driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
+            return driver;
         }
+
     };
 
     public WebDriver getDriver() {

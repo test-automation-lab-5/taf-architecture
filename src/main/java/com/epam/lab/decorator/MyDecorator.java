@@ -25,8 +25,6 @@ public class MyDecorator extends DefaultFieldDecorator {
             return myTextInput;
         } else if (MyWebElement.class.isAssignableFrom(field.getType())) {
             final MyWebElement myWebElement = new MyWebElement(proxyForLocator(loader, locator));
-
-
             return myWebElement;
         } else {
             return super.decorate(loader, field);
