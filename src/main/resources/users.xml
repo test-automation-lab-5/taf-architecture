@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <users parallel="methods" thread-count="3" message-provider-thread-count="3">
     <user>
-        <password>hnatko222</password>
-        <email>hnatko2@gmail.com</email>
+        <password></password>
+        <email></email>
     </user>
     <user>
-        <password>1997scvbfnk</password>
-        <email>kristinabilokura@gmail.com</email>
+        <password></password>
+        <email></email>
     </user>
     <user>
         <password>Kids12345a</password>
