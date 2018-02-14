@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<accounts>
+    <account>
+        <login>vitaminkaphoto@gmail.com</login>
+        <password>ikea12345</password>
+    </account>
+    <account>
+        <login>annrusnaktest12345@gmail.com</login>
+        <password>annatest123</password>
+    </account>
+</accounts>
